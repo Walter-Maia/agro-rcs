@@ -8,7 +8,14 @@ Identidade visual (Rodada G) e landing page da **TcaEnterprise**, empresa de tec
 | [`apresentacao-rodada-G/`](apresentacao-rodada-G/) | Página de apresentação da Rodada G (`index.html` + `img/`). Abre direto no navegador. |
 | [`landing-page/`](landing-page/) | Landing page estática com abertura animada ("o broto que decola"), v0.2.0. A arte-final vetorial da marca está em `landing-page/assets/marca/`. |
 
-## Abrir a landing page
+## No ar (GitHub Pages)
+
+- **Landing page:** https://walter-maia.github.io/agro-rcs/ (a raiz redireciona para `landing-page/`; `?intro=1` força a abertura).
+- **Apresentação da Rodada G:** https://walter-maia.github.io/agro-rcs/apresentacao-rodada-G/
+
+As duas páginas têm `noindex`: os buscadores não as indexam enquanto forem prévia.
+
+## Abrir a landing page localmente
 
 A logo do rodapé é um `<use>` de SVG externo, que precisa de HTTP: abrir pelo `file://` não mostra a logo.
 
