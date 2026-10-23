@@ -1,0 +1,1375 @@
+{
+ "natural": {
+  "390": {
+   "nome": "natural-390",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:35:32.961Z",
+   "linha": [
+    [
+     360,
+     "html: js intro-active lenis"
+    ],
+    [
+     360,
+     "#intro: intro"
+    ],
+    [
+     377,
+     "#intro: intro is-playing"
+    ],
+    [
+     827,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     3160,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     3160,
+     "#intro: intro is-playing is-growing is-leaving"
+    ],
+    [
+     3726,
+     "#intro: (fora do DOM)"
+    ],
+    [
+     4759,
+     "html: js lenis"
+    ]
+   ],
+   "lentos": [
+    [
+     3160,
+     67
+    ]
+   ],
+   "quadros": {
+    "quadros": 266,
+    "mediana": 16.7,
+    "p95": 16.9,
+    "maior": 66.7,
+    "acimaDe50ms": 1
+   },
+   "final": {
+    "html": "js lenis",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "depoisDaSaida": "qa/fase1/capturas/natural-390-depois.jpg",
+   "recarregada": {
+    "introActive": false,
+    "intro": false,
+    "linha": [
+     [
+      45,
+      "html: js"
+     ],
+     [
+      45,
+      "#intro: (fora do DOM)"
+     ],
+     [
+      211,
+      "html: js lenis"
+     ]
+    ]
+   },
+   "forcada": {
+    "linha": [
+     [
+      47,
+      "html: js intro-active"
+     ],
+     [
+      47,
+      "#intro: intro"
+     ],
+     [
+      131,
+      "html: js intro-active lenis"
+     ],
+     [
+      197,
+      "#intro: intro is-playing"
+     ],
+     [
+      647,
+      "#intro: intro is-playing is-growing"
+     ]
+    ]
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:35:42.198Z"
+  },
+  "1440": {
+   "nome": "natural-1440",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:35:23.891Z",
+   "linha": [
+    [
+     213,
+     "html: js intro-active"
+    ],
+    [
+     213,
+     "#intro: intro"
+    ],
+    [
+     313,
+     "html: js intro-active lenis"
+    ],
+    [
+     380,
+     "#intro: intro is-playing"
+    ],
+    [
+     814,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     3146,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     3146,
+     "#intro: intro is-playing is-growing is-leaving"
+    ],
+    [
+     3696,
+     "#intro: (fora do DOM)"
+    ],
+    [
+     4746,
+     "html: js lenis"
+    ]
+   ],
+   "lentos": [
+    [
+     213,
+     100
+    ],
+    [
+     313,
+     67
+    ]
+   ],
+   "quadros": {
+    "quadros": 272,
+    "mediana": 16.7,
+    "p95": 16.9,
+    "maior": 99.9,
+    "acimaDe50ms": 2
+   },
+   "final": {
+    "html": "js lenis",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "depoisDaSaida": "qa/fase1/capturas/natural-1440-depois.jpg",
+   "recarregada": {
+    "introActive": false,
+    "intro": false,
+    "linha": [
+     [
+      23,
+      "html: js"
+     ],
+     [
+      23,
+      "#intro: (fora do DOM)"
+     ],
+     [
+      173,
+      "html: js lenis"
+     ]
+    ]
+   },
+   "forcada": {
+    "linha": [
+     [
+      49,
+      "html: js intro-active"
+     ],
+     [
+      49,
+      "#intro: intro"
+     ],
+     [
+      149,
+      "html: js intro-active lenis"
+     ],
+     [
+      233,
+      "#intro: intro is-playing"
+     ],
+     [
+      666,
+      "#intro: intro is-playing is-growing"
+     ]
+    ]
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:35:32.955Z"
+  }
+ },
+ "ancora": {
+  "nome": "ancora",
+  "opts": {
+   "W": 1440,
+   "H": 900,
+   "dpr": 1,
+   "mobile": false,
+   "touch": false,
+   "rm": false,
+   "cpu": 1,
+   "js": true,
+   "intro": true,
+   "out": "qa/fase1"
+  },
+  "inicio": "2026-10-23T18:35:42.210Z",
+  "final": {
+   "linha": [
+    [
+     351,
+     "html: js lenis lenis-scrolling"
+    ],
+    [
+     351,
+     "#intro: (fora do DOM)"
+    ],
+    [
+     784,
+     "html: js lenis"
+    ]
+   ],
+   "intro": false,
+   "topoContato": 84
+  },
+  "problemas": {
+   "console": [],
+   "excecoes": [],
+   "respostas": [],
+   "falhas": []
+  },
+  "fim": "2026-10-23T18:35:45.903Z"
+ },
+ "pular": {
+  "esc": {
+   "nome": "pular-esc",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:35:45.910Z",
+   "acaoEm": 912,
+   "leavingMs": 17,
+   "removidoMs": 401,
+   "final": {
+    "html": "js lenis intro-leaving",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     463,
+     "html: js intro-active lenis"
+    ],
+    [
+     463,
+     "#intro: intro"
+    ],
+    [
+     480,
+     "#intro: intro is-playing"
+    ],
+    [
+     929,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     929,
+     "#intro: intro is-playing is-leaving is-skipping"
+    ],
+    [
+     1313,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:35:49.438Z"
+  },
+  "enter": {
+   "nome": "pular-enter",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:35:49.445Z",
+   "acaoEm": 917,
+   "leavingMs": 4,
+   "removidoMs": 404,
+   "final": {
+    "html": "js lenis intro-leaving",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     554,
+     "html: js intro-active lenis"
+    ],
+    [
+     554,
+     "#intro: intro"
+    ],
+    [
+     571,
+     "#intro: intro is-playing"
+    ],
+    [
+     921,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     921,
+     "#intro: intro is-playing is-leaving is-skipping"
+    ],
+    [
+     1321,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:35:53.372Z"
+  },
+  "tab": {
+   "nome": "pular-tab",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:35:53.389Z",
+   "acaoEm": 904,
+   "leavingMs": null,
+   "removidoMs": 12,
+   "final": {
+    "html": "js lenis",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "pular",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     399,
+     "html: js intro-active lenis"
+    ],
+    [
+     399,
+     "#intro: intro"
+    ],
+    [
+     433,
+     "#intro: intro is-playing"
+    ],
+    [
+     883,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     916,
+     "html: js lenis"
+    ],
+    [
+     916,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:35:57.243Z"
+  },
+  "roda": {
+   "nome": "pular-roda",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:35:57.248Z",
+   "acaoEm": 903,
+   "leavingMs": 36,
+   "removidoMs": 419,
+   "final": {
+    "html": "js lenis intro-leaving",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     456,
+     "html: js intro-active lenis"
+    ],
+    [
+     456,
+     "#intro: intro"
+    ],
+    [
+     473,
+     "#intro: intro is-playing"
+    ],
+    [
+     923,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     939,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     939,
+     "#intro: intro is-playing is-growing is-leaving is-skipping"
+    ],
+    [
+     1322,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:00.585Z"
+  },
+  "rodaRajada": {
+   "nome": "pular-rodaRajada",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:00.592Z",
+   "acaoEm": 907,
+   "leavingMs": 41,
+   "removidoMs": 441,
+   "final": {
+    "html": "js  intro-leaving lenis lenis-scrolling lenis-smooth",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 238,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     564,
+     "html: js intro-active lenis"
+    ],
+    [
+     564,
+     "#intro: intro is-playing"
+    ],
+    [
+     948,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     948,
+     "#intro: intro is-playing is-leaving is-skipping"
+    ],
+    [
+     1064,
+     "html: js  intro-leaving lenis lenis-scrolling lenis-smooth"
+    ],
+    [
+     1348,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:04.470Z"
+  },
+  "clique": {
+   "nome": "pular-clique",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:04.478Z",
+   "acaoEm": 910,
+   "leavingMs": 4,
+   "removidoMs": 404,
+   "final": {
+    "html": "js lenis intro-leaving",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     165,
+     "html: js intro-active"
+    ],
+    [
+     165,
+     "#intro: intro"
+    ],
+    [
+     331,
+     "html: js intro-active lenis"
+    ],
+    [
+     448,
+     "#intro: intro is-playing"
+    ],
+    [
+     898,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     914,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     914,
+     "#intro: intro is-playing is-growing is-leaving is-skipping"
+    ],
+    [
+     1314,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:07.799Z"
+  },
+  "toque": {
+   "nome": "pular-toque",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:07.811Z",
+   "acaoEm": 908,
+   "leavingMs": 24,
+   "removidoMs": 407,
+   "final": {
+    "html": "js  intro-leaving lenis lenis-scrolling",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     465,
+     "html: js intro-active lenis"
+    ],
+    [
+     465,
+     "#intro: intro"
+    ],
+    [
+     498,
+     "#intro: intro is-playing"
+    ],
+    [
+     932,
+     "html: js lenis intro-leaving"
+    ],
+    [
+     932,
+     "#intro: intro is-playing is-leaving is-skipping"
+    ],
+    [
+     948,
+     "html: js  intro-leaving lenis lenis-scrolling"
+    ],
+    [
+     1315,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:12.386Z"
+  },
+  "abaOculta": {
+   "nome": "pular-abaOculta",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:12.399Z",
+   "acaoEm": 922,
+   "leavingMs": null,
+   "removidoMs": 3,
+   "final": {
+    "html": "js lenis",
+    "intro": false,
+    "sessao": "1",
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "linha": [
+    [
+     508,
+     "html: js intro-active lenis"
+    ],
+    [
+     508,
+     "#intro: intro"
+    ],
+    [
+     541,
+     "#intro: intro is-playing"
+    ],
+    [
+     925,
+     "html: js lenis"
+    ],
+    [
+     925,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:16.606Z"
+  }
+ },
+ "jsBloqueado": {
+  "bloqueado": {
+   "nome": "js-bloqueado",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:16.620Z",
+   "linha": [
+    [
+     546,
+     "html: js lenis"
+    ],
+    [
+     546,
+     "#intro: (fora do DOM)"
+    ]
+   ],
+   "final": {
+    "html": "js lenis",
+    "intro": false,
+    "sessao": null,
+    "h1": "1",
+    "scrollY": 0,
+    "hash": "",
+    "foco": "BODY",
+    "theme": "#F4F1E8"
+   },
+   "captura": "qa/fase1/capturas/js-bloqueado-1s.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": [
+     " Script"
+    ]
+   },
+   "fim": "2026-10-23T18:36:21.039Z"
+  },
+  "vazio": {
+   "nome": "js-vazio",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:21.044Z",
+   "aos3s": {
+    "introActive": true,
+    "cobertura": "visible 1.00",
+    "heroRodando": "",
+    "t": 3084
+   },
+   "captura3s": "qa/fase1/capturas/js-vazio-3s.jpg",
+   "aos7s5": {
+    "introActive": true,
+    "cobertura": "hidden 0.00",
+    "heroRodando": "",
+    "t": 7718
+   },
+   "captura7s5": "qa/fase1/capturas/js-vazio-7s5.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:31.329Z"
+  }
+ },
+ "cpu4": {
+  "nome": "cpu4",
+  "opts": {
+   "W": 390,
+   "H": 844,
+   "dpr": 1,
+   "mobile": true,
+   "touch": true,
+   "rm": false,
+   "cpu": 4,
+   "js": true,
+   "intro": true,
+   "out": "qa/fase1"
+  },
+  "inicio": "2026-10-23T18:36:31.336Z",
+  "linha": [
+   [
+    404,
+    "html: js intro-active"
+   ],
+   [
+    404,
+    "#intro: intro"
+   ],
+   [
+    1188,
+    "html: js intro-active lenis"
+   ],
+   [
+    1188,
+    "#intro: intro is-playing"
+   ],
+   [
+    1754,
+    "#intro: intro is-playing is-growing"
+   ],
+   [
+    4087,
+    "html: js lenis intro-leaving"
+   ],
+   [
+    4087,
+    "#intro: intro is-playing is-growing is-leaving"
+   ],
+   [
+    4621,
+    "#intro: (fora do DOM)"
+   ],
+   [
+    5670,
+    "html: js lenis"
+   ]
+  ],
+  "quadros": {
+   "quadros": 246,
+   "mediana": 16.7,
+   "p95": 33.3,
+   "maior": 499.9,
+   "acimaDe50ms": 5
+  },
+  "lentos": [
+   [
+    404,
+    500
+   ],
+   [
+    904,
+    283
+   ],
+   [
+    1188,
+    483
+   ],
+   [
+    1754,
+    67
+   ],
+   [
+    4104,
+    50
+   ]
+  ],
+  "final": {
+   "html": "js lenis",
+   "intro": false,
+   "sessao": "1",
+   "h1": "1",
+   "scrollY": 0,
+   "hash": "",
+   "foco": "BODY",
+   "theme": "#F4F1E8"
+  },
+  "problemas": {
+   "console": [],
+   "excecoes": [],
+   "respostas": [],
+   "falhas": []
+  },
+  "fim": "2026-10-23T18:36:41.521Z"
+ },
+ "semAbertura": {
+  "rm": {
+   "nome": "rm",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": true,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:41.533Z",
+   "final": {
+    "linha": [
+     [
+      364,
+      "html: js rm"
+     ],
+     [
+      364,
+      "#intro: (fora do DOM)"
+     ]
+    ],
+    "intro": false
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:44.966Z"
+  },
+  "fx0": {
+   "nome": "fx0",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:44.971Z",
+   "final": {
+    "linha": [
+     [
+      347,
+      "html: js rm"
+     ],
+     [
+      347,
+      "#intro: (fora do DOM)"
+     ]
+    ],
+    "intro": false
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:48.277Z"
+  }
+ },
+ "tamanhos": {
+  "360x640": {
+   "nome": "tamanho-360x640",
+   "opts": {
+    "W": 360,
+    "H": 640,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:48.285Z",
+   "medidas": {
+    "marca": [
+     32,
+     237,
+     328,
+     384
+    ],
+    "cabe": true,
+    "larguraLogo": 295,
+    "contornoPx": 1.2,
+    "campoPx": [
+     1.6,
+     1.95
+    ],
+    "menorTracoOficialPx": 4.99
+   },
+   "captura": "qa/fase1/capturas/tamanho-360x640-2s6.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:53.638Z"
+  },
+  "390x844": {
+   "nome": "tamanho-390x844",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:53.646Z",
+   "medidas": {
+    "marca": [
+     45,
+     334,
+     345,
+     484
+    ],
+    "cabe": true,
+    "larguraLogo": 300,
+    "contornoPx": 1.22,
+    "campoPx": [
+     1.6,
+     1.95
+    ],
+    "menorTracoOficialPx": 5.07
+   },
+   "captura": "qa/fase1/capturas/tamanho-390x844-2s6.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:36:58.949Z"
+  },
+  "900x500": {
+   "nome": "tamanho-900x500",
+   "opts": {
+    "W": 900,
+    "H": 500,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:36:58.956Z",
+   "medidas": {
+    "marca": [
+     258,
+     147,
+     642,
+     338
+    ],
+    "cabe": true,
+    "larguraLogo": 384,
+    "contornoPx": 1.56,
+    "campoPx": [
+     1.6,
+     1.95
+    ],
+    "menorTracoOficialPx": 6.48
+   },
+   "captura": "qa/fase1/capturas/tamanho-900x500-2s6.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:04.275Z"
+  },
+  "1440x900": {
+   "nome": "tamanho-1440x900",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:37:04.281Z",
+   "medidas": {
+    "marca": [
+     484,
+     318,
+     956,
+     555
+    ],
+    "cabe": true,
+    "larguraLogo": 472,
+    "contornoPx": 1.38,
+    "campoPx": [
+     1.2,
+     1.5
+    ],
+    "menorTracoOficialPx": 7.98
+   },
+   "captura": "qa/fase1/capturas/tamanho-1440x900-2s6.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:09.591Z"
+  },
+  "1920x1080": {
+   "nome": "tamanho-1920x1080",
+   "opts": {
+    "W": 1920,
+    "H": 1080,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:37:09.598Z",
+   "medidas": {
+    "marca": [
+     685,
+     386,
+     1235,
+     662
+    ],
+    "cabe": true,
+    "larguraLogo": 551,
+    "contornoPx": 1.6,
+    "campoPx": [
+     1.2,
+     1.5
+    ],
+    "menorTracoOficialPx": 9.31
+   },
+   "captura": "qa/fase1/capturas/tamanho-1920x1080-2s6.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:15.581Z"
+  }
+ },
+ "poseFinal": {
+  "390": {
+   "nome": "pose-390",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:41:17.109Z",
+   "caixa": {
+    "x": 45.015625,
+    "y": 334.296875,
+    "width": 299.953125,
+    "height": 150.078125
+   },
+   "cloneXoficial": {
+    "pixels": 48972,
+    "maiorDiferenca": 1,
+    "mediaDiferenca": 0,
+    "acimaDe32": 0,
+    "acimaDe32Pct": 0,
+    "acimaDe96": 0
+   },
+   "aberturaXoficial": {
+    "pixels": 48972,
+    "maiorDiferenca": 103,
+    "mediaDiferenca": 1.615,
+    "acimaDe32": 753,
+    "acimaDe32Pct": 1.538,
+    "acimaDe96": 1
+   },
+   "arquivos": [
+    "qa/fase1/capturas/pose-390-abertura.png",
+    "qa/fase1/capturas/pose-390-clone-estatico.png",
+    "qa/fase1/capturas/pose-390-oficial.png",
+    "qa/fase1/capturas/pose-390-diferenca.png"
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:41:21.197Z"
+  },
+  "1440": {
+   "nome": "pose-1440",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": true,
+    "out": "qa/fase1"
+   },
+   "inicio": "2026-10-23T18:41:11.478Z",
+   "caixa": {
+    "x": 483.921875,
+    "y": 318.375,
+    "width": 472.15625,
+    "height": 236.25
+   },
+   "cloneXoficial": {
+    "pixels": 117845,
+    "maiorDiferenca": 0,
+    "mediaDiferenca": 0,
+    "acimaDe32": 0,
+    "acimaDe32Pct": 0,
+    "acimaDe96": 0
+   },
+   "aberturaXoficial": {
+    "pixels": 117845,
+    "maiorDiferenca": 102,
+    "mediaDiferenca": 1.151,
+    "acimaDe32": 1338,
+    "acimaDe32Pct": 1.135,
+    "acimaDe96": 1
+   },
+   "arquivos": [
+    "qa/fase1/capturas/pose-1440-abertura.png",
+    "qa/fase1/capturas/pose-1440-clone-estatico.png",
+    "qa/fase1/capturas/pose-1440-oficial.png",
+    "qa/fase1/capturas/pose-1440-diferenca.png"
+   ],
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:41:17.102Z"
+  }
+ },
+ "_atualizado": "2026-10-23T18:41:21.197Z"
+}

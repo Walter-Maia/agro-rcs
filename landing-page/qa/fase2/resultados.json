@@ -1,0 +1,1263 @@
+{
+ "larguras": {
+  "320": {
+   "nome": "largura-320",
+   "opts": {
+    "W": 320,
+    "H": 640,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:37:23.182Z",
+   "hero": "qa/fase2/capturas/largura-320-1-hero.jpg",
+   "medidas": {
+    "scrollWidth": 320,
+    "innerWidth": 320,
+    "estouro": false,
+    "vazamentos": [],
+    "titulos": [
+     "hero-titulo: 4 linha(s)",
+     "solucoes-titulo: 3 linha(s)",
+     "como-titulo: 2 linha(s)",
+     "sobre-titulo: 3 linha(s)",
+     "cta-titulo: 3 linha(s)"
+    ],
+    "navDesktop": false,
+    "ctaTopo": false,
+    "botaoMenu": true,
+    "marca": [
+     "sprite ok",
+     "sprite ok"
+    ],
+    "alturaPagina": 5460
+   },
+   "inteira": "qa/fase2/capturas/largura-320-2-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:32.715Z"
+  },
+  "390": {
+   "nome": "largura-390",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:37:32.722Z",
+   "hero": "qa/fase2/capturas/largura-390-1-hero.jpg",
+   "medidas": {
+    "scrollWidth": 390,
+    "innerWidth": 390,
+    "estouro": false,
+    "vazamentos": [],
+    "titulos": [
+     "hero-titulo: 3 linha(s)",
+     "solucoes-titulo: 3 linha(s)",
+     "como-titulo: 1 linha(s)",
+     "sobre-titulo: 3 linha(s)",
+     "cta-titulo: 3 linha(s)"
+    ],
+    "navDesktop": false,
+    "ctaTopo": false,
+    "botaoMenu": true,
+    "marca": [
+     "sprite ok",
+     "sprite ok"
+    ],
+    "alturaPagina": 5488
+   },
+   "inteira": "qa/fase2/capturas/largura-390-2-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:41.486Z"
+  },
+  "768": {
+   "nome": "largura-768",
+   "opts": {
+    "W": 768,
+    "H": 1024,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:37:41.493Z",
+   "hero": "qa/fase2/capturas/largura-768-1-hero.jpg",
+   "medidas": {
+    "scrollWidth": 768,
+    "innerWidth": 768,
+    "estouro": false,
+    "vazamentos": [],
+    "titulos": [
+     "hero-titulo: 2 linha(s)",
+     "solucoes-titulo: 2 linha(s)",
+     "como-titulo: 1 linha(s)",
+     "sobre-titulo: 2 linha(s)",
+     "cta-titulo: 2 linha(s)"
+    ],
+    "navDesktop": false,
+    "ctaTopo": true,
+    "botaoMenu": true,
+    "marca": [
+     "sprite ok",
+     "sprite ok"
+    ],
+    "alturaPagina": 6174
+   },
+   "inteira": "qa/fase2/capturas/largura-768-2-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:50.157Z"
+  },
+  "1024": {
+   "nome": "largura-1024",
+   "opts": {
+    "W": 1024,
+    "H": 768,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:37:50.164Z",
+   "hero": "qa/fase2/capturas/largura-1024-1-hero.jpg",
+   "medidas": {
+    "scrollWidth": 1024,
+    "innerWidth": 1024,
+    "estouro": false,
+    "vazamentos": [],
+    "titulos": [
+     "hero-titulo: 4 linha(s)",
+     "solucoes-titulo: 2 linha(s)",
+     "como-titulo: 1 linha(s)",
+     "sobre-titulo: 3 linha(s)",
+     "cta-titulo: 2 linha(s)"
+    ],
+    "navDesktop": true,
+    "ctaTopo": true,
+    "botaoMenu": false,
+    "marca": [
+     "sprite ok",
+     "sprite ok"
+    ],
+    "alturaPagina": 5240
+   },
+   "inteira": "qa/fase2/capturas/largura-1024-2-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:37:59.221Z"
+  },
+  "1440": {
+   "nome": "largura-1440",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:37:59.229Z",
+   "hero": "qa/fase2/capturas/largura-1440-1-hero.jpg",
+   "medidas": {
+    "scrollWidth": 1440,
+    "innerWidth": 1440,
+    "estouro": false,
+    "vazamentos": [],
+    "titulos": [
+     "hero-titulo: 4 linha(s)",
+     "solucoes-titulo: 2 linha(s)",
+     "como-titulo: 1 linha(s)",
+     "sobre-titulo: 3 linha(s)",
+     "cta-titulo: 2 linha(s)"
+    ],
+    "navDesktop": true,
+    "ctaTopo": true,
+    "botaoMenu": false,
+    "marca": [
+     "sprite ok",
+     "sprite ok"
+    ],
+    "alturaPagina": 6405
+   },
+   "inteira": "qa/fase2/capturas/largura-1440-2-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:38:08.446Z"
+  },
+  "1920": {
+   "nome": "largura-1920",
+   "opts": {
+    "W": 1920,
+    "H": 1080,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:38:08.454Z",
+   "hero": "qa/fase2/capturas/largura-1920-1-hero.jpg",
+   "medidas": {
+    "scrollWidth": 1920,
+    "innerWidth": 1920,
+    "estouro": false,
+    "vazamentos": [],
+    "titulos": [
+     "hero-titulo: 4 linha(s)",
+     "solucoes-titulo: 2 linha(s)",
+     "como-titulo: 1 linha(s)",
+     "sobre-titulo: 3 linha(s)",
+     "cta-titulo: 2 linha(s)"
+    ],
+    "navDesktop": true,
+    "ctaTopo": true,
+    "botaoMenu": false,
+    "marca": [
+     "sprite ok",
+     "sprite ok"
+    ],
+    "alturaPagina": 6600
+   },
+   "inteira": "qa/fase2/capturas/largura-1920-2-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:38:17.837Z"
+  }
+ },
+ "menuMovel": {
+  "nome": "menu-390",
+  "opts": {
+   "W": 390,
+   "H": 844,
+   "dpr": 1,
+   "mobile": true,
+   "touch": true,
+   "rm": false,
+   "cpu": 1,
+   "js": true,
+   "intro": false,
+   "out": "qa/fase2"
+  },
+  "inicio": "2026-10-23T18:38:17.845Z",
+  "aberto": {
+   "expandido": "true",
+   "rotulo": "Fechar menu",
+   "foco": "Soluções",
+   "mainInerte": true,
+   "travaRolagem": "hidden / lenis-stopped=true"
+  },
+  "capturaAberto": "qa/fase2/capturas/menu-390-aberto.jpg",
+  "aposEsc": {
+   "expandido": "false",
+   "menuOculto": true,
+   "foco": "topo__menu rise-down",
+   "mainInerte": false
+  },
+  "ancoraPeloMenu": {
+   "menuOculto": true,
+   "topoDoAlvo": 64,
+   "alturaCabecalho": 64,
+   "hash": "#sobre",
+   "foco": "sobre"
+  },
+  "capturaSobre": "qa/fase2/capturas/menu-390-ancora-sobre.jpg",
+  "problemas": {
+   "console": [],
+   "excecoes": [],
+   "respostas": [],
+   "falhas": []
+  },
+  "fim": "2026-10-23T18:38:25.564Z"
+ },
+ "ancoras": {
+  "nome": "ancoras-1440",
+  "opts": {
+   "W": 1440,
+   "H": 900,
+   "dpr": 1,
+   "mobile": false,
+   "touch": false,
+   "rm": false,
+   "cpu": 1,
+   "js": true,
+   "intro": false,
+   "out": "qa/fase2"
+  },
+  "inicio": "2026-10-23T18:38:25.571Z",
+  "links": [
+   {
+    "id": "solucoes",
+    "topo": 76,
+    "scrollY": 937,
+    "foco": "solucoes",
+    "hash": "#solucoes"
+   },
+   {
+    "id": "como-funciona",
+    "topo": 76,
+    "scrollY": 3625,
+    "foco": "como-funciona",
+    "hash": "#como-funciona"
+   },
+   {
+    "id": "sobre",
+    "topo": 76,
+    "scrollY": 4734,
+    "foco": "sobre",
+    "hash": "#sobre"
+   },
+   {
+    "id": "contato",
+    "topo": 76,
+    "scrollY": 5403,
+    "foco": "contato",
+    "hash": "#contato"
+   },
+   {
+    "id": "inicio",
+    "topo": 0,
+    "scrollY": 0,
+    "foco": "inicio",
+    "hash": "#inicio"
+   }
+  ],
+  "pularVisivel": {
+   "texto": "Pular para o conteúdo",
+   "top": 10,
+   "outline": "solid"
+  },
+  "capturaPular": "qa/fase2/capturas/ancoras-1440-pular.jpg",
+  "aposPular": "conteudo",
+  "problemas": {
+   "console": [],
+   "excecoes": [],
+   "respostas": [],
+   "falhas": []
+  },
+  "fim": "2026-10-23T18:38:41.492Z"
+ },
+ "raizes": {
+  "390": {
+   "nome": "raizes-390",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:38:56.608Z",
+   "faixaDeRolagem": {
+    "ini": 2595.14875,
+    "fim": 3305.959375,
+    "largo": false
+   },
+   "descendo": [
+    {
+     "alvo": 0.25,
+     "p": 0.25,
+     "aceso": [
+      true,
+      false,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0.2663, 0, 0)"
+    },
+    {
+     "alvo": 0.5,
+     "p": 0.501,
+     "aceso": [
+      true,
+      false,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0.5327, 0, 0)"
+    },
+    {
+     "alvo": 0.75,
+     "p": 0.75,
+     "aceso": [
+      true,
+      true,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0.7975, 0, 0)"
+    },
+    {
+     "alvo": 1,
+     "p": 1,
+     "aceso": [
+      true,
+      true,
+      true
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 1, 0, 0)"
+    }
+   ],
+   "captura075": "qa/fase2/capturas/raizes-390-p075.jpg",
+   "subindo": [
+    {
+     "alvo": 0.75,
+     "p": 0.75,
+     "aceso": [
+      true,
+      true,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0.7975, 0, 0)"
+    },
+    {
+     "alvo": 0.5,
+     "p": 0.501,
+     "aceso": [
+      true,
+      true,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0.5327, 0, 0)"
+    },
+    {
+     "alvo": 0.25,
+     "p": 0.25,
+     "aceso": [
+      true,
+      false,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0.2663, 0, 0)"
+    },
+    {
+     "alvo": 0,
+     "p": 0,
+     "aceso": [
+      false,
+      false,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "matrix(1, 0, 0, 0, 0, 0)"
+    }
+   ],
+   "rodaDescendo": {
+    "trocasPorAnel": [
+     1,
+     1,
+     1
+    ],
+    "estadoFinal": "111",
+    "pFinal": 1
+   },
+   "capturaFimRoda": "qa/fase2/capturas/raizes-390-fim-roda.jpg",
+   "rodaSubindo": {
+    "trocasPorAnel": [
+     1,
+     1,
+     1
+    ],
+    "estadoFinal": "000",
+    "pFinal": 0
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:39:11.426Z"
+  },
+  "1440": {
+   "nome": "raizes-1440",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:38:41.498Z",
+   "faixaDeRolagem": {
+    "ini": 3340.921875,
+    "fim": 4090.25,
+    "largo": true
+   },
+   "descendo": [
+    {
+     "alvo": 0.25,
+     "p": 0.25,
+     "aceso": [
+      false,
+      false,
+      false
+     ],
+     "dashoffset": [
+      0,
+      0.639,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "none"
+    },
+    {
+     "alvo": 0.5,
+     "p": 0.501,
+     "aceso": [
+      true,
+      false,
+      false
+     ],
+     "dashoffset": [
+      0,
+      0,
+      0.724,
+      1.05
+     ],
+     "trilhoMovel": "none"
+    },
+    {
+     "alvo": 0.75,
+     "p": 0.75,
+     "aceso": [
+      true,
+      true,
+      false
+     ],
+     "dashoffset": [
+      0,
+      0,
+      0,
+      0.766
+     ],
+     "trilhoMovel": "none"
+    },
+    {
+     "alvo": 1,
+     "p": 1,
+     "aceso": [
+      true,
+      true,
+      true
+     ],
+     "dashoffset": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "trilhoMovel": "none"
+    }
+   ],
+   "captura075": "qa/fase2/capturas/raizes-1440-p075.jpg",
+   "subindo": [
+    {
+     "alvo": 0.75,
+     "p": 0.75,
+     "aceso": [
+      true,
+      true,
+      false
+     ],
+     "dashoffset": [
+      0,
+      0,
+      0,
+      0.766
+     ],
+     "trilhoMovel": "none"
+    },
+    {
+     "alvo": 0.5,
+     "p": 0.501,
+     "aceso": [
+      true,
+      false,
+      false
+     ],
+     "dashoffset": [
+      0,
+      0,
+      0.724,
+      1.05
+     ],
+     "trilhoMovel": "none"
+    },
+    {
+     "alvo": 0.25,
+     "p": 0.25,
+     "aceso": [
+      false,
+      false,
+      false
+     ],
+     "dashoffset": [
+      0,
+      0.639,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "none"
+    },
+    {
+     "alvo": 0,
+     "p": 0,
+     "aceso": [
+      false,
+      false,
+      false
+     ],
+     "dashoffset": [
+      1.05,
+      1.05,
+      1.05,
+      1.05
+     ],
+     "trilhoMovel": "none"
+    }
+   ],
+   "rodaDescendo": {
+    "trocasPorAnel": [
+     1,
+     1,
+     1
+    ],
+    "estadoFinal": "111",
+    "pFinal": 1
+   },
+   "capturaFimRoda": "qa/fase2/capturas/raizes-1440-fim-roda.jpg",
+   "rodaSubindo": {
+    "trocasPorAnel": [
+     1,
+     1,
+     1
+    ],
+    "estadoFinal": "000",
+    "pFinal": 0
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:38:56.603Z"
+  }
+ },
+ "marquee": {
+  "nome": "marquee-1440",
+  "opts": {
+   "W": 1440,
+   "H": 900,
+   "dpr": 1,
+   "mobile": false,
+   "touch": false,
+   "rm": false,
+   "cpu": 1,
+   "js": true,
+   "intro": false,
+   "out": "qa/fase2"
+  },
+  "inicio": "2026-10-23T18:39:11.432Z",
+  "parado": {
+   "pxPorSegundo": -42.7,
+   "rodando": true,
+   "vel": 1
+  },
+  "rolandoParaBaixo": {
+   "pxPorSegundo": -126.7,
+   "rodando": true,
+   "vel": 1.67
+  },
+  "depoisDeParar": {
+   "pxPorSegundo": -42.7,
+   "rodando": true,
+   "vel": 1
+  },
+  "rolandoParaCima": {
+   "pxPorSegundo": 112.1,
+   "rodando": true,
+   "vel": 1.81
+  },
+  "abaOculta": {
+   "pxPorSegundo": 0,
+   "rodando": false,
+   "vel": 1
+  },
+  "abaVisivelDeNovo": {
+   "pxPorSegundo": 42,
+   "rodando": true,
+   "vel": 1
+  },
+  "pausadaPeloBotao": {
+   "pxPorSegundo": 0,
+   "rodando": false,
+   "vel": 1,
+   "ariaPressed": "true",
+   "rotulo": "Retomar a faixa"
+  },
+  "capturaPausada": "qa/fase2/capturas/marquee-1440-pausada.jpg",
+  "foraDaTela": {
+   "pxPorSegundo": 0,
+   "rodando": false,
+   "vel": 1
+  },
+  "leitores": {
+   "gruposLidos": 1,
+   "copias": 2
+  },
+  "problemas": {
+   "console": [],
+   "excecoes": [],
+   "respostas": [],
+   "falhas": []
+  },
+  "fim": "2026-10-23T18:39:29.183Z"
+ },
+ "magnetico": {
+  "fino": {
+   "nome": "magnetico-1440",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:39:29.190Z",
+   "comPonteiro": {
+    "botao": "matrix(1, 0, 0, 1, 34.3, -8.5653)",
+    "rotulo": "matrix(1, 0, 0, 1, 14.7, -3.6708)"
+   },
+   "capturaPerto": "qa/fase2/capturas/magnetico-1440-perto.jpg",
+   "aposSair": "matrix(1, 0, 0, 1, 0, 0)",
+   "cliqueSemDestino": {
+    "aviso": "Prévia: o canal de contato ainda será confirmado. Nada foi enviado.",
+    "scrollAntes": 5353,
+    "scrollDepois": 5353,
+    "hash": ""
+   },
+   "capturaAviso": "qa/fase2/capturas/magnetico-1440-aviso.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:39:38.489Z"
+  },
+  "toque": {
+   "nome": "magnetico-toque",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:39:38.497Z",
+   "semMagnetico": {
+    "hoverFino": false,
+    "transform": "none"
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:39:43.954Z"
+  }
+ },
+ "reduzido": {
+  "carga": {
+   "nome": "reduzido-carga",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": true,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:39:43.963Z",
+   "estado": {
+    "rm": true,
+    "lenis": false,
+    "htmlLenis": false,
+    "armados": 0,
+    "tracos": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "aneis": [
+     "1",
+     "1",
+     "1"
+    ],
+    "faixa": {
+     "transform": "none",
+     "copiasVisiveis": 0,
+     "botao": "none",
+     "rodando": false
+    },
+    "h1": "1",
+    "palavrasDeslocadas": 0
+   },
+   "inteira": "qa/fase2/capturas/reduzido-carga-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:39:47.765Z"
+  },
+  "aoVivo": {
+   "nome": "reduzido-ao-vivo",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:39:47.773Z",
+   "antes": {
+    "rm": false,
+    "lenis": true,
+    "htmlLenis": true,
+    "armados": 9,
+    "tracos": [
+     1.05,
+     1.05,
+     1.05,
+     1.05
+    ],
+    "aneis": [
+     "0",
+     "0",
+     "0"
+    ],
+    "faixa": {
+     "transform": "matrix(1, 0, 0, 1, -61.59, 0)",
+     "copiasVisiveis": 2,
+     "botao": "grid",
+     "rodando": true
+    },
+    "h1": "1",
+    "palavrasDeslocadas": 23
+   },
+   "depoisDeLigar": {
+    "rm": true,
+    "lenis": false,
+    "htmlLenis": false,
+    "armados": 8,
+    "tracos": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "aneis": [
+     "1",
+     "1",
+     "1"
+    ],
+    "faixa": {
+     "transform": "none",
+     "copiasVisiveis": 0,
+     "botao": "none",
+     "rodando": false
+    },
+    "h1": "1",
+    "palavrasDeslocadas": 0
+   },
+   "depoisDeDesligar": {
+    "rm": false,
+    "lenis": true,
+    "htmlLenis": true,
+    "armados": 9,
+    "tracos": [
+     1.05,
+     1.05,
+     1.05,
+     1.05
+    ],
+    "aneis": [
+     "0",
+     "0",
+     "0"
+    ],
+    "faixa": {
+     "transform": "matrix(1, 0, 0, 1, -81.9, 0)",
+     "copiasVisiveis": 2,
+     "botao": "grid",
+     "rodando": true
+    },
+    "h1": "1",
+    "palavrasDeslocadas": 0
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:39:52.962Z"
+  },
+  "fx0": {
+   "nome": "reduzido-fx0",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 1,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:39:52.971Z",
+   "estado": {
+    "rm": true,
+    "lenis": false,
+    "htmlLenis": false,
+    "armados": 0,
+    "tracos": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "aneis": [
+     "1",
+     "1",
+     "1"
+    ],
+    "faixa": {
+     "transform": "none",
+     "copiasVisiveis": 0,
+     "botao": "none",
+     "rodando": false
+    },
+    "h1": "1",
+    "palavrasDeslocadas": 0
+   },
+   "inteira": "qa/fase2/capturas/reduzido-fx0-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:39:56.456Z"
+  }
+ },
+ "semJs": {
+  "390": {
+   "nome": "sem-js-390",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": false,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:40:00.734Z",
+   "inteira": "qa/fase2/capturas/sem-js-390-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:40:06.015Z"
+  },
+  "1440": {
+   "nome": "sem-js-1440",
+   "opts": {
+    "W": 1440,
+    "H": 900,
+    "dpr": 1,
+    "mobile": false,
+    "touch": false,
+    "rm": false,
+    "cpu": 1,
+    "js": false,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:39:56.462Z",
+   "inteira": "qa/fase2/capturas/sem-js-1440-inteira.jpg",
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:40:00.725Z"
+  }
+ },
+ "teclado": {
+  "nome": "teclado-1440",
+  "opts": {
+   "W": 1440,
+   "H": 900,
+   "dpr": 1,
+   "mobile": false,
+   "touch": false,
+   "rm": false,
+   "cpu": 1,
+   "js": true,
+   "intro": false,
+   "out": "qa/fase2"
+  },
+  "inicio": "2026-10-23T18:40:06.024Z",
+  "ordem": [
+   "Pular para o conteúdo | outline solid rgb(15, 61, 46)",
+   "TcaEnterprise | outline solid rgb(15, 61, 46)",
+   "Soluções | outline solid rgb(15, 61, 46)",
+   "Como funciona | outline solid rgb(15, 61, 46)",
+   "Sobre | outline solid rgb(15, 61, 46)",
+   "Contato | outline solid rgb(15, 61, 46)",
+   "Fale com a TCA | outline solid rgb(15, 61, 46)",
+   "Fale com a TCA | outline solid rgb(15, 61, 46)",
+   "Conheça as soluções | outline solid rgb(15, 61, 46)",
+   "Pausar a faixa | outline solid rgb(201, 162, 39)",
+   "Fale com a TCA | outline solid rgb(201, 162, 39)",
+   "TcaEnterprise | outline solid rgb(201, 162, 39)"
+  ],
+  "capturaNav": "qa/fase2/capturas/teclado-1440-foco-nav.jpg",
+  "focoCta": "btn btn--trigo magnetico | solid rgb(201, 162, 39) 3px",
+  "capturaCta": "qa/fase2/capturas/teclado-1440-foco-cta.jpg",
+  "problemas": {
+   "console": [],
+   "excecoes": [],
+   "respostas": [],
+   "falhas": []
+  },
+  "fim": "2026-10-23T18:40:13.587Z"
+ },
+ "cpu4": {
+  "efeitos": {
+   "nome": "cpu4-390",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 4,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:40:13.593Z",
+   "carga": {
+    "tarefasLongas": [
+     73,
+     50,
+     65,
+     193,
+     65,
+     52,
+     51,
+     52
+    ],
+    "soma": 601
+   },
+   "rolagem": {
+    "quadros": 533,
+    "mediana": 16.7,
+    "p95": 16.8,
+    "maior": 133.4,
+    "acimaDe50ms": 1,
+    "tarefasLongas": []
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:40:30.860Z"
+  },
+  "?fx=0": {
+   "nome": "cpu4-390-fx0",
+   "opts": {
+    "W": 390,
+    "H": 844,
+    "dpr": 1,
+    "mobile": true,
+    "touch": true,
+    "rm": false,
+    "cpu": 4,
+    "js": true,
+    "intro": false,
+    "out": "qa/fase2"
+   },
+   "inicio": "2026-10-23T18:40:30.869Z",
+   "carga": {
+    "tarefasLongas": [
+     679,
+     75,
+     53
+    ],
+    "soma": 807
+   },
+   "rolagem": {
+    "quadros": 538,
+    "mediana": 16.7,
+    "p95": 16.8,
+    "maior": 83.3,
+    "acimaDe50ms": 1,
+    "tarefasLongas": []
+   },
+   "problemas": {
+    "console": [],
+    "excecoes": [],
+    "respostas": [],
+    "falhas": []
+   },
+   "fim": "2026-10-23T18:40:46.957Z"
+  }
+ },
+ "_atualizado": "2026-10-23T18:40:46.957Z"
+}

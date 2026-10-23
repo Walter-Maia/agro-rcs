@@ -1,0 +1,329 @@
+<title>TcaEnterprise Rodada G</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@600;800&family=Source+Sans+3:wght@400&display=swap">
+<style>
+/* Layout: one 1120px column. Cover with the combination (D5 + broto-drone = G) → identity band (stage, concept + system, applications) → weight comparison → next step. */
+:root {
+  --paper: #F1F3EE;
+  --surface: #FFFFFF;
+  --ink: #18211C;
+  --muted: #58645C;
+  --line: #D6DCD3;
+  --accent: #2E6A40;
+  --shade: rgba(24, 33, 28, .10);
+  --scrim: rgba(12, 16, 14, .86);
+
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+
+  --t-xs: .8125rem;
+  --t-sm: .9375rem;
+  --t-md: 1.0625rem;
+  --t-lg: 1.375rem;
+  --t-xl: 1.875rem;
+  --t-2xl: clamp(2rem, 4.4vw, 2.75rem);
+  --t-hero: clamp(3rem, 10vw, 7rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #101512;
+    --surface: #18201B;
+    --ink: #E6ECE4;
+    --muted: #9AA69D;
+    --line: #2A342D;
+    --accent: #8FD19A;
+    --shade: rgba(0, 0, 0, .45);
+    --scrim: rgba(0, 0, 0, .9);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #101512;
+  --surface: #18201B;
+  --ink: #E6ECE4;
+  --muted: #9AA69D;
+  --line: #2A342D;
+  --accent: #8FD19A;
+  --shade: rgba(0, 0, 0, .45);
+  --scrim: rgba(0, 0, 0, .9);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: var(--t-md);
+  line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1120px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.05; }
+p { margin: 0; }
+.eyebrow { font-size: var(--t-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+.cover { padding-block: clamp(40px, 8vw, 88px) 24px; display: grid; gap: 24px; }
+.cover h1 { font-size: var(--t-hero); font-weight: 800; letter-spacing: -.035em; }
+.cover h1 span { color: var(--accent); }
+.lead { font-size: var(--t-lg); line-height: 1.4; max-width: 40ch; }
+.lead-note { color: var(--muted); max-width: 64ch; }
+
+/* Combination: D5 + broto-drone = G */
+.eq { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.25fr); gap: 14px; align-items: center; margin-top: 8px; }
+.eq figure { margin: 0; display: grid; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px 10px 12px; }
+.eq figure.result { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.eq .zoom { border-radius: 10px; overflow: hidden; }
+.eq .tile img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.eq .icon-tile { aspect-ratio: 4 / 3; display: grid; place-items: center; }
+.eq .icon-tile img { width: 58%; aspect-ratio: 1; border-radius: 22%; display: block; box-shadow: 0 6px 18px var(--shade); }
+.eq figcaption { font-size: var(--t-xs); color: var(--muted); padding-inline: 4px; }
+.eq figcaption b { color: var(--ink); font-size: var(--t-sm); display: block; }
+.op { font-family: var(--f-display); font-size: 2.2rem; font-weight: 700; color: var(--muted); text-align: center; }
+
+.part { padding-block: 56px 8px; border-top: 1px solid var(--line); margin-top: 40px; display: grid; gap: 10px; }
+.part h2 { font-size: var(--t-2xl); font-weight: 700; letter-spacing: -.02em; }
+.part > p:last-child { color: var(--muted); max-width: 64ch; }
+
+/* Identity band */
+.ident { padding-block: 32px 24px; display: grid; gap: 28px; }
+.ident-head { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.letter { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; flex: none; font-family: var(--f-display); font-size: 2.1rem; font-weight: 800; }
+.ident-head h3 { font-size: var(--t-xl); font-weight: 700; letter-spacing: -.01em; }
+.ident-head .titles { display: grid; gap: 4px; margin-right: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.chips li { font-size: var(--t-xs); font-weight: 600; padding: 5px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--muted); }
+
+.stage { border-radius: 22px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
+.stage .zoom { aspect-ratio: 4 / 3; }
+.stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.zoom { all: unset; display: block; cursor: zoom-in; position: relative; min-width: 0; }
+.zoom:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+
+.ident-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.about { display: grid; gap: 22px; }
+.about > p { max-width: 60ch; }
+.fit { display: grid; gap: 14px; margin: 0; }
+.fit div { display: grid; gap: 4px; padding-left: 14px; border-left: 2px solid var(--line); }
+.fit dt { font-size: var(--t-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.fit dd { margin: 0; font-size: var(--t-sm); }
+
+.system { display: grid; gap: 26px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
+.system h4 { margin: 0 0 12px; font-family: var(--f-body); font-size: var(--t-xs); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.swatches { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.swatches li { display: grid; gap: 6px; min-width: 0; }
+.swatches .sw { aspect-ratio: 1; border-radius: 12px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08); }
+.swatches b { font-size: var(--t-xs); font-weight: 600; line-height: 1.2; }
+.swatches code { font-family: var(--f-mono); font-size: .72rem; color: var(--muted); }
+.type { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; }
+.type-aa { font-size: 4rem; line-height: .9; }
+.type-name { font-size: var(--t-xs); color: var(--muted); }
+.type-name b { color: var(--ink); font-weight: 600; }
+.type-sample { font-size: 1.5rem; line-height: 1.15; margin-block: 6px; }
+.type-spaced { font-size: var(--t-sm); letter-spacing: .32em; text-transform: uppercase; margin-bottom: 6px; }
+.type-body { font-size: var(--t-sm); color: var(--muted); }
+.icon-row { display: flex; gap: 16px; align-items: center; }
+.icon-row .zoom { width: 92px; flex: none; }
+.icon-row img { width: 92px; height: 92px; border-radius: 22%; display: block; box-shadow: 0 6px 18px var(--shade); }
+.icon-row p { font-size: var(--t-sm); color: var(--muted); }
+
+.apps { display: flex; gap: 14px; }
+.apps figure { margin: 0; flex: var(--r) 1 0; min-width: 0; display: grid; gap: 8px; }
+.apps img { width: 100%; height: auto; aspect-ratio: var(--r); object-fit: cover; border-radius: 14px; display: block; }
+.apps figcaption { font-size: var(--t-xs); color: var(--muted); }
+
+/* Weight comparison */
+.weights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 18px; }
+.weights figure { margin: 0; display: grid; gap: 12px; align-content: start; }
+.weights .zoom { border-radius: 18px; overflow: hidden; }
+.weights img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.weights h3 { font-size: var(--t-lg); font-weight: 700; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.weights h3 span { font-size: var(--t-xs); font-weight: 600; font-family: var(--f-body); padding: 3px 10px; border-radius: 999px; background: var(--accent); color: var(--paper); }
+.weights p { font-size: var(--t-sm); color: var(--muted); max-width: 52ch; margin-top: 4px; }
+
+.choose { padding-block: 56px 72px; border-top: 1px solid var(--line); margin-top: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+.choose h2 { font-size: var(--t-2xl); font-weight: 700; letter-spacing: -.02em; margin-bottom: 14px; }
+.choose p + p { margin-top: 12px; }
+.choose .muted { color: var(--muted); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: start; }
+.steps li::before { content: counter(s); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; color: var(--paper); background: var(--ink); }
+.steps b { display: block; }
+.steps span { color: var(--muted); font-size: var(--t-sm); }
+footer { padding-block: 0 48px; color: var(--muted); font-size: var(--t-xs); }
+
+dialog { border: 0; padding: 0; background: transparent; max-width: min(1400px, 96vw); max-height: 94vh; }
+dialog::backdrop { background: var(--scrim); }
+dialog img { display: block; max-width: 100%; max-height: 90vh; border-radius: 12px; margin: 0 auto; }
+dialog p { color: #F1F3EE; text-align: center; font-size: var(--t-sm); margin-top: 10px; }
+dialog form { position: fixed; top: calc(12px + env(safe-area-inset-top, 0px)); right: calc(12px + env(safe-area-inset-right, 0px)); }
+dialog .close { font: 600 var(--t-sm) var(--f-body); color: #18211C; background: #F1F3EE; border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+
+@media (max-width: 860px) {
+  .eq { grid-template-columns: minmax(0, 1fr); }
+  .op { font-size: 1.6rem; line-height: 1; }
+  .weights, .ident-grid, .choose { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .apps { flex-direction: column; }
+  .apps figure { flex: none; }
+}
+@media (max-width: 480px) {
+  .stage { grid-template-columns: minmax(0, 1fr); }
+  .swatches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .type-aa { font-size: 3rem; }
+}
+</style>
+
+<div class="wrap">
+  <header class="cover">
+    <p class="eyebrow">Proposta de identidade visual · rodada G · outubro de 2026</p>
+    <h1>Tca<span>Enterprise</span></h1>
+    <p class="lead">O monograma TCA com o broto-drone no lugar do T.</p>
+    <p class="lead-note">Base: o monograma D5 da rodada 2. Só a letra T foi trocada pelo símbolo broto-drone da rodada 3. O C, o A, o ENTERPRISE e as cores continuam iguais. Toque em qualquer imagem para ampliar.</p>
+    <div class="eq" aria-label="Como a rodada G foi montada">
+      <figure>
+        <button class="zoom tile" type="button" style="background:#F4F2E6"><img src="img/D5-monograma.jpg" alt="Monograma D5: TCA com T de broto sólido e ENTERPRISE em dourado" width="1600" height="1600"></button>
+        <figcaption><b>Monograma D5</b>Rodada 2</figcaption>
+      </figure>
+      <span class="op" aria-hidden="true">+</span>
+      <figure>
+        <button class="zoom icon-tile" type="button"><img src="img/BD-icone-crop.jpg" alt="Símbolo broto-drone em traço claro com anéis dourados sobre verde floresta" width="450" height="450"></button>
+        <figcaption><b>Símbolo broto-drone</b>Rodada 3</figcaption>
+      </figure>
+      <span class="op" aria-hidden="true">=</span>
+      <figure class="result">
+        <button class="zoom tile" type="button" style="background:#F7F5E9"><img src="img/G1-logo-traco-encorpado.jpg" alt="Rodada G: monograma TCA com o T de broto-drone e ENTERPRISE em dourado" width="1600" height="1600"></button>
+        <figcaption><b>Rodada G</b>O T virou broto e drone</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <section class="part" aria-labelledby="g-title">
+    <p class="eyebrow">Identidade</p>
+    <h2 id="g-title">G · Monograma broto-drone</h2>
+    <p>Logo em positivo e em negativo, sistema de cores e tipografia, ícone e as referências pedidas: camisa, boné e site.</p>
+  </section>
+
+  <section class="ident" aria-label="Identidade G">
+    <div class="ident-head">
+      <span class="letter" style="background:#0F3D2E;color:#C9A227">G</span>
+      <div class="titles"><p class="eyebrow">Monograma TCA</p><h3>Broto-drone no T</h3></div>
+      <ul class="chips"><li>Sério</li><li>Monograma</li><li>2 cores</li></ul>
+    </div>
+    <div class="stage">
+      <button class="zoom" type="button" style="background:#F7F5E9"><img src="img/G1-logo-traco-encorpado.jpg" alt="Logo G em positivo sobre algodão" width="1600" height="1600"></button>
+      <button class="zoom" type="button" style="background:#0C3429"><img src="img/G-logo-negativo.jpg" alt="Logo G em negativo: TCA em algodão e ENTERPRISE e anéis em dourado sobre verde floresta" width="1600" height="1600"></button>
+    </div>
+    <div class="ident-grid">
+      <div class="about">
+        <p>O nome continua sendo o logo. A diferença é o T: as duas folhas no topo são também as pás da hélice, o nó central é o corpo do drone, e o caule termina em três raízes de circuito com anéis dourados. Os anéis ficam na linha de base, no lugar do ponto dourado do D5, e fazem a ponte com o ENTERPRISE em dourado logo abaixo.</p>
+        <dl class="fit">
+          <div><dt>Onde funciona melhor</dt><dd>Uniforme, boné, fachada, assinatura de e-mail e site. Um nome curto e forte, fácil de bordar e de ler de longe.</dd></div>
+          <div><dt>Ponto de atenção</dt><dd>No bordado pequeno (peito da camisa), os anéis precisam de pelo menos 3 mm para não fechar. Em perfil e app, use só o símbolo broto-drone.</dd></div>
+        </dl>
+      </div>
+      <div class="system">
+        <div>
+          <h4>Paleta</h4>
+          <ul class="swatches">
+            <li><span class="sw" style="background:#0F3D2E"></span><b>Floresta</b><code>#0F3D2E</code></li>
+            <li><span class="sw" style="background:#C9A227"></span><b>Trigo</b><code>#C9A227</code></li>
+            <li><span class="sw" style="background:#F4F1E8"></span><b>Algodão</b><code>#F4F1E8</code></li>
+            <li><span class="sw" style="background:#1C1F1E"></span><b>Grafite</b><code>#1C1F1E</code></li>
+            <li><span class="sw" style="background:#7BC47F"></span><b>Folha digital</b><code>#7BC47F</code></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Tipografia recomendada</h4>
+          <div class="type">
+            <p class="type-aa" style="font-family:'Montserrat',var(--f-body);font-weight:800">Aa</p>
+            <div>
+              <p class="type-name"><b>Montserrat ExtraBold e SemiBold</b> · TCA e ENTERPRISE</p>
+              <p class="type-sample" style="font-family:'Montserrat',var(--f-body);font-weight:800">Tecnologia que faz o campo render mais.</p>
+              <p class="type-spaced" style="font-family:'Montserrat',var(--f-body);font-weight:600">Enterprise</p>
+              <p class="type-body" style="font-family:'Source Sans 3',var(--f-body)">Source Sans 3 para textos, relatórios e site.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>Ícone do app</h4>
+          <div class="icon-row">
+            <button class="zoom" type="button"><img src="img/BD-icone-crop.jpg" alt="Ícone: símbolo broto-drone sobre verde floresta" width="450" height="450"></button>
+            <p>O T sozinho vira o ícone: app, favicon, perfil e adesivo nos drones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="apps">
+      <figure style="--r:1.339"><button class="zoom" type="button"><img src="img/G-camisa-polo.jpg" alt="Camisas polo verde floresta e off-white com o logo G bordado no peito" width="1600" height="1195" loading="lazy"></button><figcaption>Camisa polo, bordado no peito</figcaption></figure>
+      <figure style="--r:1.339"><button class="zoom" type="button"><img src="img/G-bone.jpg" alt="Boné verde floresta com o logo G bordado em relevo, sobre mourão de cerca diante da lavoura" width="1600" height="1195" loading="lazy"></button><figcaption>Boné, bordado em relevo</figcaption></figure>
+      <figure style="--r:1.768"><button class="zoom" type="button"><img src="img/G-site.jpg" alt="Notebook com o site institucional, logo G no menu e o título Tecnologia que faz o campo render mais" width="1600" height="905" loading="lazy"></button><figcaption>Site institucional</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="part" aria-labelledby="w-title">
+    <p class="eyebrow">Espessura do traço</p>
+    <h2 id="w-title">Por que o T ficou mais grosso</h2>
+    <p>O símbolo broto-drone original tem traço fino, e o C e o A do monograma são bem pesados. Testei as duas formas.</p>
+  </section>
+  <div class="weights">
+    <figure>
+      <button class="zoom" type="button" style="background:#F7F5E9"><img src="img/G1-logo-traco-encorpado.jpg" alt="G1: T de broto-drone com traço encorpado" width="1600" height="1600" loading="lazy"></button>
+      <figcaption><h3>Traço encorpado <span>Usado nas referências</span></h3><p>O T ganha o mesmo peso das outras letras, e as três parecem da mesma família. Também aguenta melhor o bordado.</p></figcaption>
+    </figure>
+    <figure>
+      <button class="zoom" type="button" style="background:#F6F3EA"><img src="img/G2-logo-traco-original.jpg" alt="G2: T de broto-drone com o traço fino original" width="1600" height="1600" loading="lazy"></button>
+      <figcaption><h3>Traço original</h3><p>O símbolo exatamente como no ícone. Fica fiel, mas o T parece frágil ao lado do C e do A e tende a sumir em tamanho pequeno.</p></figcaption>
+    </figure>
+  </div>
+
+  <section class="choose">
+    <div>
+      <h2>Próximo passo</h2>
+      <p>Se a rodada G for aprovada, sigo para a arte-final do monograma.</p>
+      <p class="muted">As aplicações são simulações para visualizar a marca em uso.</p>
+    </div>
+    <div>
+      <h2>Depois da aprovação</h2>
+      <ol class="steps">
+        <li><div><b>Ajustes finos</b><span>Peso do T em relação ao C e ao A, abertura das folhas e distância entre os anéis e o ENTERPRISE.</span></div></li>
+        <li><div><b>Arte-final em vetor</b><span>Monograma redesenhado em vetor, com ENTERPRISE em Montserrat. Entrega em SVG, PDF, PNG e arquivo para bordado.</span></div></li>
+        <li><div><b>Manual de marca</b><span>Versões do logo, área de proteção, tamanho mínimo para impressão e bordado, cores para impressão e tela, e usos a evitar.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>TcaEnterprise · proposta de identidade visual · rodada G · outubro de 2026</footer>
+</div>
+
+<dialog id="zoom" aria-label="Imagem ampliada">
+  <form method="dialog"><button class="close" type="submit">Fechar</button></form>
+  <img src="" alt="">
+  <p></p>
+</dialog>
+
+<script>
+(function () {
+  var dlg = document.getElementById('zoom');
+  var big = dlg.querySelector('img');
+  var cap = dlg.querySelector('p');
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.zoom');
+    if (!btn) return;
+    var img = btn.querySelector('img');
+    big.src = img.getAttribute('src');
+    big.alt = img.alt;
+    var fig = btn.closest('figure');
+    var fc = fig && fig.querySelector('figcaption');
+    cap.textContent = fc ? fc.textContent : '';
+    if (typeof dlg.showModal === 'function') dlg.showModal();
+  });
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg || e.target === big) dlg.close();
+  });
+})();
+</script>

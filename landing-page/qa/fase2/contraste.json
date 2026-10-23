@@ -1,0 +1,176 @@
+{
+ "gerado": "2026-10-23T18:40:47.051Z",
+ "pares": [
+  {
+   "uso": "Títulos, eyebrow, menu e botão de contorno (Floresta sobre Algodão)",
+   "cor": "#0F3D2E",
+   "fundo": "#F4F1E8",
+   "tipo": "texto",
+   "razao": 10.77,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Texto corrido (Grafite sobre Algodão)",
+   "cor": "#1C1F1E",
+   "fundo": "#F4F1E8",
+   "tipo": "texto",
+   "razao": 14.71,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Títulos, faixa, rótulo das fotos e botão primário (Algodão sobre Floresta)",
+   "cor": "#F4F1E8",
+   "fundo": "#0F3D2E",
+   "tipo": "texto",
+   "razao": 10.77,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Eyebrow escuro e rótulos dos contatos (Trigo sobre Floresta)",
+   "cor": "#C9A227",
+   "fundo": "#0F3D2E",
+   "tipo": "texto",
+   "razao": 5.03,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Números das etapas e [A CONFIRMAR] (Folha sobre Floresta)",
+   "cor": "#7BC47F",
+   "fundo": "#0F3D2E",
+   "tipo": "texto",
+   "razao": 5.82,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Botão do CTA final (Floresta sobre Trigo)",
+   "cor": "#0F3D2E",
+   "fundo": "#C9A227",
+   "tipo": "texto",
+   "razao": 5.03,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Texto das etapas e aviso do CTA (Algodão 80 % sobre Floresta)",
+   "cor": "#c6cdc3",
+   "fundo": "#0F3D2E",
+   "tipo": "texto",
+   "razao": 7.48,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Links do rodapé (Algodão sobre Floresta funda)",
+   "cor": "#F4F1E8",
+   "fundo": "#0A2A20",
+   "tipo": "texto",
+   "razao": 13.62,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "© do rodapé (Algodão 80 % sobre Floresta funda)",
+   "cor": "#c5c9c0",
+   "fundo": "#0A2A20",
+   "tipo": "texto",
+   "razao": 9.15,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Menu sobre o cabeçalho translúcido em seção Floresta (pior caso, sem blur)",
+   "cor": "#0F3D2E",
+   "fundo": "#d9dbd2",
+   "tipo": "texto",
+   "razao": 8.69,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Botão primário em hover",
+   "cor": "#F4F1E8",
+   "fundo": "#264f41",
+   "tipo": "texto",
+   "razao": 8.17,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Botão Trigo em hover",
+   "cor": "#0F3D2E",
+   "fundo": "#cdaa3a",
+   "tipo": "texto",
+   "razao": 5.45,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Botão de contorno em hover",
+   "cor": "#0F3D2E",
+   "fundo": "#dddfd5",
+   "tipo": "texto",
+   "razao": 9.03,
+   "minimo": 4.5,
+   "passa": "sim"
+  },
+  {
+   "uso": "Anel de foco Floresta sobre Algodão",
+   "cor": "#0F3D2E",
+   "fundo": "#F4F1E8",
+   "tipo": "ui",
+   "razao": 10.77,
+   "minimo": 3,
+   "passa": "sim"
+  },
+  {
+   "uso": "Anel de foco Trigo sobre Floresta",
+   "cor": "#C9A227",
+   "fundo": "#0F3D2E",
+   "tipo": "ui",
+   "razao": 5.03,
+   "minimo": 3,
+   "passa": "sim"
+  },
+  {
+   "uso": "Borda do botão de contorno",
+   "cor": "#0F3D2E",
+   "fundo": "#F4F1E8",
+   "tipo": "ui",
+   "razao": 10.77,
+   "minimo": 3,
+   "passa": "sim"
+  },
+  {
+   "uso": "Ícone do botão de pausa (Algodão sobre Floresta)",
+   "cor": "#F4F1E8",
+   "fundo": "#0F3D2E",
+   "tipo": "ui",
+   "razao": 10.77,
+   "minimo": 3,
+   "passa": "sim"
+  },
+  {
+   "uso": "Só grafismo: Trigo sobre Algodão (sublinhado do menu em hover, filete do \"Sobre\", logo)",
+   "cor": "#C9A227",
+   "fundo": "#F4F1E8",
+   "tipo": "grafismo",
+   "razao": 2.14,
+   "minimo": 0,
+   "passa": "n/a (não é texto)"
+  },
+  {
+   "uso": "Só grafismo: Folha sobre Floresta (curvas dos espaços de foto, 32 %)",
+   "cor": "#326848",
+   "fundo": "#0F3D2E",
+   "tipo": "grafismo",
+   "razao": 1.86,
+   "minimo": 0,
+   "passa": "n/a (não é texto)"
+  }
+ ]
+}

@@ -1,0 +1,159 @@
+/* ------------------------------------------------------------
+   ABERTURA — "o broto que decola" (~3,2 s)
+   Sobre Algodão, a linha do campo se revela; embaixo da terra as raízes de circuito acendem
+   (a tecnologia está na raiz); o broto sobe, o hub estoura e as folhas-hélice se armam; o T dá
+   uma decolagem mínima; C e A se escrevem e ENTERPRISE assenta; o palco sobe e entrega a página.
+   Três atos: mistério (linha + raízes) → construção (broto-drone) → assinatura (CA + ENTERPRISE).
+   O palco é montado por assets/js/intro.js com os paths OFICIAIS do sprite aprovado
+   (qa/ferramentas/montar-marca-inline.js); todo o roteiro fica aqui. Sem GSAP: SVG + CSS + JS vanilla.
+
+   Dois tempos, para a página montar atrás sem travar o traço:
+   .is-playing — t = 0 (duas pinturas depois do <body>). Só transform e opacity em camadas HTML.
+   .is-growing — 0,40 s depois, ou quando o site.js montou a página e a Montserrat chegou
+                 (tolerância de 1,2 s por etapa). Os atrasos abaixo dele contam a partir de 0,40 s.
+
+   ROTEIRO FINAL (tempos absolutos, com o .is-growing no horário)
+   tempo (s)              peça                          técnica                                          easing
+   0,15–0,95              linha do campo, fundo (27 %)  cortina da esquerda p/ direita, borda suave      (.3,.1,.25,1)
+   0,23–0,95              linha do campo, frente (40 %) idem, 80 ms depois                               (.3,.1,.25,1)
+   0,30–1,00              halo Trigo na junção          opacity 0 → 0,3 e scale .6 → 1                   ease-out
+   0,40–1,00              raízes 1, 2, 3                stroke-dashoffset 1 → 0 da junção p/ baixo, 60 ms --ease-draw
+   0,55–1,25              haste                         traço do chão até o hub (de baixo p/ cima)       --ease-draw
+   0,85–1,25              anéis 1, 2, 3                 scale 0 → 1, 60 ms entre eles                    mola
+   1,15–1,40              hub (corpo do drone)          estoura: scale 0 → 1                             mola (.34,1.56,.64,1)
+   1,25–1,80              folhas-hélice                 contorno do hub p/ fora (1,25–1,65) + abertura    --ease-draw /
+                                                        ±20° → 0 no hub (1,25–1,80); preenchimento        mola
+                                                        1,50–1,75; o contorno some 1,65–1,80
+   1,75–2,10              o T inteiro (gesto "drone")   translateY −3 % do T (≈ −6 px no desktop) e volta --ease-in-out
+   1,50–2,33              C e A                         contorno letra a letra (70 ms, 0,46 s), depois    --ease-draw
+                                                        o preenchimento Floresta (0,30 s); o contorno some
+   2,10–2,65              ENTERPRISE                    letras Trigo; a entreletra assenta por translateX --ease-out
+                                                        (8 ms por letra, 0,48 s)
+   2,30–2,60              linha do campo e halo         somem: a pose final é a logo oficial             ease
+   2,70–3,20              saída                         o palco sobe 14 px e some com o fundo            (.45,0,.55,1)
+                                                        Esc/Enter: saída rápida de 0,32 s; Tab: na hora
+   depois da saída        a página (site.css)           pausada sob html.intro-active, entra no finish() com --rise-start:
+                                                        cabeçalho em partes (T +0,18, CA +0,32, anéis +0,45, ENTERPRISE
+                                                        +0,55; menu e CTA descem 16 px) e a hero (H1 linha a linha, foto).
+                                                        No horário, isso é o "--rise-start: 2,7 s" do briefing; se a pessoa
+                                                        pular, a página entra no instante do pulo, sem tela vazia.
+
+   Pular: Esc/Enter (0,32 s), Tab (na hora), roda, toque ou clique (com preventDefault: não rola a
+   página escondida). Aba oculta, movimento reduzido ligado no meio: libera na hora. Sem botão visível.
+   Proteções: failsafe só em CSS (6,5 s); sem este CSS (overlay não fixo) a abertura não roda;
+   theme-color acompanha o fundo e volta; timer de segurança de 4 s no JS, contado do início da animação.
+   Roda 1 vez por sessão; nunca com #âncora, página rolada, aba oculta, movimento reduzido ou ?fx=0.
+   ?intro=1 força (testes e demonstração).
+------------------------------------------------------------ */
+
+html.intro-active::before { content: ""; position: fixed; inset: 0; z-index: 590; background: var(--algodao); animation: itFailsafe .4s 6.5s both; }
+.intro {
+  /* largura da logo; o resto do palco se mede por ela (cabe em 360 px de largura e em 500 px de altura) */
+  --iw: min(calc(100vw - 56px), clamp(288px, 16.4vw + 236px, 560px), calc((100vh - 120px) * 1.6));
+  /* contorno das letras e das folhas, em unidades do viewBox (1373 de largura): nunca abaixo de ~1 px de tela */
+  --it-traco: 4px;
+  position: fixed; inset: 0; max-width: 100vw; z-index: 600; display: none; overflow: hidden;
+  align-items: center; justify-content: center; background: var(--algodao); -webkit-tap-highlight-color: transparent;
+}
+html.intro-active .intro, .intro.is-leaving { display: flex; }
+html.intro-active .intro { animation: itFailsafe .4s 6.5s both; }
+@keyframes itFailsafe { to { opacity: 0; visibility: hidden; } } /* sem o script, a página se libera sozinha */
+
+/* a página espera a abertura: hero e cabeçalho ficam no primeiro quadro e entram quando ela sai */
+html.intro-active :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: paused; }
+/* se o intro.js não chegou a montar o palco, a página entra atrás do Algodão em vez de esperar pausada */
+html.intro-active:not(:has(#intro)) :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: running; }
+
+/* ---------- palco ---------- */
+.it-palco { position: relative; flex: none; width: var(--iw); margin-top: -3vh; }
+.it-marca { position: relative; width: 100%; aspect-ratio: 1373 / 687; }
+.it-logo { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+/* linha do campo: duas curvas de nível (as mesmas da hero) na altura da junção das raízes (y 342 de 687) */
+.it-campos, .it-halo-caixa { position: absolute; inset: 0; pointer-events: none; }
+.it-campo {
+  position: absolute; left: -80%; width: 260%; top: calc(49.78% - 120px); height: 160px; overflow: hidden;
+  transform: translateX(-100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 92%, transparent); mask-image: linear-gradient(90deg, #000 92%, transparent); /* borda da cortina suave */
+}
+.it-campo > div { height: 100%; transform: translateX(100%); }
+.it-campo svg {
+  width: 100%; height: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 24%, #000 76%, transparent); mask-image: linear-gradient(90deg, transparent, #000 24%, #000 76%, transparent);
+}
+.it-campo path { fill: none; stroke: var(--floresta); stroke-linecap: round; }
+.it-campo--fundo path { stroke-opacity: .27; stroke-width: 1.2; }
+.it-campo--frente path { stroke-opacity: .4; stroke-width: 1.5; }
+/* halo: Trigo bem suave onde o broto nasce (a junção, x 257,5 / y 342) */
+.it-halo {
+  position: absolute; left: 18.75%; top: 49.78%; width: 64%; aspect-ratio: 1; margin: -32% 0 0 -32%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(201, 162, 39, .9), rgba(201, 162, 39, .35) 45%, rgba(201, 162, 39, 0));
+  opacity: 0;
+}
+
+/* peças do T (estado inicial; nada aparece antes do .is-growing) */
+.it-raiz, .it-haste { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+.it-anel { transform: scale(0); transform-box: fill-box; transform-origin: center; }
+.it-hub { transform: scale(0); transform-box: view-box; transform-origin: 257.5px 108px; }
+.it-folha { transform-box: view-box; transform-origin: 257.5px 100px; }
+.it-folha--esq { --r: 20deg; }   /* as duas começam fechadas para cima e se armam até a horizontal */
+.it-folha--dir { --r: -20deg; }
+.it-folha-traco, .it-linha { fill: none; stroke: var(--floresta); stroke-width: var(--it-traco); stroke-linejoin: round; stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+.it-folha-fill, .it-fill, .it-l { opacity: 0; }
+.it-t { transform-box: fill-box; }
+
+/* traço nunca abaixo de ~1 px de tela */
+@media (max-width: 900px) {
+  .intro { --it-traco: 4.6px; }
+  .it-campo--fundo path { stroke-width: 1.45; }
+  .it-campo--frente path { stroke-width: 1.8; }
+}
+@media (max-width: 600px), (max-height: 500px) {
+  .intro { --it-traco: 5.6px; }
+  .it-campo--fundo path { stroke-width: 1.6; }
+  .it-campo--frente path { stroke-width: 1.95; }
+}
+
+/* ---------- 1º tempo (.is-playing): a linha do campo e o halo; só compositor ---------- */
+.intro.is-playing .it-campo--fundo { animation: ipCortina .8s cubic-bezier(.3, .1, .25, 1) .15s both; }
+.intro.is-playing .it-campo--fundo > div { animation: ipCortinaDentro .8s cubic-bezier(.3, .1, .25, 1) .15s both; }
+.intro.is-playing .it-campo--frente { animation: ipCortina .72s cubic-bezier(.3, .1, .25, 1) .23s both; }
+.intro.is-playing .it-campo--frente > div { animation: ipCortinaDentro .72s cubic-bezier(.3, .1, .25, 1) .23s both; }
+.intro.is-playing .it-halo { animation: ipHalo .7s cubic-bezier(.16, 1, .3, 1) .3s both; }
+@keyframes ipCortina { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes ipCortinaDentro { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes ipHalo { from { opacity: 0; transform: scale(.6); } to { opacity: .3; transform: none; } }
+
+/* ---------- 2º tempo (.is-growing): atrasos contados a partir de 0,40 s ---------- */
+.intro.is-growing .it-raiz { animation: igDesenha .48s var(--ease-draw) calc(var(--k) * .06s) both; }
+.intro.is-growing .it-haste { animation: igDesenha .7s var(--ease-draw) .15s both; }
+.intro.is-growing .it-anel { animation: igEstoura .28s var(--ease-spring) calc(.45s + var(--k) * .06s) both; }
+.intro.is-growing .it-hub { animation: igEstoura .25s var(--ease-spring) .75s both; }
+.intro.is-growing .it-folha { animation: igAbre .55s var(--ease-spring) .85s both; }
+.intro.is-growing .it-folha-traco { animation: igDesenha .4s var(--ease-draw) .85s both, igSome .15s ease 1.25s forwards; }
+.intro.is-growing .it-folha-fill { animation: igMostra .25s ease 1.1s both; }
+.intro.is-growing .it-t { animation: igDecola .35s var(--ease-in-out) 1.35s both; }
+.intro.is-growing .it-linha { animation: igDesenha .46s var(--ease-draw) calc(1.1s + var(--k) * .07s) both, igSome .3s ease calc(1.56s + var(--k) * .07s) forwards; }
+.intro.is-growing .it-fill { animation: igMostra .3s ease calc(1.52s + var(--k) * .07s) both; }
+.intro.is-growing .it-l { animation: igAssenta .48s var(--ease-out) calc(1.7s + var(--k) * .008s) both; }
+.intro.is-growing .it-campos, .intro.is-growing .it-halo-caixa { animation: igSome .3s ease 1.9s forwards; }
+@keyframes igDesenha { to { stroke-dashoffset: 0; } }
+@keyframes igEstoura { from { transform: scale(0); } to { transform: none; } }
+@keyframes igAbre { from { transform: rotate(var(--r)); } to { transform: none; } }
+@keyframes igMostra { to { opacity: 1; } }
+@keyframes igSome { to { opacity: 0; } }
+@keyframes igDecola { 50% { transform: translateY(-3%); } }
+@keyframes igAssenta { from { opacity: 0; transform: translateX(calc(var(--o) * 1px)); } to { opacity: 1; transform: none; } }
+
+/* ---------- saída: o palco sobe e some, o Algodão vai junto; a página já está atrás ---------- */
+.intro.is-leaving { animation: itSai .5s cubic-bezier(.45, 0, .55, 1) both; }
+.intro.is-leaving .it-palco { animation: itSobe .5s cubic-bezier(.4, 0, .2, 1) both; }
+.intro.is-skipping, .intro.is-skipping .it-palco { animation-duration: .32s; }
+@keyframes itSai { to { opacity: 0; } }
+@keyframes itSobe { to { opacity: 0; transform: translateY(-14px); } }
+
+/* redundante com o <head> e o site.css, de propósito: com movimento reduzido nada disso aparece */
+@media (prefers-reduced-motion: reduce) {
+  .intro, html.intro-active::before { display: none !important; }
+}
+html.rm .intro, html.rm.intro-active::before { display: none !important; }
