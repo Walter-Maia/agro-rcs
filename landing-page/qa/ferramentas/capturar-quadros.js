@@ -1,7 +1,7 @@
 /*
  * Congela a abertura em instantes do roteiro e fotografa cada quadro (Edge headless, sem dependências).
  * Adaptado de "efeitos visuais skills/efeito-de-intro/scripts/capturar-quadros.js" para os dois tempos desta
- * abertura: as animações "ip*" contam de 0 s (.is-playing) e as "ig*" de 0,40 s (.is-growing). A partir de 2,7 s
+ * abertura: as animações "ip*" contam de 0 s (.is-playing) e as "ig*" de 0,40 s (.is-growing). A partir de 2,8 s
  * o script simula a saída (is-leaving, "it*") e solta a página, que também é congelada no mesmo relógio.
  * Uso (servidor rodando):
  *   node qa/ferramentas/capturar-quadros.js <nome> <tempos em s, vírgula> [larguraxaltura]
@@ -19,7 +19,7 @@ if (!nome || !tempos) { console.error('uso: node capturar-quadros.js <nome> <t1,
 const T = tempos.split(',').map(Number).sort((a, b) => a - b);
 const [W, H] = (tamanho || '1440x900').split('x').map(Number);
 const OUT = path.join(__dirname, '..', 'fase1');
-const SAIDA = 2.7, GROW = 0.4;
+const SAIDA = 2.8, GROW = 0.4;
 
 session(nome, { W, H, mobile: W < 800, touch: W < 800, intro: true, out: OUT }, async (h) => {
   await h.cdp.send('Page.addScriptToEvaluateOnNewDocument', { source: "(function(){try{sessionStorage.clear()}catch(e){}var st=window.setTimeout;window.setTimeout=function(f,ms){return ms>=1400?0:st.apply(window,arguments)}})();" });
@@ -34,9 +34,11 @@ session(nome, { W, H, mobile: W < 800, touch: W < 800, intro: true, out: OUT }, 
   for (const t of T) {
     if (t >= SAIDA && !saiu) {
       saiu = true;
-      /* simula o finish("open"): a página sai do pausado e a abertura ganha a saída; tudo no mesmo relógio */
-      await h.ev(`document.documentElement.classList.remove('intro-active'); document.documentElement.classList.add('intro-leaving');
-        document.querySelector('#intro').classList.add('is-leaving');
+      /* simula o finish("open"): mede o centro do amanhecer (com o palco ainda visível), a página sai do pausado e a abertura ganha a saída; tudo no mesmo relógio */
+      await h.ev(`const it=document.querySelector('#intro'), r=it.querySelector('.it-marca').getBoundingClientRect(), x=r.left+r.width*257.5/1373, y=r.top+r.height*342/687;
+        it.style.setProperty('--it-ix', x+'px'); it.style.setProperty('--it-iy', y+'px'); it.style.setProperty('--it-raio', Math.ceil(Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y))+60)+'px');
+        document.documentElement.classList.remove('intro-active'); document.documentElement.classList.add('intro-leaving');
+        it.classList.add('is-leaving');
         await new Promise(r=>requestAnimationFrame(r));
         window.__saida = document.getAnimations().filter(a => !window.__an.includes(a)); window.__saida.forEach(a=>a.pause()); return window.__saida.length`);
     }

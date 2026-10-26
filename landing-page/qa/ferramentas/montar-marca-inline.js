@@ -70,9 +70,11 @@ const centroX = (d) => { const xs = d.match(/-?\d*\.?\d+/g).map(Number).filter((
 const centros = letras.map((l) => centroX(attr(l, 'd')));
 const meio = (Math.min(...centros) + Math.max(...centros)) / 2;
 
-/* ---------- 1. palco da abertura ---------- */
-const CURVA_FUNDO = 'M0 118C180 96 330 92 480 104S760 136 940 120S1260 84 1440 98';    /* as mesmas da hero */
-const CURVA_FRENTE = 'M0 132C160 128 300 112 470 118S780 150 960 138S1270 108 1440 120';
+/* ---------- 1. palco da abertura ----------
+   Fora da marca, só cenário: as curvas de nível (desenhadas pelo intro.js nos <canvas data-curvas>),
+   o horizonte, a luz e a semente na junção das raízes e o aro do amanhecer.
+   Dentro do SVG, além das peças oficiais: o brilho de cada anel e os "cometas" (um traço Trigo curto
+   que corre na ponta de cada raiz e da haste, sobre a mesma geometria oficial). */
 /* tira classe, data-ch e style do sprite; o estilo de cada peça no palco vem explícito */
 const limpa = (tag) => tag.replace(/\sclass="[^"]*"/, '').replace(/\sdata-ch="[^"]*"/, '').replace(/\sstyle="[^"]*"/, '');
 const comClasse = (tag, classe, estilo) => limpa(tag).replace(/^<(path|circle)/, '<$1 class="' + classe + '"' + (estilo ? ' style="' + estilo + '"' : ''));
@@ -81,24 +83,26 @@ const folhaPalco = (lado, metades, oficial) =>
     '<path class="it-folha-fill" d="' + attr(oficial, 'd') + '" fill-rule="evenodd" style="fill:var(--lg-ink)"/>' +
     metades.map((d) => '<path class="it-folha-traco" pathLength="1" d="' + d + '"/>').join('') +
   '</g>';
+const curvas = (de, ate) => '<canvas class="it-curvas it-curvas--' + (de ? 'perto' : 'longe') + '" data-curvas="' + de + ' ' + ate + '"></canvas>';
+const cometa = (tag, k, extra) => '<path class="it-cometa' + (extra || '') + '"' + (k == null ? '' : ' style="--k:' + k + '"') + ' d="' + attr(tag, 'd') + '" pathLength="1"/>';
 const palco =
+  curvas(0, 6) + curvas(6, 12) +   /* níveis baixos (longe, as encostas) e altos (perto, os topos) */
+  '<i class="it-horizonte"></i><i class="it-luz"></i><i class="it-semente"></i>' +
   '<div class="it-palco"><div class="it-marca">' +
-    '<div class="it-halo-caixa"><i class="it-halo"></i></div>' +
-    '<div class="it-campos">' +
-      '<div class="it-campo it-campo--fundo"><div><svg viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false"><path d="' + CURVA_FUNDO + '"/></svg></div></div>' +
-      '<div class="it-campo it-campo--frente"><div><svg viewBox="0 0 1440 160" preserveAspectRatio="none" focusable="false"><path d="' + CURVA_FRENTE + '"/></svg></div></div>' +
-    '</div>' +
     '<svg class="it-logo" viewBox="0 0 1373 687" focusable="false">' +
-      '<g class="it-t">' +
-        '<g fill="none" stroke-linecap="butt" style="stroke:var(--lg-ink)">' +
-          [raiz1, raiz2, raiz3].map((r, k) => comClasse(r, 'it-raiz', '--k:' + k)).join('') +
-        '</g>' +
-        comClasse(haste, 'it-haste', 'stroke:var(--lg-ink)') +
-        comClasse(hub, 'it-hub', 'fill:var(--lg-ink)') +
-        folhaPalco('esq', metadesEsq, folhaEsq) +
-        folhaPalco('dir', metadesDir, folhaDir) +
-        '<g fill="none" style="stroke:var(--lg-accent)">' + aneis.map((a, k) => comClasse(a, 'it-anel', '--k:' + k)).join('') + '</g>' +
+      /* brilho dos anéis: Trigo (#C9A227) em degradê radial */
+      '<defs><radialGradient id="it-brilho"><stop offset="0" stop-color="#C9A227" stop-opacity=".85"/><stop offset=".38" stop-color="#C9A227" stop-opacity=".26"/><stop offset="1" stop-color="#C9A227" stop-opacity="0"/></radialGradient></defs>' +
+      aneis.map((a, k) => '<circle class="it-brilho" style="--k:' + k + '" cx="' + attr(a, 'cx') + '" cy="' + attr(a, 'cy') + '" r="118" fill="url(#it-brilho)"/>').join('') +
+      '<g fill="none" stroke-linecap="butt" style="stroke:var(--lg-ink)">' +
+        [raiz1, raiz2, raiz3].map((r, k) => comClasse(r, 'it-raiz', '--k:' + k)).join('') +
       '</g>' +
+      [raiz1, raiz2, raiz3].map((r, k) => cometa(r, k)).join('') +
+      comClasse(haste, 'it-haste', 'stroke:var(--lg-ink)') +
+      cometa(haste, null, ' it-cometa--haste') +
+      comClasse(hub, 'it-hub', 'fill:var(--lg-ink)') +
+      folhaPalco('esq', metadesEsq, folhaEsq) +
+      folhaPalco('dir', metadesDir, folhaDir) +
+      '<g fill="none" style="stroke:var(--lg-accent)">' + aneis.map((a, k) => comClasse(a, 'it-anel', '--k:' + k)).join('') + '</g>' +
       '<g class="it-ca">' +
         comClasse(letraC, 'it-fill', '--k:0;fill:var(--lg-ink)') + comClasse(letraA, 'it-fill', '--k:1;fill:var(--lg-ink)') +
         comClasse(letraC, 'it-linha', '--k:0') + comClasse(letraA, 'it-linha', '--k:1') +
@@ -107,7 +111,8 @@ const palco =
         letras.map((l, k) => comClasse(l, 'it-l', '--k:' + k + ';--o:' + f((centros[k] - meio) * 0.12))).join('') +
       '</g>' +
     '</svg>' +
-  '</div></div>';
+  '</div></div>' +
+  '<i class="it-aro"></i>';
 /* as linhas de contorno do C e do A precisam de pathLength="1" (o sprite só o põe nos traços) */
 const palcoFinal = palco.replace(/<path class="it-linha"/g, '<path class="it-linha" pathLength="1"');
 

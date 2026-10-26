@@ -64,14 +64,14 @@
 <meta property="og:site_name" content="TcaEnterprise">
 <meta property="og:title" content="TcaEnterprise | Tecnologia para o agronegócio">
 <meta property="og:description" content="Drones, sensores e dados para decidir melhor no campo.">
-<link rel="icon" href="assets/marca/favicon.svg?v=0.2.0" type="image/svg+xml">
-<link rel="icon" href="assets/marca/favicon-32.png?v=0.2.0" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/marca/apple-touch-icon.png?v=0.2.0">
+<link rel="icon" href="assets/marca/favicon.svg?v=0.3.1" type="image/svg+xml">
+<link rel="icon" href="assets/marca/favicon-32.png?v=0.3.1" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/marca/apple-touch-icon.png?v=0.3.1">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=0.2.0">
-<link rel="stylesheet" href="assets/css/intro.css?v=0.2.0">
+<link rel="stylesheet" href="assets/css/site.css?v=0.3.1">
+<link rel="stylesheet" href="assets/css/intro.css?v=0.3.1">
 <!-- antes da 1ª pintura: html.js (há JS), html.rm (movimento reduzido ou ?fx=0, acompanhado ao vivo) e a decisão da abertura:
      html.intro-active só uma vez por sessão e nunca com #âncora, página rolada, aba oculta ou movimento reduzido; ?intro=1 força -->
 <script>(function(){var d=document.documentElement;d.classList.add("js");try{var u=location.search,q=/[?&]fx=0(&|$)/.test(u),f=/[?&]intro=1(&|$)/.test(u),m=matchMedia("(prefers-reduced-motion: reduce)"),s=function(){d.classList.toggle("rm",q||m.matches)};s();m.addEventListener("change",s);
@@ -83,7 +83,7 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 
 <!-- ABERTURA: o palco é montado por assets/js/intro.js, que roda aqui, antes do resto da página; o estilo fica em assets/css/intro.css.
      Se o arquivo não carregar, a página se libera na hora (onerror); se carregar e falhar, o failsafe em CSS libera em 6,5 s. -->
-<script src="assets/js/intro.js?v=0.2.0" onerror="document.documentElement.classList.remove('intro-active')"></script>
+<script src="assets/js/intro.js?v=0.3.1" onerror="document.documentElement.classList.remove('intro-active')"></script>
 
 <!-- grafismos reutilizados (curvas de nível dos espaços de foto e ícones de interface) -->
 <svg class="sprite" aria-hidden="true" focusable="false">
@@ -353,7 +353,7 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 <footer class="rodape tema-escuro">
   <div class="rodape__grade envoltorio">
     <a class="marca marca--negativo" href="#inicio" aria-label="TcaEnterprise, voltar ao início">
-      <svg class="marca__svg" viewBox="0 0 1373 687" aria-hidden="true" focusable="false"><use href="assets/marca/tca-logo.svg?v=0.2.0#tca-logo"/></svg>
+      <svg class="marca__svg" viewBox="0 0 1373 687" aria-hidden="true" focusable="false"><use href="assets/marca/tca-logo.svg?v=0.3.1#tca-logo"/></svg>
       <span class="marca__texto" aria-hidden="true">TcaEnterprise</span>
     </a>
     <nav class="rodape__nav" aria-label="Rodapé">
@@ -367,7 +367,7 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 </footer>
 
 <!-- site.js vem primeiro (quebra o H1 sem esperar o CDN); o resto liga no DOMContentLoaded, depois das bibliotecas -->
-<script src="assets/js/site.js?v=0.2.0" defer></script>
+<script src="assets/js/site.js?v=0.3.1" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <!-- Lenis 1.1.14 não existe no cdnjs (404): mesma versão, fixa, pelo jsDelivr -->

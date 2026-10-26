@@ -163,19 +163,22 @@ const CASOS = {
         await preparar(h, limpaSessao + "var st=window.setTimeout;window.setTimeout=function(f,ms){return ms>=1400?0:st.apply(window,arguments)};");
         await h.go(h.base + '?intro=1');
         await h.ev(`await new Promise(r=>{(function w(){ if(document.querySelector('#intro.is-growing')) r(); else setTimeout(w,30) })()})`);
-        await sleep(2600);
+        /* relógio congelado em 2,6 s (logo inteira): não depende da velocidade da carga nem esbarra no failsafe */
+        await h.ev(`document.querySelector('#intro').getAnimations({subtree:true}).forEach(a=>{a.pause(); const n=a.animationName||''; a.currentTime=Math.max(0,(2.6-(n.startsWith('ig')?0.4:0)))*1000;}); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));`);
         h.result.medidas = await h.ev(`const m=document.querySelector('.it-marca').getBoundingClientRect(), esc=m.width/1373;
           const traco=parseFloat(getComputedStyle(document.querySelector('.it-linha')).strokeWidth);
-          const campo=[...document.querySelectorAll('.it-campo path')].map(p=>parseFloat(getComputedStyle(p).strokeWidth));
+          const cv=document.querySelector('.it-curvas');
           return { marca: [Math.round(m.left), Math.round(m.top), Math.round(m.right), Math.round(m.bottom)], cabe: m.left>=0 && m.top>=0 && m.right<=innerWidth && m.bottom<=innerHeight,
-            larguraLogo: Math.round(m.width), contornoPx: +(traco*esc).toFixed(2), campoPx: campo, menorTracoOficialPx: +(23.2*esc).toFixed(2) }`);
+            larguraLogo: Math.round(m.width), contornoPx: +(traco*esc).toFixed(2), mapaCanvas: cv.width + 'x' + cv.height + ' (curvas de 1,25 px e mestras de 1,9 px de tela)',
+            horizontePx: document.querySelector('.it-horizonte').getBoundingClientRect().height, menorTracoOficialPx: +(23.2*esc).toFixed(2) }`);
         h.result.captura = await h.shot('2s6');
       });
     }
     return r;
   },
 
-  /* a pose final da abertura é a logo oficial: o palco congelado em 2,68 s × o sprite aprovado no mesmo lugar */
+  /* a pose final da abertura é a logo oficial (negativa): o palco congelado em 2,7 s × o sprite aprovado no mesmo lugar.
+     O brilho dos anéis é cenário (fica atrás deles): sai das duas capturas para a comparação ser só da marca. */
   async poseFinal() {
     const r = {};
     for (const [W, H] of [[1440, 900], [390, 844]]) {
@@ -183,14 +186,14 @@ const CASOS = {
         await preparar(h, limpaSessao + "var st=window.setTimeout;window.setTimeout=function(f,ms){return ms>=1400?0:st.apply(window,arguments)};");
         await h.go(h.base + '?intro=1');
         await h.ev(`await new Promise(r=>{(function w(){ if(document.querySelector('#intro.is-growing')) r(); else setTimeout(w,30) })()})`);
-        await h.ev(`window.__an=document.querySelector('#intro').getAnimations({subtree:true}); window.__an.forEach(a=>{a.pause(); const n=a.animationName||''; a.currentTime=Math.max(0,(2.68-(n.startsWith('ig')?0.4:0)))*1000;}); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));`);
+        await h.ev(`window.__an=document.querySelector('#intro').getAnimations({subtree:true}); window.__an.forEach(a=>{a.pause(); const n=a.animationName||''; a.currentTime=Math.max(0,(2.7-(n.startsWith('ig')?0.4:0)))*1000;}); document.querySelectorAll('.it-brilho').forEach(e=>e.style.visibility='hidden'); await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));`);
         const caixa = await h.ev(`const r=document.querySelector('.it-logo').getBoundingClientRect(); return {x:r.left,y:r.top,width:r.width,height:r.height}`);
         const clip = { x: Math.floor(caixa.x) - 4, y: Math.floor(caixa.y) - 4, width: Math.ceil(caixa.width) + 8, height: Math.ceil(caixa.height) + 8, scale: 1 };
         const grava = async (rot) => { const s = await h.cdp.send('Page.captureScreenshot', { format: 'png', clip }); const f = path.join(OUT, 'capturas', 'pose-' + W + '-' + rot + '.png'); fs.writeFileSync(f, Buffer.from(s.data, 'base64')); return f; };
         const a = await grava('abertura');
         /* linha de base: um clone estático dos mesmos paths (sem classes, sem animação) na mesma caixa */
         await h.ev(`const s=document.querySelector('.it-logo'); const k=s.cloneNode(true);
-          k.querySelectorAll('.it-folha-traco,.it-linha').forEach(e=>e.remove());
+          k.querySelectorAll('.it-folha-traco,.it-linha,.it-cometa,.it-brilho,defs').forEach(e=>e.remove());
           k.querySelectorAll('[class]').forEach(e=>e.removeAttribute('class')); k.removeAttribute('class'); k.id='clone';
           k.style.cssText='position:absolute;inset:0;width:100%;height:100%;overflow:visible'; s.style.visibility='hidden'; s.parentNode.appendChild(k);
           await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));`);

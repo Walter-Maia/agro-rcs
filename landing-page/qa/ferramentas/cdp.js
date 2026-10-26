@@ -5,7 +5,7 @@
  * erros de console, exceções e respostas ≥ 400 de cada sessão.
  * Requer Node ≥ 22 (aqui: %LOCALAPPDATA%\nvm\v24.6.0\node.exe) e o servidor de qa/ferramentas/servidor.js.
  */
-const { spawn } = require('child_process');
+const { spawn, execFileSync } = require('child_process');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -41,6 +41,20 @@ function conectar(wsUrl) {
   });
 }
 
+/* Browser.close no alvo do navegador (não da aba): encerra o Edge e todos os processos filhos */
+async function fecharNavegador(PORT) {
+  try {
+    const v = await getJson(`http://127.0.0.1:${PORT}/json/version`);
+    await new Promise((ok) => {
+      const ws = new WebSocket(v.webSocketDebuggerUrl);
+      const fim = setTimeout(ok, 3000);
+      ws.onopen = () => ws.send(JSON.stringify({ id: 1, method: 'Browser.close' }));
+      ws.onclose = () => { clearTimeout(fim); ok(); };
+      ws.onerror = () => { clearTimeout(fim); ok(); };
+    });
+  } catch (e) { /* o navegador já não responde */ }
+}
+
 /*
  * opts: { W, H, dpr=1, mobile=false, touch=false, rm=false, cpu=1, js=true, intro=false, out }
  *   intro=false: a sessão já nasce "vista" (sessionStorage tca-intro=1), então a página carrega sem a abertura;
@@ -63,6 +77,7 @@ async function session(nome, opts, fn) {
   try {
     let alvos;
     for (let i = 0; i < 80; i++) { await sleep(250); try { alvos = await getJson(`http://127.0.0.1:${PORT}/json`); if (alvos && alvos.find((t) => t.type === 'page')) break; } catch (e) { /* subindo */ } }
+    if (!alvos || !alvos.find((t) => t.type === 'page')) throw new Error('o Edge não abriu a porta ' + PORT + ' em 20 s');
     cdp = await conectar(alvos.find((t) => t.type === 'page').webSocketDebuggerUrl);
     cdp.on('Runtime.consoleAPICalled', (p) => { if (p.type === 'error' || p.type === 'warning') problemas.console.push(p.type + ': ' + p.args.map((a) => a.value || a.description).join(' ')); });
     cdp.on('Runtime.exceptionThrown', (p) => problemas.excecoes.push(p.exceptionDetails.exception ? p.exceptionDetails.exception.description : p.exceptionDetails.text));
@@ -115,9 +130,17 @@ async function session(nome, opts, fn) {
     console.error(nome, e);
   } finally {
     try { cdp && cdp.close(); } catch (e) { /* */ }
-    try { proc.kill(); } catch (e) { /* */ }
-    await sleep(500);
-    try { fs.rmSync(perfil, { recursive: true, force: true }); } catch (e) { /* perfil ainda travado */ }
+    /* no Windows o processo do spawn é só um lançador que sai na hora: o navegador de verdade fica órfão e o
+       proc.kill() não o alcança (em 26/10 sobravam 164 processos e 3,9 GB de perfis no TEMP). Fecha pelo próprio
+       CDP (Browser.close derruba a árvore inteira) e, se ainda houver perfil travado, mata pelo caminho dele. */
+    await fecharNavegador(PORT);
+    try { proc.kill(); } catch (e) { /* já saiu */ }
+    for (let i = 0; i < 12; i++) { await sleep(250); try { fs.rmSync(perfil, { recursive: true, force: true }); } catch (e) { /* ainda travado */ } if (!fs.existsSync(perfil)) break; }
+    if (fs.existsSync(perfil) && process.platform === 'win32') {
+      try { execFileSync('powershell', ['-NoProfile', '-Command', `Get-CimInstance Win32_Process -Filter "Name='msedge.exe'" | Where-Object { $_.CommandLine -like '*tca-qa-${PORT}*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }`], { stdio: 'ignore' }); } catch (e) { /* */ }
+      await sleep(500);
+      try { fs.rmSync(perfil, { recursive: true, force: true }); } catch (e) { console.error('perfil ficou no TEMP:', perfil); }
+    }
   }
   result.problemas = problemas;
   result.fim = new Date().toISOString();

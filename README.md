@@ -6,7 +6,7 @@ Identidade visual (Rodada G) e landing page da **TcaEnterprise**, empresa de tec
 |---|---|
 | [`rodada-G/`](rodada-G/) | Rodada G da identidade, a aprovada. Traz o logo oficial em positivo (`G1-logo-traco-encorpado.png`), o negativo, a variante de traço original (`G2`) e simulações de uso (site, camisa polo, boné). PNGs de 2048 px gerados por IA; as aplicações são simulações. |
 | [`apresentacao-rodada-G/`](apresentacao-rodada-G/) | Página de apresentação da Rodada G (`index.html` + `img/`). Abre direto no navegador. |
-| [`landing-page/`](landing-page/) | Landing page estática com abertura animada ("o broto que decola"), v0.2.0. A arte-final vetorial da marca está em `landing-page/assets/marca/`. |
+| [`landing-page/`](landing-page/) | Landing page estática com abertura animada noturna ("o broto que acende"), v0.3.1. A arte-final vetorial da marca está em `landing-page/assets/marca/`. |
 
 ## No ar (GitHub Pages)
 

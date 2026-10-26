@@ -14,53 +14,73 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:35:32.961Z",
+   "inicio": "2026-10-26T17:10:55.675Z",
    "linha": [
     [
-     360,
+     396,
      "html: js intro-active lenis"
     ],
     [
-     360,
+     396,
      "#intro: intro"
     ],
     [
-     377,
+     446,
      "#intro: intro is-playing"
     ],
     [
-     827,
+     896,
      "#intro: intro is-playing is-growing"
     ],
     [
-     3160,
+     3329,
      "html: js lenis intro-leaving"
     ],
     [
-     3160,
+     3329,
      "#intro: intro is-playing is-growing is-leaving"
     ],
     [
-     3726,
+     3996,
      "#intro: (fora do DOM)"
     ],
     [
-     4759,
+     5189,
      "html: js lenis"
     ]
    ],
    "lentos": [
     [
-     3160,
-     67
+     463,
+     117
+    ],
+    [
+     613,
+     83
+    ],
+    [
+     913,
+     50
+    ],
+    [
+     3346,
+     117
+    ],
+    [
+     4902,
+     287
+    ],
+    [
+     5196,
+     100
     ]
    ],
    "quadros": {
-    "quadros": 266,
+    "quadros": 255,
     "mediana": 16.7,
-    "p95": 16.9,
-    "maior": 66.7,
-    "acimaDe50ms": 1
+    "p95": 17.7,
+    "maior": 286.5,
+    "acimaDe50ms": 6
    },
    "final": {
     "html": "js lenis",
@@ -78,15 +98,15 @@
     "intro": false,
     "linha": [
      [
-      45,
+      170,
       "html: js"
      ],
      [
-      45,
+      170,
       "#intro: (fora do DOM)"
      ],
      [
-      211,
+      204,
       "html: js lenis"
      ]
     ]
@@ -94,23 +114,23 @@
    "forcada": {
     "linha": [
      [
-      47,
+      310,
       "html: js intro-active"
      ],
      [
-      47,
+      310,
       "#intro: intro"
      ],
      [
-      131,
+      494,
       "html: js intro-active lenis"
      ],
      [
-      197,
+      494,
       "#intro: intro is-playing"
      ],
      [
-      647,
+      827,
       "#intro: intro is-playing is-growing"
      ]
     ]
@@ -121,7 +141,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:35:42.198Z"
+   "fim": "2026-10-26T17:11:07.024Z"
   },
   "1440": {
    "nome": "natural-1440",
@@ -137,61 +157,73 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:35:23.891Z",
+   "inicio": "2026-10-26T17:10:45.396Z",
    "linha": [
     [
-     213,
+     107,
      "html: js intro-active"
     ],
     [
-     213,
+     107,
      "#intro: intro"
     ],
     [
-     313,
+     357,
      "html: js intro-active lenis"
     ],
     [
-     380,
+     357,
      "#intro: intro is-playing"
     ],
     [
-     814,
+     640,
      "#intro: intro is-playing is-growing"
     ],
     [
-     3146,
+     3073,
      "html: js lenis intro-leaving"
     ],
     [
-     3146,
+     3073,
      "#intro: intro is-playing is-growing is-leaving"
     ],
     [
-     3696,
+     3740,
      "#intro: (fora do DOM)"
     ],
     [
-     4746,
+     4690,
      "html: js lenis"
     ]
    ],
    "lentos": [
     [
-     213,
+     107,
+     67
+    ],
+    [
+     174,
+     183
+    ],
+    [
+     357,
+     200
+    ],
+    [
+     657,
      100
     ],
     [
-     313,
-     67
+     3123,
+     50
     ]
    ],
    "quadros": {
-    "quadros": 272,
+    "quadros": 258,
     "mediana": 16.7,
     "p95": 16.9,
-    "maior": 99.9,
-    "acimaDe50ms": 2
+    "maior": 199.9,
+    "acimaDe50ms": 5
    },
    "final": {
     "html": "js lenis",
@@ -209,15 +241,15 @@
     "intro": false,
     "linha": [
      [
-      23,
+      33,
       "html: js"
      ],
      [
-      23,
+      33,
       "#intro: (fora do DOM)"
      ],
      [
-      173,
+      133,
       "html: js lenis"
      ]
     ]
@@ -225,23 +257,23 @@
    "forcada": {
     "linha": [
      [
-      49,
+      58,
       "html: js intro-active"
      ],
      [
-      49,
+      58,
       "#intro: intro"
      ],
      [
-      149,
+      124,
       "html: js intro-active lenis"
      ],
      [
-      233,
+      174,
       "#intro: intro is-playing"
      ],
      [
-      666,
+      608,
       "#intro: intro is-playing is-growing"
      ]
     ]
@@ -252,7 +284,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:35:32.955Z"
+   "fim": "2026-10-26T17:10:55.665Z"
   }
  },
  "ancora": {
@@ -269,19 +301,23 @@
    "intro": true,
    "out": "qa/fase1"
   },
-  "inicio": "2026-10-23T18:35:42.210Z",
+  "inicio": "2026-10-26T17:06:12.571Z",
   "final": {
    "linha": [
     [
-     351,
-     "html: js lenis lenis-scrolling"
+     270,
+     "html: js"
     ],
     [
-     351,
+     270,
      "#intro: (fora do DOM)"
     ],
     [
-     784,
+     1220,
+     "html: js lenis lenis-scrolling"
+    ],
+    [
+     1653,
      "html: js lenis"
     ]
    ],
@@ -294,7 +330,7 @@
    "respostas": [],
    "falhas": []
   },
-  "fim": "2026-10-23T18:35:45.903Z"
+  "fim": "2026-10-26T17:06:17.271Z"
  },
  "pular": {
   "esc": {
@@ -311,10 +347,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:35:45.910Z",
-   "acaoEm": 912,
-   "leavingMs": 17,
-   "removidoMs": 401,
+   "inicio": "2026-10-26T17:06:17.279Z",
+   "acaoEm": 3425,
+   "leavingMs": 3,
+   "removidoMs": 436,
    "final": {
     "html": "js lenis intro-leaving",
     "intro": false,
@@ -327,27 +363,35 @@
    },
    "linha": [
     [
-     463,
-     "html: js intro-active lenis"
+     345,
+     "html: js intro-active"
     ],
     [
-     463,
+     345,
      "#intro: intro"
     ],
     [
-     480,
+     495,
      "#intro: intro is-playing"
     ],
     [
-     929,
+     2128,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     3295,
+     "html: js intro-active lenis"
+    ],
+    [
+     3428,
      "html: js lenis intro-leaving"
     ],
     [
-     929,
-     "#intro: intro is-playing is-leaving is-skipping"
+     3428,
+     "#intro: intro is-playing is-growing is-leaving is-skipping"
     ],
     [
-     1313,
+     3861,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -357,7 +401,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:35:49.438Z"
+   "fim": "2026-10-26T17:06:23.417Z"
   },
   "enter": {
    "nome": "pular-enter",
@@ -373,10 +417,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:35:49.445Z",
-   "acaoEm": 917,
-   "leavingMs": 4,
-   "removidoMs": 404,
+   "inicio": "2026-10-26T17:06:23.426Z",
+   "acaoEm": 924,
+   "leavingMs": 29,
+   "removidoMs": 428,
    "final": {
     "html": "js lenis intro-leaving",
     "intro": false,
@@ -389,27 +433,31 @@
    },
    "linha": [
     [
-     554,
-     "html: js intro-active lenis"
+     203,
+     "html: js intro-active"
     ],
     [
-     554,
+     203,
      "#intro: intro"
     ],
     [
-     571,
+     436,
+     "html: js intro-active lenis"
+    ],
+    [
+     669,
      "#intro: intro is-playing"
     ],
     [
-     921,
+     953,
      "html: js lenis intro-leaving"
     ],
     [
-     921,
+     953,
      "#intro: intro is-playing is-leaving is-skipping"
     ],
     [
-     1321,
+     1352,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -419,7 +467,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:35:53.372Z"
+   "fim": "2026-10-26T17:06:26.825Z"
   },
   "tab": {
    "nome": "pular-tab",
@@ -435,10 +483,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:35:53.389Z",
-   "acaoEm": 904,
+   "inicio": "2026-10-26T17:06:26.834Z",
+   "acaoEm": 919,
    "leavingMs": null,
-   "removidoMs": 12,
+   "removidoMs": 24,
    "final": {
     "html": "js lenis",
     "intro": false,
@@ -451,27 +499,27 @@
    },
    "linha": [
     [
-     399,
-     "html: js intro-active lenis"
+     227,
+     "html: js intro-active"
     ],
     [
-     399,
+     227,
      "#intro: intro"
     ],
     [
-     433,
+     693,
+     "html: js intro-active lenis"
+    ],
+    [
+     693,
      "#intro: intro is-playing"
     ],
     [
-     883,
-     "#intro: intro is-playing is-growing"
-    ],
-    [
-     916,
+     943,
      "html: js lenis"
     ],
     [
-     916,
+     943,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -481,7 +529,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:35:57.243Z"
+   "fim": "2026-10-26T17:06:32.267Z"
   },
   "roda": {
    "nome": "pular-roda",
@@ -497,10 +545,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:35:57.248Z",
-   "acaoEm": 903,
-   "leavingMs": 36,
-   "removidoMs": 419,
+   "inicio": "2026-10-26T17:06:32.289Z",
+   "acaoEm": 912,
+   "leavingMs": 262,
+   "removidoMs": 693,
    "final": {
     "html": "js lenis intro-leaving",
     "intro": false,
@@ -513,31 +561,23 @@
    },
    "linha": [
     [
-     456,
+     588,
      "html: js intro-active lenis"
     ],
     [
-     456,
-     "#intro: intro"
-    ],
-    [
-     473,
+     588,
      "#intro: intro is-playing"
     ],
     [
-     923,
-     "#intro: intro is-playing is-growing"
-    ],
-    [
-     939,
+     1174,
      "html: js lenis intro-leaving"
     ],
     [
-     939,
-     "#intro: intro is-playing is-growing is-leaving is-skipping"
+     1174,
+     "#intro: intro is-playing is-leaving is-skipping"
     ],
     [
-     1322,
+     1605,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -547,7 +587,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:00.585Z"
+   "fim": "2026-10-26T17:06:37.332Z"
   },
   "rodaRajada": {
    "nome": "pular-rodaRajada",
@@ -563,43 +603,55 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:00.592Z",
-   "acaoEm": 907,
-   "leavingMs": 41,
-   "removidoMs": 441,
+   "inicio": "2026-10-26T17:06:37.351Z",
+   "acaoEm": 934,
+   "leavingMs": 125,
+   "removidoMs": 711,
    "final": {
     "html": "js  intro-leaving lenis lenis-scrolling lenis-smooth",
     "intro": false,
     "sessao": "1",
     "h1": "1",
-    "scrollY": 238,
+    "scrollY": 239,
     "hash": "",
     "foco": "BODY",
     "theme": "#F4F1E8"
    },
    "linha": [
     [
-     564,
+     126,
+     "html: js intro-active"
+    ],
+    [
+     126,
+     "#intro: intro"
+    ],
+    [
+     428,
      "html: js intro-active lenis"
     ],
     [
-     564,
+     428,
      "#intro: intro is-playing"
     ],
     [
-     948,
+     708,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     1059,
      "html: js lenis intro-leaving"
     ],
     [
-     948,
-     "#intro: intro is-playing is-leaving is-skipping"
+     1059,
+     "#intro: intro is-playing is-growing is-leaving is-skipping"
     ],
     [
-     1064,
+     1258,
      "html: js  intro-leaving lenis lenis-scrolling lenis-smooth"
     ],
     [
-     1348,
+     1645,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -609,7 +661,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:04.470Z"
+   "fim": "2026-10-26T17:06:43.582Z"
   },
   "clique": {
    "nome": "pular-clique",
@@ -625,10 +677,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:04.478Z",
-   "acaoEm": 910,
-   "leavingMs": 4,
-   "removidoMs": 404,
+   "inicio": "2026-10-26T17:06:43.591Z",
+   "acaoEm": 906,
+   "leavingMs": 69,
+   "removidoMs": 435,
    "final": {
     "html": "js lenis intro-leaving",
     "intro": false,
@@ -641,35 +693,27 @@
    },
    "linha": [
     [
-     165,
-     "html: js intro-active"
-    ],
-    [
-     165,
-     "#intro: intro"
-    ],
-    [
-     331,
+     525,
      "html: js intro-active lenis"
     ],
     [
-     448,
+     525,
+     "#intro: intro"
+    ],
+    [
+     575,
      "#intro: intro is-playing"
     ],
     [
-     898,
-     "#intro: intro is-playing is-growing"
-    ],
-    [
-     914,
+     975,
      "html: js lenis intro-leaving"
     ],
     [
-     914,
-     "#intro: intro is-playing is-growing is-leaving is-skipping"
+     975,
+     "#intro: intro is-playing is-leaving is-skipping"
     ],
     [
-     1314,
+     1341,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -679,7 +723,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:07.799Z"
+   "fim": "2026-10-26T17:06:48.525Z"
   },
   "toque": {
    "nome": "pular-toque",
@@ -695,10 +739,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:07.811Z",
-   "acaoEm": 908,
-   "leavingMs": 24,
-   "removidoMs": 407,
+   "inicio": "2026-10-26T17:06:48.543Z",
+   "acaoEm": 919,
+   "leavingMs": 53,
+   "removidoMs": 453,
    "final": {
     "html": "js  intro-leaving lenis lenis-scrolling",
     "intro": false,
@@ -711,31 +755,35 @@
    },
    "linha": [
     [
-     465,
-     "html: js intro-active lenis"
+     322,
+     "html: js intro-active"
     ],
     [
-     465,
+     322,
      "#intro: intro"
     ],
     [
-     498,
+     705,
+     "html: js intro-active lenis"
+    ],
+    [
+     705,
      "#intro: intro is-playing"
     ],
     [
-     932,
+     972,
      "html: js lenis intro-leaving"
     ],
     [
-     932,
+     972,
      "#intro: intro is-playing is-leaving is-skipping"
     ],
     [
-     948,
+     1005,
      "html: js  intro-leaving lenis lenis-scrolling"
     ],
     [
-     1315,
+     1372,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -745,7 +793,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:12.386Z"
+   "fim": "2026-10-26T17:06:52.726Z"
   },
   "abaOculta": {
    "nome": "pular-abaOculta",
@@ -761,10 +809,10 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:12.399Z",
-   "acaoEm": 922,
+   "inicio": "2026-10-26T17:06:52.736Z",
+   "acaoEm": 906,
    "leavingMs": null,
-   "removidoMs": 3,
+   "removidoMs": 14,
    "final": {
     "html": "js lenis",
     "intro": false,
@@ -777,23 +825,31 @@
    },
    "linha": [
     [
-     508,
-     "html: js intro-active lenis"
+     137,
+     "html: js intro-active"
     ],
     [
-     508,
+     137,
      "#intro: intro"
     ],
     [
-     541,
+     320,
+     "html: js intro-active lenis"
+    ],
+    [
+     520,
      "#intro: intro is-playing"
     ],
     [
-     925,
+     870,
+     "#intro: intro is-playing is-growing"
+    ],
+    [
+     920,
      "html: js lenis"
     ],
     [
-     925,
+     920,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -803,7 +859,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:16.606Z"
+   "fim": "2026-10-26T17:06:56.176Z"
   }
  },
  "jsBloqueado": {
@@ -821,14 +877,14 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:16.620Z",
+   "inicio": "2026-10-26T17:06:56.185Z",
    "linha": [
     [
-     546,
+     337,
      "html: js lenis"
     ],
     [
-     546,
+     337,
      "#intro: (fora do DOM)"
     ]
    ],
@@ -851,7 +907,7 @@
      " Script"
     ]
    },
-   "fim": "2026-10-23T18:36:21.039Z"
+   "fim": "2026-10-26T17:06:59.723Z"
   },
   "vazio": {
    "nome": "js-vazio",
@@ -867,19 +923,19 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:21.044Z",
+   "inicio": "2026-10-26T17:06:59.729Z",
    "aos3s": {
     "introActive": true,
     "cobertura": "visible 1.00",
     "heroRodando": "",
-    "t": 3084
+    "t": 3043
    },
    "captura3s": "qa/fase1/capturas/js-vazio-3s.jpg",
    "aos7s5": {
     "introActive": true,
     "cobertura": "hidden 0.00",
     "heroRodando": "",
-    "t": 7718
+    "t": 7653
    },
    "captura7s5": "qa/fase1/capturas/js-vazio-7s5.jpg",
    "problemas": {
@@ -888,7 +944,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:31.329Z"
+   "fim": "2026-10-26T17:07:10.006Z"
   }
  },
  "cpu4": {
@@ -905,72 +961,84 @@
    "intro": true,
    "out": "qa/fase1"
   },
-  "inicio": "2026-10-23T18:36:31.336Z",
+  "inicio": "2026-10-26T17:11:35.499Z",
   "linha": [
    [
-    404,
+    191,
     "html: js intro-active"
    ],
    [
-    404,
+    191,
     "#intro: intro"
    ],
    [
-    1188,
-    "html: js intro-active lenis"
-   ],
-   [
-    1188,
+    941,
     "#intro: intro is-playing"
    ],
    [
-    1754,
+    1224,
+    "html: js intro-active lenis"
+   ],
+   [
+    1674,
     "#intro: intro is-playing is-growing"
    ],
    [
-    4087,
+    4207,
     "html: js lenis intro-leaving"
    ],
    [
-    4087,
+    4207,
     "#intro: intro is-playing is-growing is-leaving"
    ],
    [
-    4621,
+    4824,
     "#intro: (fora do DOM)"
    ],
    [
-    5670,
+    5740,
     "html: js lenis"
    ]
   ],
   "quadros": {
-   "quadros": 246,
+   "quadros": 225,
    "mediana": 16.7,
-   "p95": 33.3,
-   "maior": 499.9,
-   "acimaDe50ms": 5
+   "p95": 33.5,
+   "maior": 466.6,
+   "acimaDe50ms": 8
   },
   "lentos": [
    [
-    404,
-    500
-   ],
-   [
-    904,
+    191,
     283
    ],
    [
-    1188,
-    483
+    474,
+    467
    ],
    [
-    1754,
+    941,
+    117
+   ],
+   [
+    1057,
+    167
+   ],
+   [
+    1224,
+    350
+   ],
+   [
+    1607,
     67
    ],
    [
-    4104,
-    50
+    4074,
+    133
+   ],
+   [
+    4224,
+    83
    ]
   ],
   "final": {
@@ -989,7 +1057,7 @@
    "respostas": [],
    "falhas": []
   },
-  "fim": "2026-10-23T18:36:41.521Z"
+  "fim": "2026-10-26T17:11:46.174Z"
  },
  "semAbertura": {
   "rm": {
@@ -1006,15 +1074,15 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:41.533Z",
+   "inicio": "2026-10-26T17:07:20.847Z",
    "final": {
     "linha": [
      [
-      364,
+      190,
       "html: js rm"
      ],
      [
-      364,
+      190,
       "#intro: (fora do DOM)"
      ]
     ],
@@ -1026,7 +1094,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:44.966Z"
+   "fim": "2026-10-26T17:07:26.070Z"
   },
   "fx0": {
    "nome": "fx0",
@@ -1042,15 +1110,15 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:44.971Z",
+   "inicio": "2026-10-26T17:07:26.096Z",
    "final": {
     "linha": [
      [
-      347,
+      501,
       "html: js rm"
      ],
      [
-      347,
+      501,
       "#intro: (fora do DOM)"
      ]
     ],
@@ -1062,7 +1130,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:48.277Z"
+   "fim": "2026-10-26T17:07:31.588Z"
   }
  },
  "tamanhos": {
@@ -1080,22 +1148,20 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:48.285Z",
+   "inicio": "2026-10-26T17:07:31.597Z",
    "medidas": {
     "marca": [
-     32,
-     237,
-     328,
-     384
+     24,
+     232,
+     336,
+     388
     ],
     "cabe": true,
-    "larguraLogo": 295,
-    "contornoPx": 1.2,
-    "campoPx": [
-     1.6,
-     1.95
-    ],
-    "menorTracoOficialPx": 4.99
+    "larguraLogo": 312,
+    "contornoPx": 1.27,
+    "mapaCanvas": "360x640 (curvas de 1,25 px e mestras de 1,9 px de tela)",
+    "horizontePx": 1,
+    "menorTracoOficialPx": 5.27
    },
    "captura": "qa/fase1/capturas/tamanho-360x640-2s6.jpg",
    "problemas": {
@@ -1104,7 +1170,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:53.638Z"
+   "fim": "2026-10-26T17:07:34.801Z"
   },
   "390x844": {
    "nome": "tamanho-390x844",
@@ -1120,22 +1186,20 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:53.646Z",
+   "inicio": "2026-10-26T17:07:34.813Z",
    "medidas": {
     "marca": [
-     45,
-     334,
-     345,
-     484
+     24,
+     324,
+     366,
+     495
     ],
     "cabe": true,
-    "larguraLogo": 300,
-    "contornoPx": 1.22,
-    "campoPx": [
-     1.6,
-     1.95
-    ],
-    "menorTracoOficialPx": 5.07
+    "larguraLogo": 342,
+    "contornoPx": 1.39,
+    "mapaCanvas": "390x844 (curvas de 1,25 px e mestras de 1,9 px de tela)",
+    "horizontePx": 1,
+    "menorTracoOficialPx": 5.78
    },
    "captura": "qa/fase1/capturas/tamanho-390x844-2s6.jpg",
    "problemas": {
@@ -1144,7 +1208,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:36:58.949Z"
+   "fim": "2026-10-26T17:07:38.078Z"
   },
   "900x500": {
    "nome": "tamanho-900x500",
@@ -1160,22 +1224,20 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:36:58.956Z",
+   "inicio": "2026-10-26T17:07:38.090Z",
    "medidas": {
     "marca": [
-     258,
-     147,
-     642,
-     338
+     168,
+     101,
+     732,
+     384
     ],
     "cabe": true,
-    "larguraLogo": 384,
-    "contornoPx": 1.56,
-    "campoPx": [
-     1.6,
-     1.95
-    ],
-    "menorTracoOficialPx": 6.48
+    "larguraLogo": 564,
+    "contornoPx": 2.3,
+    "mapaCanvas": "900x500 (curvas de 1,25 px e mestras de 1,9 px de tela)",
+    "horizontePx": 1,
+    "menorTracoOficialPx": 9.53
    },
    "captura": "qa/fase1/capturas/tamanho-900x500-2s6.jpg",
    "problemas": {
@@ -1184,7 +1246,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:37:04.275Z"
+   "fim": "2026-10-26T17:07:41.492Z"
   },
   "1440x900": {
    "nome": "tamanho-1440x900",
@@ -1200,22 +1262,20 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:37:04.281Z",
+   "inicio": "2026-10-26T17:07:41.500Z",
    "medidas": {
     "marca": [
-     484,
-     318,
-     956,
-     555
+     368,
+     260,
+     1072,
+     613
     ],
     "cabe": true,
-    "larguraLogo": 472,
-    "contornoPx": 1.38,
-    "campoPx": [
-     1.2,
-     1.5
-    ],
-    "menorTracoOficialPx": 7.98
+    "larguraLogo": 704,
+    "contornoPx": 2.05,
+    "mapaCanvas": "1440x900 (curvas de 1,25 px e mestras de 1,9 px de tela)",
+    "horizontePx": 1,
+    "menorTracoOficialPx": 11.9
    },
    "captura": "qa/fase1/capturas/tamanho-1440x900-2s6.jpg",
    "problemas": {
@@ -1224,7 +1284,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:37:09.591Z"
+   "fim": "2026-10-26T17:07:44.906Z"
   },
   "1920x1080": {
    "nome": "tamanho-1920x1080",
@@ -1240,22 +1300,20 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:37:09.598Z",
+   "inicio": "2026-10-26T17:07:44.917Z",
    "medidas": {
     "marca": [
-     685,
-     386,
-     1235,
-     662
+     580,
+     334,
+     1340,
+     714
     ],
     "cabe": true,
-    "larguraLogo": 551,
-    "contornoPx": 1.6,
-    "campoPx": [
-     1.2,
-     1.5
-    ],
-    "menorTracoOficialPx": 9.31
+    "larguraLogo": 760,
+    "contornoPx": 2.21,
+    "mapaCanvas": "1920x1080 (curvas de 1,25 px e mestras de 1,9 px de tela)",
+    "horizontePx": 1,
+    "menorTracoOficialPx": 12.84
    },
    "captura": "qa/fase1/capturas/tamanho-1920x1080-2s6.jpg",
    "problemas": {
@@ -1264,7 +1322,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:37:15.581Z"
+   "fim": "2026-10-26T17:07:48.221Z"
   }
  },
  "poseFinal": {
@@ -1282,28 +1340,28 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:41:17.109Z",
+   "inicio": "2026-10-26T17:07:57.664Z",
    "caixa": {
-    "x": 45.015625,
-    "y": 334.296875,
-    "width": 299.953125,
-    "height": 150.078125
+    "x": 24,
+    "y": 323.78125,
+    "width": 342,
+    "height": 171.109375
    },
    "cloneXoficial": {
-    "pixels": 48972,
-    "maiorDiferenca": 1,
+    "pixels": 63000,
+    "maiorDiferenca": 3,
     "mediaDiferenca": 0,
     "acimaDe32": 0,
     "acimaDe32Pct": 0,
     "acimaDe96": 0
    },
    "aberturaXoficial": {
-    "pixels": 48972,
-    "maiorDiferenca": 103,
-    "mediaDiferenca": 1.615,
-    "acimaDe32": 753,
-    "acimaDe32Pct": 1.538,
-    "acimaDe96": 1
+    "pixels": 63000,
+    "maiorDiferenca": 80,
+    "mediaDiferenca": 1.258,
+    "acimaDe32": 634,
+    "acimaDe32Pct": 1.006,
+    "acimaDe96": 0
    },
    "arquivos": [
     "qa/fase1/capturas/pose-390-abertura.png",
@@ -1317,7 +1375,7 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:41:21.197Z"
+   "fim": "2026-10-26T17:08:17.057Z"
   },
   "1440": {
    "nome": "pose-1440",
@@ -1333,28 +1391,28 @@
     "intro": true,
     "out": "qa/fase1"
    },
-   "inicio": "2026-10-23T18:41:11.478Z",
+   "inicio": "2026-10-26T17:07:48.236Z",
    "caixa": {
-    "x": 483.921875,
-    "y": 318.375,
-    "width": 472.15625,
-    "height": 236.25
+    "x": 367.796875,
+    "y": 260.28125,
+    "width": 704.390625,
+    "height": 352.4375
    },
    "cloneXoficial": {
-    "pixels": 117845,
-    "maiorDiferenca": 0,
+    "pixels": 257393,
+    "maiorDiferenca": 3,
     "mediaDiferenca": 0,
     "acimaDe32": 0,
     "acimaDe32Pct": 0,
     "acimaDe96": 0
    },
    "aberturaXoficial": {
-    "pixels": 117845,
-    "maiorDiferenca": 102,
-    "mediaDiferenca": 1.151,
-    "acimaDe32": 1338,
-    "acimaDe32Pct": 1.135,
-    "acimaDe96": 1
+    "pixels": 257393,
+    "maiorDiferenca": 79,
+    "mediaDiferenca": 0.644,
+    "acimaDe32": 1180,
+    "acimaDe32Pct": 0.458,
+    "acimaDe96": 0
    },
    "arquivos": [
     "qa/fase1/capturas/pose-1440-abertura.png",
@@ -1368,8 +1426,8 @@
     "respostas": [],
     "falhas": []
    },
-   "fim": "2026-10-23T18:41:17.102Z"
+   "fim": "2026-10-26T17:07:57.650Z"
   }
  },
- "_atualizado": "2026-10-23T18:41:21.197Z"
+ "_atualizado": "2026-10-26T17:11:46.174Z"
 }
