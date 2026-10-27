@@ -66,12 +66,13 @@
   /* ---------- 1 · cabeçalho: o fundo aparece ao rolar e a cor segue a seção que está logo abaixo da barra,
      a que está sendo lida (.tema-escuro → .is-escuro: logo negativa e botão Algodão; a transição fica no CSS) ---------- */
   var topo = document.querySelector('.topo'), rolado = null, escuro = null;
-  var secoesEscuras = lista('.tema-escuro');
+  /* o hero (.broto) troca de tema no meio da rolagem: a classe é conferida a cada vez */
+  var secoesEscuras = lista('.tema-escuro, [data-broto]');
   function marcarTopo() {
     var r = (window.scrollY || window.pageYOffset) > 8;
     if (r !== rolado) { rolado = r; topo.classList.toggle('is-rolado', r); }
     var linha = topo.offsetHeight + 12;   /* folga: âncoras param 8 px abaixo da barra (scroll-padding) */
-    var e = secoesEscuras.some(function (s) { var b = s.getBoundingClientRect(); return b.top <= linha && b.bottom > linha; });
+    var e = secoesEscuras.some(function (s) { var b = s.getBoundingClientRect(); return s.classList.contains('tema-escuro') && b.top <= linha && b.bottom > linha; });
     if (e !== escuro) { escuro = e; topo.classList.toggle('is-escuro', e); }
   }
   addEventListener('scroll', marcarTopo, { passive: true });
@@ -90,14 +91,15 @@
   addEventListener('load', function () { conferirMarca(); setTimeout(conferirMarca, 1500); });
 
   /* ---------- menu em tela cheia (adaptado do "kinetic navigation") ----------
-     Abrir: véu aparece, as três camadas entram pela direita em cascata (Trigo, Floresta, Floresta funda),
-     os links sobem de 140 % com 10° de giro e o rodapé do menu sobe por último. Fechar: véu some e o painel
-     sai inteiro para a direita. Ease "main" (CustomEase .65,.01,.05,.99), 0,7 s, como no componente.
-     Sem GSAP ou com movimento reduzido, o menu só aparece e some. O resto da página fica inerte enquanto
-     ele está aberto; Esc e o véu fecham, e o foco volta ao botão. */
+     Abrir: véu e palco aparecem, as três camadas entram pela direita em cascata (Trigo, Floresta, Floresta
+     funda), os links sobem de 140 % com 10° de giro e o rodapé do menu sobe por último. Fechar: véu e palco
+     somem e o painel sai inteiro para a direita. Ease "main" (CustomEase .65,.01,.05,.99), 0,7 s, como no
+     componente. Sem GSAP ou com movimento reduzido, o menu só aparece e some. O resto da página fica inerte
+     enquanto ele está aberto; Esc e o véu fecham, e o foco volta ao botão. */
   var botaoMenu = document.querySelector('.topo__menu'), menu = document.getElementById('menu');
-  var painel = menu.querySelector('.menu__painel'), veu = menu.querySelector('.menu__veu');
+  var painel = menu.querySelector('.menu__painel'), veu = menu.querySelector('.menu__veu'), palcoMenu = menu.querySelector('.menu__palco');
   var camadas = lista('.menu__camada', menu), linksMenu = lista('.menu__link', menu), fadesMenu = lista('[data-menu-fade]', menu);
+  var itensMenu = lista('.menu__lista li[data-cena]', menu);
   var foraDoMenu = [document.getElementById('conteudo'), document.querySelector('.rodape'), document.querySelector('.pular')];
   var aberto = false, tlMenu = null, EASE_MENU = 'power3.inOut';
   function menuAberto() { return aberto; }
@@ -113,25 +115,28 @@
     if (tlMenu) { tlMenu.kill(); tlMenu = null; }
     if (abrir) {
       menu.hidden = false;
+      cenaPadrao = secaoNaTela();
+      itensMenu.forEach(function (li) { li.classList.toggle('is-atual', li.getAttribute('data-cena') === cenaPadrao); });
+      hoverCena = null; focoCena = null;
+      decidirCena();
       if (animarMenu()) {
         tlMenu = gsap.timeline({ defaults: { ease: EASE_MENU, duration: 0.7 } })
           .set(painel, { xPercent: 0 })
-          .fromTo(veu, { autoAlpha: 0 }, { autoAlpha: 1 }, 0)
+          .fromTo([veu, palcoMenu], { autoAlpha: 0 }, { autoAlpha: 1 }, 0)
           .fromTo(camadas, { xPercent: 101 }, { xPercent: 0, stagger: 0.12, duration: 0.575 }, 0)
-          .fromTo(linksMenu, { yPercent: 140, rotate: 10 }, { yPercent: 0, rotate: 0, stagger: 0.05 }, 0.35)
+          .fromTo(linksMenu, { yPercent: 140, rotate: 10 }, { yPercent: 0, rotate: 0, stagger: 0.05, clearProps: 'transform' }, 0.35)
           .fromTo(fadesMenu, { autoAlpha: 0, yPercent: 50 }, { autoAlpha: 1, yPercent: 0, stagger: 0.04, clearProps: 'all' }, 0.55);
       }
       linksMenu[0].focus({ preventScroll: true });
     } else {
-      apagarFormas(true);
       if (animarMenu()) {
         tlMenu = gsap.timeline({
           defaults: { ease: EASE_MENU, duration: 0.7 },
-          onComplete: function () { menu.hidden = true; gsap.set([painel, veu].concat(camadas, linksMenu, fadesMenu), { clearProps: 'all' }); }
+          onComplete: function () { menu.hidden = true; trocarCena(null); gsap.set([painel, veu, palcoMenu].concat(camadas, linksMenu, fadesMenu), { clearProps: 'all' }); }
         })
-          .to(veu, { autoAlpha: 0 }, 0)
+          .to([veu, palcoMenu], { autoAlpha: 0 }, 0)
           .to(painel, { xPercent: 120 }, 0);
-      } else menu.hidden = true;
+      } else { menu.hidden = true; trocarCena(null); }
       if (devolverFoco) botaoMenu.focus();
     }
   }
@@ -141,44 +146,168 @@
     if (e.key === 'Escape' && aberto) abrirMenu(false, true);
   });
 
-  /* grafismos do hover: cada link acende o seu (anéis, curvas de nível, raízes, folha, pontos do mapa).
-     Com GSAP, o gesto do componente (escala .5 → 1, −10° → 0, back.out em cascata); sem ele, o mesmo em CSS. */
-  var formas = lista('.menu__forma', menu);
-  formas.forEach(function (f) { lista('.forma-el', f).forEach(function (el, i) { el.style.setProperty('--k', i); }); });
-  function apagarFormas(agora) {
-    formas.forEach(function (f) {
-      if (!f.classList.contains('is-ativa')) return;
-      var els = lista('.forma-el', f);
-      if (animarMenu() && !agora) {
-        gsap.to(els, { scale: 0.8, opacity: 0, duration: 0.3, ease: 'power2.in', overwrite: 'auto', onComplete: function () { f.classList.remove('is-ativa'); } });
-      } else {
-        if (animarMenu()) gsap.set(els, { opacity: 0 });
-        f.classList.remove('is-ativa');
+  /* ---------- cenas do menu ----------
+     Cada link conta uma pequena história em linha, com começo (o desenho entra na ordem em que a coisa nasce)
+     e um detalhe que fica vivo enquanto ele está em cena:
+       1 Início ........ a órbita se desenha, os três anéis da marca acendem em cascata, o do meio pulsa e um
+                          ponto Trigo orbita
+       2 Serviços ...... duas curvas de nível entram e andam sozinhas; um marcador boia na curva Trigo
+       3 Como funciona . a haste desce, as raízes se abrem, cada anel acende quando a raiz chega; depois,
+                          pulsos de luz correm pelas raízes e os anéis respondem
+       4 Sobre ......... o broto: chão, raízes para baixo, caule de baixo para cima e, com o caule firme, o nó
+                          e as duas folhas se abrindo dele; depois balançam de leve
+       5 Contato ....... os pontos do mapa aparecem, as linhas se ligam ao pino, o pino cai e emite ondas;
+                          pela linha correm traços até ele
+     Em cena fica UM item: o do mouse; sem mouse, o do foco (teclado); sem os dois, a seção que está na
+     tela. A troca é um cruzamento de 0,35 s: a cena que sai continua viva até sumir e só então para.
+     Regras que evitam desenho quebrado: nada de vector-effect (com pathLength, ele desconta o tracejado),
+     escala e giro só em <g> com svgOrigin explícito, e cada cena parte sempre do zero (fromTo). */
+  var cenasSvg = lista('.cena', menu), legenda = menu.querySelector('.menu__legenda');
+  var cenaAtual = null, cenaPadrao = '1', hoverCena = null, focoCena = null;
+  function el(f, n) { return f.querySelector('[data-p="' + n + '"]'); }
+  function els(f, n) { return lista('[data-p="' + n + '"]', f); }
+  function caminhos(gs) { return gs.map(function (g) { return g.tagName === 'g' ? g.querySelector('path, circle') : g; }); }
+  function centro(g) { return g.getAttribute('data-c'); }
+  function tracar(alvos) { gsap.set(alvos, { strokeDasharray: '1 2', strokeDashoffset: 1 }); }
+  /* as curvas de Serviços: período de 400 unidades (a largura da cena), desenhadas de −20 a 820 para andar sem emenda */
+  var ONDAS = [
+    function (x) { var t = x / 400 * Math.PI * 2; return 172 + 26 * Math.sin(t + 0.6) + 9 * Math.sin(2 * t + 1.9); },
+    function (x) { var t = x / 400 * Math.PI * 2; return 236 + 30 * Math.sin(t + 2.1) + 8 * Math.sin(2 * t + 0.4); }
+  ];
+  lista('[data-onda]', menu).forEach(function (p) { p.setAttribute('d', curvaPeriodica(ONDAS[+p.getAttribute('data-onda')], -20, 820, 20)); });
+  var CENAS = {
+    1: function (f, tl) {
+      var orbita = el(f, 'orbita'), aneis = els(f, 'anel'), onda = el(f, 'onda'), satelite = el(f, 'satelite');
+      tracar([orbita].concat(caminhos(aneis)));
+      gsap.set(satelite, { opacity: 0, rotation: 0, svgOrigin: '200 200' });
+      aneis.forEach(function (g) { gsap.set(g, { scale: 0.55, svgOrigin: centro(g) }); });
+      gsap.set(onda, { opacity: 0, scale: 1, svgOrigin: '200 268' });
+      tl.to(orbita, { strokeDashoffset: 0, duration: 1.3, ease: 'power2.inOut' }, 0)
+        .to(caminhos(aneis), { strokeDashoffset: 0, duration: 0.8, stagger: 0.14, ease: 'power2.out' }, 0.35)
+        .to(aneis, { scale: 1, duration: 1, stagger: 0.14, ease: 'back.out(2.2)' }, 0.35)
+        .to(satelite, { opacity: 1, duration: 0.4 }, 1.1)
+        .to(satelite, { rotation: 360, duration: 10, ease: 'none', repeat: -1 }, 1.1)
+        .fromTo(onda, { opacity: 0.75, scale: 1 }, { opacity: 0, scale: 2.2, duration: 1.9, ease: 'power2.out', repeat: -1, repeatDelay: 0.5 }, 1.3);
+    },
+    2: function (f, tl) {
+      var trilhos = els(f, 'trilho'), curvas = caminhos(trilhos), marcador = el(f, 'marcador');
+      tracar(curvas);
+      gsap.set(trilhos, { x: 0 });
+      gsap.set(marcador, { opacity: 0, scale: 0, svgOrigin: '200 236', attr: { cy: ONDAS[1](200) } });
+      function boiar() {
+        var cy = ONDAS[1](200 - gsap.getProperty(trilhos[1], 'x'));
+        gsap.set(marcador, { attr: { cy: cy }, svgOrigin: '200 ' + cy.toFixed(1) });
       }
-    });
+      tl.to(curvas, { strokeDashoffset: 0, duration: 1.2, stagger: 0.2, ease: 'power2.inOut' }, 0)
+        .to(trilhos[0], { x: -400, duration: 9, ease: 'none', repeat: -1 }, 0)
+        .to(trilhos[1], { x: -400, duration: 6, ease: 'none', repeat: -1, onUpdate: boiar }, 0)
+        .to(marcador, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(2.6)' }, 1.1);
+    },
+    3: function (f, tl) {
+      var haste = el(f, 'haste'), raizes = els(f, 'raiz'), cometas = els(f, 'cometa'), aneis = els(f, 'anel');
+      tracar([haste].concat(raizes, caminhos(aneis)));
+      aneis.forEach(function (g) { gsap.set(g, { scale: 0.4, svgOrigin: centro(g) }); });
+      gsap.set(cometas, { strokeDasharray: '0.08 1', strokeDashoffset: 0.08 });
+      tl.to(haste, { strokeDashoffset: 0, duration: 0.55, ease: 'power2.in' }, 0)
+        .to(raizes, { strokeDashoffset: 0, duration: 0.75, stagger: 0.09, ease: 'power2.out' }, 0.55)
+        .to(caminhos(aneis), { strokeDashoffset: 0, duration: 0.8, stagger: 0.09, ease: 'power2.out' }, 1.05)
+        .to(aneis, { scale: 1, duration: 0.8, stagger: 0.09, ease: 'back.out(2.4)' }, 1.05);
+      /* o detalhe: pulsos de luz descem pelas raízes e cada anel responde quando o seu chega */
+      var pulso = gsap.timeline({ repeat: -1, repeatDelay: 0.6 })
+        .fromTo(cometas, { strokeDashoffset: 0.08 }, { strokeDashoffset: -1, duration: 1.4, stagger: 0.14, ease: 'power1.in' }, 0)
+        .to(aneis, { scale: 1.15, duration: 0.18, yoyo: true, repeat: 1, stagger: 0.14, ease: 'power2.out' }, 1.25);
+      tl.add(pulso, 1.9);
+    },
+    4: function (f, tl) {
+      var chao = els(f, 'chao'), raizinhas = els(f, 'raizinha'), caule = el(f, 'caule'), no = el(f, 'no');
+      var folhas = els(f, 'folha'), contornos = caminhos(folhas);
+      tracar(chao.concat(raizinhas, [caule], contornos));
+      gsap.set(contornos, { fillOpacity: 0 });
+      gsap.set(no, { scale: 0, svgOrigin: '200 209' });
+      /* folhas fechadas: dobradas para cima, rente ao caule, e pequenas; abrem a partir do nó */
+      folhas.forEach(function (g) { gsap.set(g, { svgOrigin: '200 209', rotation: -(+g.getAttribute('data-lado')) * 58, scale: 0.2 }); });
+      tl.to(chao, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out' }, 0)
+        .to(raizinhas, { strokeDashoffset: 0, duration: 0.5, stagger: 0.07, ease: 'power2.out' }, 0.25)
+        .to(caule, { strokeDashoffset: 0, duration: 1, ease: 'power3.out' }, 0.45)          /* nasce do chão e sobe */
+        .to(no, { scale: 1, duration: 0.5, ease: 'back.out(3)' }, 1.45)                      /* caule firme: o nó */
+        .to(folhas, { rotation: 0, scale: 1, duration: 1.3, stagger: 0.14, ease: 'elastic.out(1, .6)' }, 1.6)
+        .to(contornos, { strokeDashoffset: 0, duration: 0.9, stagger: 0.14, ease: 'power2.out' }, 1.6)
+        .to(contornos, { fillOpacity: 1, duration: 0.7, stagger: 0.14 }, 2.1)
+        /* o detalhe: as folhas balançam devagar, fora de fase */
+        .to(folhas[0], { rotation: 3.5, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 2.9)
+        .to(folhas[1], { rotation: -3.5, duration: 2.5, ease: 'sine.inOut', yoyo: true, repeat: -1 }, 3.0);
+    },
+    5: function (f, tl) {
+      var pontos = els(f, 'ponto'), ligas = els(f, 'liga'), pino = el(f, 'pino'), ondas = els(f, 'onda');
+      tracar(ligas);
+      pontos.forEach(function (g) { gsap.set(g, { scale: 0, svgOrigin: centro(g) }); });
+      gsap.set(pino, { y: -70, opacity: 0 });
+      gsap.set(ondas, { opacity: 0, scale: 1, svgOrigin: '200 210' });
+      tl.to(pontos, { scale: 1, duration: 0.5, stagger: { each: 0.08, from: 'random' }, ease: 'back.out(2.6)' }, 0)
+        .to(ligas, { strokeDashoffset: 0, duration: 0.8, stagger: 0.08, ease: 'power2.inOut' }, 0.3)  /* do ponto até o pino */
+        .to(pino, { y: 0, opacity: 1, duration: 0.8, ease: 'bounce.out' }, 0.95)
+        .fromTo(ondas, { opacity: 0.8, scale: 1 }, { opacity: 0, scale: 3.6, duration: 2, ease: 'power2.out', stagger: { each: 1, repeat: -1 } }, 1.6)
+        /* o detalhe: as linhas viram tracejado que corre até o pino, como mensagens chegando */
+        .set(ligas, { strokeDasharray: '0.035 0.065', strokeDashoffset: 0 }, 1.7)
+        .to(ligas, { strokeDashoffset: -0.1, duration: 0.9, ease: 'none', repeat: -1 }, 1.7);
+    }
+  };
+  function cenaSvg(id) { return menu.querySelector('.cena[data-cena="' + id + '"]'); }
+  function palcoVisivel() { return palcoMenu && getComputedStyle(palcoMenu).display !== 'none'; }
+  function trocarCena(id) {
+    if (id === cenaAtual) return;
+    var saindo = cenaAtual && cenaSvg(cenaAtual);
+    if (saindo) {
+      saindo.classList.remove('is-ativa');
+      var tlSai = saindo._tl;
+      saindo._tl = null;
+      saindo._saindo = tlSai;
+      setTimeout(function () { if (saindo._saindo === tlSai && tlSai) { tlSai.kill(); saindo._saindo = null; } }, 400);
+    }
+    cenaAtual = id;
+    if (!id) return;
+    var item = menu.querySelector('.menu__lista li[data-cena="' + id + '"]');
+    legenda.classList.add('is-trocando');
+    clearTimeout(legenda._t);
+    legenda._t = setTimeout(function () {
+      legenda.querySelector('[data-legenda-num]').textContent = ('0' + id).slice(-2);
+      legenda.querySelector('[data-legenda]').textContent = item.getAttribute('data-legenda');
+      legenda.classList.remove('is-trocando');
+    }, 180);
+    var entra = cenaSvg(id);
+    if (entra._saindo) { entra._saindo.kill(); entra._saindo = null; }
+    if (entra._tl) entra._tl.kill();
+    entra._tl = null;
+    if (animarMenu() && palcoVisivel()) { entra._tl = gsap.timeline(); CENAS[id](entra, entra._tl); }
+    entra.classList.add('is-ativa');
   }
-  lista('.menu__lista li[data-forma]', menu).forEach(function (item) {
-    var forma = menu.querySelector('.menu__forma[data-forma="' + item.getAttribute('data-forma') + '"]');
-    if (!forma) return;
-    var els = lista('.forma-el', forma);
-    function entrar() {
-      formas.forEach(function (f) { if (f !== forma) f.classList.remove('is-ativa'); });
-      if (animarMenu()) gsap.set(lista('.forma-el', menu).filter(function (el) { return els.indexOf(el) < 0; }), { opacity: 0 });
-      forma.classList.add('is-ativa');
-      if (animarMenu()) {
-        gsap.fromTo(els, { scale: 0.5, opacity: 0, rotation: -10 },
-          { scale: 1, opacity: 1, rotation: 0, duration: 0.6, stagger: 0.08, ease: 'back.out(1.7)', overwrite: 'auto' });
-      }
-    }
-    function sair() {
-      if (animarMenu()) {
-        gsap.to(els, { scale: 0.8, opacity: 0, duration: 0.3, ease: 'power2.in', overwrite: 'auto', onComplete: function () { forma.classList.remove('is-ativa'); } });
-      } else forma.classList.remove('is-ativa');
-    }
-    item.addEventListener('mouseenter', entrar);
-    item.addEventListener('mouseleave', sair);
-    item.addEventListener('focusin', entrar);
-    item.addEventListener('focusout', sair);
+  function decidirCena() {
+    if (!aberto) return;
+    var escolhida = hoverCena || focoCena;
+    /* a faixa de fundo marca só o item apontado (mouse ou teclado), não a seção padrão */
+    itensMenu.forEach(function (li) { li.classList.toggle('is-cena', li.getAttribute('data-cena') === escolhida); });
+    trocarCena(escolhida || cenaPadrao);
+  }
+  /* a seção que está na tela: a última cujo topo já passou do meio da tela */
+  function secaoNaTela() {
+    var ids = ['1', '2', '3', '4', '5'], alvos = ['inicio', 'servicos', 'como-funciona', 'sobre', 'contato'], atual = '1';
+    alvos.forEach(function (a, i) { var s = document.getElementById(a); if (s && s.getBoundingClientRect().top < innerHeight / 2) atual = ids[i]; });
+    return atual;
+  }
+  var listaMenu = menu.querySelector('.menu__lista');
+  listaMenu.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var li = e.target.closest('li[data-cena]');
+    if (li) { hoverCena = li.getAttribute('data-cena'); decidirCena(); }
+  });
+  listaMenu.addEventListener('pointerleave', function () { hoverCena = null; decidirCena(); });
+  listaMenu.addEventListener('focusin', function (e) {
+    var li = e.target.closest('li[data-cena]');
+    focoCena = li && e.target.matches(':focus-visible') ? li.getAttribute('data-cena') : null;
+    decidirCena();
+  });
+  listaMenu.addEventListener('focusout', function (e) {
+    if (!listaMenu.contains(e.relatedTarget)) { focoCena = null; decidirCena(); }
   });
 
   /* ---------- âncoras: Lenis (ou rolagem nativa) até o destino, com foco no destino ---------- */
@@ -367,14 +496,15 @@
      Parada, cada curva deriva na sua velocidade (as de trás, mais claras e mais lentas, como as camadas de um
      relevo). Rolando, as curvas são arrastadas junto com a página, ganham um impulso de até 10× que decai,
      invertem o sentido quando a rolagem volta e o relevo "levanta" (scaleY) e assenta.
-     data-velocidade multiplica a velocidade da caixa. No mesmo quadro, a foto e a ficha da hero ganham
-     paralaxe (--p). Só roda com a caixa à vista, aba visível e sem movimento reduzido. */
-  var solos = [], heroVisual = document.querySelector('.hero__visual'), heroCaixa = document.querySelector('.hero');
-  var ultimoPHero = -1;
+     data-velocidade multiplica a velocidade da caixa. Só roda com a caixa à vista, aba visível e sem
+     movimento reduzido. */
+  var solos = [];
   function semente(s) { return function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
-  function curvaPeriodica(y) {
+  /* Catmull-Rom sobre y(x) amostrado de x0 a x1 (padrão: duas voltas de 1440, com um passo de folga em cada ponta) */
+  function curvaPeriodica(y, x0, x1, passo) {
     var pts = [], d = '', i, x;
-    for (x = -24; x <= 2904; x += 24) pts.push([x, y(x)]);
+    x0 = x0 === undefined ? -24 : x0; x1 = x1 === undefined ? 2904 : x1; passo = passo || 24;
+    for (x = x0; x <= x1; x += passo) pts.push([x, y(x)]);
     for (i = 1; i < pts.length - 2; i++) {
       var p0 = pts[i - 1], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2];
       if (i === 1) d = 'M' + p1[0] + ' ' + p1[1].toFixed(2);
@@ -442,7 +572,6 @@
           l.el.style.transform = 'translate3d(' + l.x.toFixed(2) + 'px,0,0) scaleY(' + sy.toFixed(3) + ')';
         });
       });
-      paralaxeHero(y);
       if (rodando()) raf = requestAnimationFrame(quadro);
     }
     function atualizar() {
@@ -450,7 +579,6 @@
       else if (raf) { cancelAnimationFrame(raf); raf = 0; }
       if (reduzido()) {
         solos.forEach(function (s) { s.linhas.forEach(function (l) { l.el.style.transform = ''; l.x = 0; }); });
-        if (heroVisual) heroVisual.style.removeProperty('--p');
       }
     }
     /* impulso pela velocidade da rolagem (Lenis, ou a rolagem nativa sem ele): até 10× a deriva */
@@ -478,14 +606,6 @@
     atualizar();
   }
   var solo = { atualizar: function () {}, velocidade: function () {}, estado: function () { return null; } };
-  /* paralaxe da hero: --p vai de 0 a 1 enquanto a hero sai da tela (foto desce 9 %, ficha sobe 48 px) */
-  function paralaxeHero(y) {
-    if (!heroVisual || reduzido()) return;
-    var p = limitar(y / (heroCaixa.offsetHeight || 1));
-    if (Math.abs(p - ultimoPHero) < 0.001) return;
-    ultimoPHero = p;
-    heroVisual.style.setProperty('--p', p.toFixed(4));
-  }
 
   /* ---------- 07 · magnético (só ponteiro fino) + press com mola no CTA final ---------- */
   function iniciarMagnetico() {
@@ -520,7 +640,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     gsapOk = !!(window.gsap && window.ScrollTrigger);
     if (gsapOk) gsap.registerPlugin(ScrollTrigger);
-    if (!gsapOk) root.classList.add('sem-gsap');
     /* o "main" do componente; sem o CustomEase (CDN fora), um inOut parecido */
     if (gsapOk && window.CustomEase) {
       try { gsap.registerPlugin(CustomEase); EASE_MENU = CustomEase.create('main', '0.65, 0.01, 0.05, 0.99'); } catch (e) { /* fica o power3.inOut */ }
@@ -545,6 +664,7 @@
   window.TCA = {
     lenis: function () { return lenis; },
     solo: function () { return solo.estado(); },
-    raizes: function () { return raizes.estado(); }
+    raizes: function () { return raizes.estado(); },
+    topo: marcarTopo        /* o broto.js chama quando o hero troca de tema */
   };
 })();

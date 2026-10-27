@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  TcaEnterprise — landing page (v0.4.0: serviços de gestão rural, linhas de solo em carrossel, fotos ilustrativas)
+
+  COPY PROVISÓRIA — todos os textos abaixo esperam a revisão do cliente. Cada um está marcado no
+  corpo com <!- - COPY PROVISÓRIA - -> e com data-copy="chave"; troque o texto nos dois lugares
+  (este bloco e o elemento). qa/ferramentas/copy.js confere se os dois continuam iguais.
+  Os textos dos quatro serviços (servico.N.titulo e servico.N.texto) vieram do cliente em 27/10/2026.
+
+  meta.titulo ........ TcaEnterprise | Gestão rural: custos, safra, leite e estoque
+  meta.descricao ..... Controle de custos, resultado da safra, pecuária leiteira e estoque organizados por talhão e por cultura, para o produtor saber o lucro real de cada lavoura.
+  hero.eyebrow ....... Gestão rural para quem produz
+  hero.titulo ........ A fazenda inteira na ponta do lápis.
+  hero.sub ........... Custos, safra, leite e estoque organizados por talhão e por cultura, para você saber quanto cada lavoura realmente deixou de lucro.
+  hero.cta1 .......... Fale com a TCA
+  hero.cta2 .......... Ver os serviços
+  hero.indice.1 ...... Custos
+  hero.indice.2 ...... Safra
+  hero.indice.3 ...... Leite
+  hero.indice.4 ...... Estoque
+  servicos.eyebrow ... Serviços
+  servicos.titulo .... Do caderno de campo ao lucro de cada lavoura.
+  servicos.intro ..... Quatro frentes que conversam entre si: o que você anota vira custo, o custo vira resultado e o resultado vira decisão.
+  servico.1.titulo ... Controle de custos e contabilidade rural
+  servico.1.texto .... O produtor anota gastos e receitas do dia a dia, por safra e por talhão. O sistema gera a planilha organizada para enviar ao contador.
+  servico.1.item.1 ... Lançamentos por safra e por talhão
+  servico.1.item.2 ... Receitas e despesas no mesmo lugar
+  servico.1.item.3 ... Planilha pronta para o contador
+  servico.2.titulo ... Resultado da safra e lucro por cultura
+  servico.2.texto .... Cruza custo de produção, produtividade e preço de venda para mostrar quanto cada lavoura realmente deixou de lucro e qual o ponto de equilíbrio.
+  servico.2.item.1 ... Custo de produção por hectare
+  servico.2.item.2 ... Lucro real de cada cultura
+  servico.2.item.3 ... Ponto de equilíbrio em sacas
+  servico.3.titulo ... Gestão da pecuária leiteira
+  servico.3.texto .... Acompanha produção diária de leite, rebanho, custo de alimentação e margem por litro, com a evolução mês a mês.
+  servico.3.item.1 ... Produção diária de leite
+  servico.3.item.2 ... Rebanho e custo de alimentação
+  servico.3.item.3 ... Margem por litro, mês a mês
+  servico.4.titulo ... Estoque e planejamento de compras
+  servico.4.texto .... Controle de insumos, grãos armazenados e contas a pagar e receber, com alerta de vencimentos e de estoque baixo.
+  servico.4.item.1 ... Insumos e grãos armazenados
+  servico.4.item.2 ... Contas a pagar e a receber
+  servico.4.item.3 ... Alertas de vencimento e de estoque baixo
+  servicos.nota ...... Fotos e números dos quadros são ilustrativos.
+  como.eyebrow ....... Como funciona
+  como.titulo ........ Do caderno ao resultado.
+  etapa.1.titulo ..... Anotar
+  etapa.1.texto ...... Gastos, receitas, leite do dia e entradas no galpão, lançados na rotina, por safra e por talhão.
+  etapa.2.titulo ..... Organizar
+  etapa.2.texto ...... O sistema separa tudo por cultura e por período e monta a planilha para o contador.
+  etapa.3.titulo ..... Decidir
+  etapa.3.texto ...... Você vê o lucro de cada lavoura, a margem do leite e o que precisa comprar antes de faltar.
+  sobre.eyebrow ...... Sobre a TCA
+  sobre.titulo ....... Agro de verdade, números de verdade.
+  sobre.p1 ........... A TcaEnterprise existe para aproximar a tecnologia de quem vive o campo. Acreditamos que a boa decisão começa no chão: no custo de cada talhão, no litro de cada ordenha e no que está guardado no galpão.
+  sobre.p2 ........... Por isso cada ferramenta nasce de uma pergunta prática da fazenda, e não de um catálogo. Organizamos o que o produtor já anota, mostramos o que os números dizem e deixamos a decisão com quem conhece a terra.
+  sobre.p3 ........... Tecnologia, para nós, só vale quando funciona no campo, todos os dias.
+  cta.titulo ......... Vamos colocar os números da sua fazenda em ordem?
+  cta.botao .......... Fale com a TCA
+  cta.aviso .......... Prévia: o canal de contato ainda será confirmado. Nada foi enviado.
+  contato.whatsapp ... [A CONFIRMAR]
+  contato.email ...... [A CONFIRMAR]
+  contato.endereco ... [A CONFIRMAR]
+-->
+<!-- COPY PROVISÓRIA (título, descrição e og:*) -->
+<title data-copy="meta.titulo">TcaEnterprise | Gestão rural: custos, safra, leite e estoque</title>
+<!-- COPY PROVISÓRIA -->
+<meta name="description" content="Controle de custos, resultado da safra, pecuária leiteira e estoque organizados por talhão e por cultura, para o produtor saber o lucro real de cada lavoura." data-copy="meta.descricao">
+<!-- prévia local: tirar o noindex só na publicação definitiva -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F4F1E8">
+<meta name="color-scheme" content="only light">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="TcaEnterprise">
+<meta property="og:title" content="TcaEnterprise | Gestão rural: custos, safra, leite e estoque">
+<meta property="og:description" content="Custos, safra, leite e estoque organizados para o produtor saber o lucro real de cada lavoura.">
+<link rel="icon" href="assets/marca/favicon.svg?v=0.4.0" type="image/svg+xml">
+<link rel="icon" href="assets/marca/favicon-32.png?v=0.4.0" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/marca/apple-touch-icon.png?v=0.4.0">
+<link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="assets/img/hero-1200.jpg" imagesrcset="assets/img/hero-720.jpg 720w, assets/img/hero-1200.jpg 1200w" imagesizes="(min-width: 900px) 44vw, 100vw" fetchpriority="high">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=0.4.0">
+<link rel="stylesheet" href="assets/css/intro.css?v=0.4.0">
+<!-- antes da 1ª pintura: html.js (há JS), html.rm (movimento reduzido ou ?fx=0, acompanhado ao vivo) e a decisão da abertura:
+     html.intro-active só uma vez por sessão e nunca com #âncora, página rolada, aba oculta ou movimento reduzido; ?intro=1 força -->
+<script>(function(){var d=document.documentElement;d.classList.add("js");try{var u=location.search,q=/[?&]fx=0(&|$)/.test(u),f=/[?&]intro=1(&|$)/.test(u),m=matchMedia("(prefers-reduced-motion: reduce)"),s=function(){d.classList.toggle("rm",q||m.matches)};s();m.addEventListener("change",s);
+if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffset>4||sessionStorage.getItem("tca-intro")==="1"))return;d.classList.add("intro-active")}catch(e){}})();</script>
+</head>
+<body>
+
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ABERTURA: o palco é montado por assets/js/intro.js, que roda aqui, antes do resto da página; o estilo fica em assets/css/intro.css.
+     Se o arquivo não carregar, a página se libera na hora (onerror); se carregar e falhar, o failsafe em CSS libera em 6,5 s. -->
+<script src="assets/js/intro.js?v=0.4.0" onerror="document.documentElement.classList.remove('intro-active')"></script>
+
+<!-- ícones de interface -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4.2m0 2.6v.2"/></symbol>
+</svg>
+
+<!-- 1 · CABEÇALHO -->
+<header class="topo" id="topo">
+  <div class="topo__barra envoltorio">
+    <!-- logo: cópia inline dos paths do sprite aprovado (para entrar em partes); gerada por qa/ferramentas/montar-marca-inline.js -->
+    <a class="marca" href="#inicio" aria-label="TcaEnterprise, voltar ao início">
+      <!-- LOGO-INLINE:INICIO -->
+      <svg class="marca__svg" viewBox="0 0 1373 687" aria-hidden="true" focusable="false"><g class="lg-t"><g class="lg-raizes" fill="none" stroke-linecap="butt" style="stroke:var(--lg-ink,#0F3D2E)"><path class="lg-raiz lg-raiz-1" d="M257.5 342L130.91 448.6" stroke-width="39" pathLength="1"/><path class="lg-raiz lg-raiz-2" d="M257.5 342V487" stroke-width="42" pathLength="1"/><path class="lg-raiz lg-raiz-3" d="M257.5 342L384.09 448.6" stroke-width="39" pathLength="1"/></g><path class="lg-haste" d="M257.5 342V121" fill="none" stroke-width="54" pathLength="1" style="stroke:var(--lg-ink,#0F3D2E)"/><path class="lg-hub" d="M247.5 65.5H267.5A40 40 0 0 1 307.5 105.5V120A30 30 0 0 1 277.5 150H237.5A30 30 0 0 1 207.5 120V105.5A40 40 0 0 1 247.5 65.5Z" style="fill:var(--lg-ink,#0F3D2E)"/><path class="lg-folha lg-folha-esq" d="M2.25 1.03C-0.55 2.16 -0.6 4.47 1.89 16.5C11.45 62.61 52.68 108.6 96.83 122.41C113.21 127.54 118.84 128 164.65 128L207.04 128 208.18 130.5C208.91 132.11 210.14 133 211.61 133C213.83 133 213.86 132.9 212.46 129.56C211.67 127.66 210.74 122.38 210.4 117.81C208.21 88.4 220.79 71.38 246.73 68.65C254.49 67.84 257 67.22 257 66.14C257 63.74 241.54 65.32 233.48 68.54C229.84 70 226.72 71.04 226.55 70.85C226.38 70.66 225.09 68.21 223.69 65.42C205.95 30.09 172.66 5.54 136.5 1.11C125.51 -0.24 5.58 -0.31 2.25 1.03M58 39.18C58 41.15 68.78 54.59 74.93 60.27C89.51 73.78 108.37 84.76 124.5 89.15C136.15 92.32 199.72 93.35 198.59 90.34C194.71 79.97 178.39 62.49 165.33 54.7C150.52 45.86 135.34 40.83 118 39.02C103.97 37.56 58 37.68 58 39.18" fill-rule="evenodd" style="fill:var(--lg-ink,#0F3D2E)"/><path class="lg-folha lg-folha-dir" d="M512.75 1.03C515.55 2.16 515.6 4.47 513.11 16.5C503.55 62.61 462.32 108.6 418.17 122.41C401.79 127.54 396.16 128 350.35 128L307.96 128 306.82 130.5C306.09 132.11 304.86 133 303.39 133C301.17 133 301.14 132.9 302.54 129.56C303.33 127.66 304.26 122.38 304.6 117.81C306.79 88.4 294.21 71.38 268.27 68.65C260.51 67.84 258 67.22 258 66.14C258 63.74 273.46 65.32 281.52 68.54C285.16 70 288.28 71.04 288.45 70.85C288.62 70.66 289.91 68.21 291.31 65.42C309.05 30.09 342.34 5.54 378.5 1.11C389.49 -0.24 509.42 -0.31 512.75 1.03M457 39.18C457 41.15 446.22 54.59 440.07 60.27C425.49 73.78 406.63 84.76 390.5 89.15C378.85 92.32 315.28 93.35 316.41 90.34C320.29 79.97 336.61 62.49 349.67 54.7C364.48 45.86 379.66 40.83 397 39.02C411.03 37.56 457 37.68 457 39.18" fill-rule="evenodd" style="fill:var(--lg-ink,#0F3D2E)"/></g><g class="lg-aneis" fill="none" style="stroke:var(--lg-accent,#C9A227)"><circle class="lg-anel lg-anel-1" cx="112.13" cy="481.5" r="34.4" stroke-width="23.2" pathLength="1"/><circle class="lg-anel lg-anel-2" cx="257.5" cy="527.15" r="34.4" stroke-width="23.2" pathLength="1"/><circle class="lg-anel lg-anel-3" cx="402.87" cy="481.5" r="34.4" stroke-width="23.2" pathLength="1"/></g><g class="lg-ca"><path class="lg-c" d="M862.23 190.19A214.71 244.37 79.98 1 0 852.23 449.39L784.66 390.7A124.28 139.45 85.68 1 1 786.86 257.31Z" style="fill:var(--lg-ink,#0F3D2E)"/><path class="lg-a" d="M1041.9 108L1148.1 108L1370.5 530L1241.5 530L1201.97 449L988.03 449L948.5 530L819.5 530ZM1095 229.8L1163.18 369.5L1026.82 369.5Z" fill-rule="evenodd" style="fill:var(--lg-ink,#0F3D2E)"/></g><g class="lg-enterprise" style="fill:var(--lg-accent,#C9A227)"><path class="lg-l" data-ch="E" style="--i:0" d="M137.72 685L75 685L75 604L136.21 604L136.21 619.04L93.63 619.04L93.63 636.63L131.24 636.63L131.24 651.21L93.63 651.21L93.63 669.96L137.72 669.96L137.72 685Z"/><path class="lg-l" data-ch="N" style="--i:1" d="M232.09 685L213.58 685L213.58 604L229.08 604L269.35 653.29L269.35 604L287.87 604L287.87 685L272.48 685L232.09 635.71L232.09 685Z"/><path class="lg-l" data-ch="T" style="--i:2" d="M403.53 685L384.79 685L384.79 619.27L358.87 619.27L358.87 604L429.45 604L429.45 619.27L403.53 619.27L403.53 685Z"/><path class="lg-l" data-ch="E" style="--i:3" d="M563.17 685L500.45 685L500.45 604L561.67 604L561.67 619.04L519.08 619.04L519.08 636.63L556.69 636.63L556.69 651.21L519.08 651.21L519.08 669.96L563.17 669.96L563.17 685Z"/><path class="lg-l" data-ch="R" style="--i:4" d="M657.78 685L639.03 685L639.03 604L673.63 604Q690.52 604 699.9 611.87Q709.27 619.74 709.27 633.39L709.27 633.39Q709.27 642.42 704.93 648.95Q700.59 655.49 692.72 658.96L692.72 658.96L710.77 685L690.64 685L675.02 662.44Q674.56 662.44 674.09 662.44L674.09 662.44L657.78 662.44L657.78 685ZM657.78 619.27L657.78 647.51L673.05 647.51Q681.61 647.51 685.95 643.75Q690.29 639.99 690.29 633.39L690.29 633.39Q690.29 626.68 685.95 622.98Q681.61 619.27 673.05 619.27L673.05 619.27L657.78 619.27Z"/><path class="lg-l" data-ch="P" style="--i:5" d="M803.76 685L785.02 685L785.02 604L820.08 604Q830.84 604 838.76 607.53Q846.69 611.06 850.97 617.65Q855.25 624.25 855.25 633.39L855.25 633.39Q855.25 642.42 850.97 649.01Q846.69 655.61 838.76 659.14Q830.84 662.67 820.08 662.67L820.08 662.67L803.76 662.67L803.76 685ZM803.76 619.27L803.76 647.39L819.04 647.39Q827.6 647.39 831.94 643.69Q836.28 639.99 836.28 633.39L836.28 633.39Q836.28 626.68 831.94 622.98Q827.6 619.27 819.04 619.27L819.04 619.27L803.76 619.27Z"/><path class="lg-l" data-ch="R" style="--i:6" d="M949.4 685L930.65 685L930.65 604L965.25 604Q982.14 604 991.52 611.87Q1000.89 619.74 1000.89 633.39L1000.89 633.39Q1000.89 642.42 996.55 648.95Q992.21 655.49 984.34 658.96L984.34 658.96L1002.39 685L982.26 685L966.64 662.44Q966.18 662.44 965.71 662.44L965.71 662.44L949.4 662.44L949.4 685ZM949.4 619.27L949.4 647.51L964.67 647.51Q973.23 647.51 977.57 643.75Q981.91 639.99 981.91 633.39L981.91 633.39Q981.91 626.68 977.57 622.98Q973.23 619.27 964.67 619.27L964.67 619.27L949.4 619.27Z"/><path class="lg-l" data-ch="I" style="--i:7" d="M1095.38 685L1076.64 685L1076.64 604L1095.38 604L1095.38 685Z"/><path class="lg-l" data-ch="S" style="--i:8" d="M1202.14 686.39L1202.14 686.39Q1192.42 686.39 1183.51 683.79Q1174.6 681.18 1169.16 677.02L1169.16 677.02L1175.52 662.9Q1180.61 666.6 1187.79 668.97Q1194.96 671.35 1202.25 671.35L1202.25 671.35Q1210.58 671.35 1214.23 668.92Q1217.87 666.49 1217.87 662.67L1217.87 662.67Q1217.87 659.43 1215.33 657.52Q1212.78 655.61 1208.56 654.39Q1204.34 653.18 1199.36 652.08Q1194.38 650.98 1189.35 649.42Q1184.32 647.86 1180.09 645.25Q1175.87 642.65 1173.32 638.42Q1170.78 634.2 1170.78 627.84L1170.78 627.84Q1170.78 620.89 1174.54 615.17Q1178.3 609.44 1185.88 606.03Q1193.46 602.61 1204.91 602.61L1204.91 602.61Q1212.55 602.61 1219.96 604.46Q1227.36 606.31 1233.03 609.79L1233.03 609.79L1227.25 624.02Q1221.58 620.78 1215.85 619.22Q1210.12 617.65 1204.8 617.65L1204.8 617.65Q1196.47 617.65 1192.94 620.37Q1189.41 623.09 1189.41 626.91L1189.41 626.91Q1189.41 630.04 1191.95 631.94Q1194.5 633.85 1198.67 635.07Q1202.83 636.28 1207.87 637.33Q1212.9 638.37 1217.93 639.93Q1222.97 641.49 1227.19 644.04Q1231.41 646.58 1233.96 650.75Q1236.5 654.91 1236.5 661.28L1236.5 661.28Q1236.5 668.11 1232.74 673.78Q1228.98 679.45 1221.35 682.92Q1213.71 686.39 1202.14 686.39Z"/><path class="lg-l" data-ch="E" style="--i:9" d="M1373 685L1310.28 685L1310.28 604L1371.5 604L1371.5 619.04L1328.91 619.04L1328.91 636.63L1366.52 636.63L1366.52 651.21L1328.91 651.21L1328.91 669.96L1373 669.96L1373 685Z"/></g></svg>
+      <!-- LOGO-INLINE:FIM -->
+      <span class="marca__texto" aria-hidden="true">TcaEnterprise</span>
+    </a>
+    <!-- um só botão de menu, à direita: "Menu" ↔ "Fechar" trocam por translação e o + gira 315° até virar × -->
+    <button class="topo__menu rise-down" style="--d:.1s" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="topo__menu-texto" aria-hidden="true"><span>Menu</span><span>Fechar</span></span>
+      <span class="sr">Abrir menu</span>
+      <svg class="topo__menu-icone" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+        <path d="M7.33 16V0h1.34v16z"/><path d="M16 8.67H0V7.33h16z"/>
+        <path d="M6 7.33h1.33V6c0 .74-.6 1.33-1.33 1.33zM10 7.33H8.67V6c0 .74.6 1.33 1.33 1.33zM6 8.67h1.33V10c0-.74-.6-1.33-1.33-1.33zM10 8.67H8.67V10c0-.74.6-1.33 1.33-1.33z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- menu em tela cheia (adaptado do "kinetic navigation"): três camadas entram pela direita (Trigo, Floresta,
+     Floresta funda), os links sobem com um giro e cada link acende, no fundo, um grafismo em linha da marca.
+     O site.js anima com GSAP; sem GSAP ou com movimento reduzido, ele só aparece e some. -->
+<div class="menu" id="menu" hidden>
+  <div class="menu__veu" data-menu-fechar></div>
+  <nav class="menu__painel" aria-label="Menu principal">
+    <div class="menu__camadas" aria-hidden="true">
+      <i class="menu__camada"></i><i class="menu__camada"></i><i class="menu__camada"></i>
+      <!-- grafismos do hover: cada link conta uma pequena história em linha (site.js, CENAS).
+           Sem GSAP ou com movimento reduzido, aparecem já desenhados e parados. -->
+      <div class="menu__formas">
+        <!-- 01 Início: a órbita se desenha, os três anéis da marca acendem, o anel central pulsa e um ponto Trigo orbita -->
+        <svg class="menu__forma" data-forma="1" viewBox="0 0 400 400" focusable="false">
+          <circle class="f-traco" data-cena="orbita" cx="200" cy="200" r="150" pathLength="1" transform="rotate(-90 200 200)"/>
+          <g data-cena="satelite"><circle class="f-ponto" cx="200" cy="50" r="5"/></g>
+          <circle class="f-onda" data-cena="onda" cx="200" cy="290" r="44"/>
+          <circle class="f-traco" data-cena="anel" cx="110" cy="250" r="44" pathLength="1" transform="rotate(-90 110 250)"/>
+          <circle class="f-traco f-trigo" data-cena="anel" cx="200" cy="290" r="44" pathLength="1" transform="rotate(-90 200 290)"/>
+          <circle class="f-traco" data-cena="anel" cx="290" cy="250" r="44" pathLength="1" transform="rotate(-90 290 250)"/>
+        </svg>
+        <!-- 02 Serviços: duas curvas de nível que andam sozinhas, e um marcador Trigo que boia na curva de cima -->
+        <svg class="menu__forma menu__forma--faixa" data-forma="2" viewBox="0 0 400 400" focusable="false">
+          <g data-cena="trilho"><path class="f-traco" data-cena="curva" data-onda="0" pathLength="1"/></g>
+          <g data-cena="trilho"><path class="f-traco f-trigo" data-cena="curva" data-onda="1" pathLength="1"/></g>
+          <circle class="f-marcador" data-cena="marcador" cx="200" cy="200" r="7"/>
+        </svg>
+        <!-- 03 Como funciona: a haste desce, as raízes se abrem, os anéis acendem e pulsos correm pelas raízes -->
+        <svg class="menu__forma" data-forma="3" viewBox="0 0 400 400" focusable="false">
+          <path class="f-traco" data-cena="haste" d="M200 30V150" pathLength="1"/>
+          <path class="f-traco" data-cena="raiz" d="M200 150L97 268" pathLength="1"/>
+          <path class="f-traco" data-cena="raiz" d="M200 150V269" pathLength="1"/>
+          <path class="f-traco" data-cena="raiz" d="M200 150L303 268" pathLength="1"/>
+          <path class="f-cometa" data-cena="cometa" d="M200 30V150L97 268" pathLength="1"/>
+          <path class="f-cometa" data-cena="cometa" d="M200 30V269" pathLength="1"/>
+          <path class="f-cometa" data-cena="cometa" d="M200 30V150L303 268" pathLength="1"/>
+          <circle class="f-traco f-trigo" data-cena="anel" cx="80" cy="288" r="26" pathLength="1" transform="rotate(-90 80 288)"/>
+          <circle class="f-traco f-trigo" data-cena="anel" cx="200" cy="295" r="26" pathLength="1" transform="rotate(-90 200 295)"/>
+          <circle class="f-traco f-trigo" data-cena="anel" cx="320" cy="288" r="26" pathLength="1" transform="rotate(-90 320 288)"/>
+        </svg>
+        <!-- 04 Sobre: o broto. Chão, raízes para baixo, caule de baixo para cima; com o caule firme, o nó e as duas folhas se abrem -->
+        <svg class="menu__forma" data-forma="4" viewBox="0 0 400 400" focusable="false">
+          <path class="f-traco f-fraco" data-cena="chao" d="M200 360H110" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="chao" d="M200 360H290" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="raizinha" d="M200 360l-20 24" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="raizinha" d="M200 360v30" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="raizinha" d="M200 360l20 24" pathLength="1"/>
+          <path class="f-traco f-trigo" data-cena="caule" d="M200 360V232" pathLength="1"/>
+          <g data-cena="folha" data-lado="-1"><path class="f-traco f-folha" d="M200 230C152 172 76 142 36 150c10 60 78 98 164 80z" pathLength="1"/></g>
+          <g data-cena="folha" data-lado="1"><path class="f-traco f-folha" d="M200 230c48-58 124-88 164-80-10 60-78 98-164 80z" pathLength="1"/></g>
+          <circle class="f-no" data-cena="no" cx="200" cy="231" r="6"/>
+        </svg>
+        <!-- 05 Contato: os pontos do mapa aparecem, as linhas se ligam ao pino Trigo, o pino cai e emite ondas -->
+        <svg class="menu__forma" data-forma="5" viewBox="0 0 400 400" focusable="false">
+          <path class="f-traco f-fraco" data-cena="liga" d="M70 90L200 210" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="liga" d="M215 70L200 210" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="liga" d="M340 110L200 210" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="liga" d="M90 300L200 210" pathLength="1"/>
+          <path class="f-traco f-fraco" data-cena="liga" d="M330 320L200 210" pathLength="1"/>
+          <circle class="f-ponto f-ponto--claro" data-cena="ponto" cx="70" cy="90" r="8"/>
+          <circle class="f-ponto f-ponto--claro" data-cena="ponto" cx="215" cy="70" r="6"/>
+          <circle class="f-ponto f-ponto--claro" data-cena="ponto" cx="340" cy="110" r="9"/>
+          <circle class="f-ponto f-ponto--claro" data-cena="ponto" cx="90" cy="300" r="7"/>
+          <circle class="f-ponto f-ponto--claro" data-cena="ponto" cx="330" cy="320" r="8"/>
+          <circle class="f-onda" data-cena="onda" cx="200" cy="210" r="14"/>
+          <circle class="f-onda" data-cena="onda" cx="200" cy="210" r="14"/>
+          <circle class="f-pino" data-cena="pino" cx="200" cy="210" r="14"/>
+        </svg>
+      </div>
+    </div>
+    <div class="menu__miolo">
+      <ul class="menu__lista">
+        <li data-forma="1"><a class="menu__link" href="#inicio"><span class="menu__num" aria-hidden="true">01</span><span class="menu__texto">Início</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-forma="2"><a class="menu__link" href="#servicos"><span class="menu__num" aria-hidden="true">02</span><span class="menu__texto">Serviços</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-forma="3"><a class="menu__link" href="#como-funciona"><span class="menu__num" aria-hidden="true">03</span><span class="menu__texto">Como funciona</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-forma="4"><a class="menu__link" href="#sobre"><span class="menu__num" aria-hidden="true">04</span><span class="menu__texto">Sobre</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-forma="5"><a class="menu__link" href="#contato"><span class="menu__num" aria-hidden="true">05</span><span class="menu__texto">Contato</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+      </ul>
+      <div class="menu__rodape">
+        <p class="menu__nota" data-menu-fade>Gestão rural para quem produz</p>
+        <a class="btn btn--trigo menu__cta" href="#contato" data-menu-fade><span class="btn__face">Fale com a TCA</span></a>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<main id="conteudo" tabindex="-1">
+
+  <!-- 2 · HERO -->
+  <section class="hero" id="inicio" aria-labelledby="hero-titulo">
+    <div class="hero__grade envoltorio">
+      <div class="hero__texto">
+        <!-- COPY PROVISÓRIA --><p class="eyebrow rise" data-copy="hero.eyebrow">Gestão rural para quem produz</p>
+        <!-- COPY PROVISÓRIA --><h1 class="hero__titulo" id="hero-titulo" data-split="hero" data-copy="hero.titulo">A fazenda inteira na ponta do lápis.</h1>
+        <!-- COPY PROVISÓRIA --><p class="hero__sub rise" style="--d:.35s" data-copy="hero.sub">Custos, safra, leite e estoque organizados por talhão e por cultura, para você saber quanto cada lavoura realmente deixou de lucro.</p>
+        <div class="hero__acoes rise" style="--d:.45s">
+          <!-- COPY PROVISÓRIA --><a class="btn btn--primario" href="#contato"><span class="btn__face" data-copy="hero.cta1">Fale com a TCA</span></a>
+          <!-- COPY PROVISÓRIA --><a class="btn btn--contorno" href="#servicos"><span class="btn__face" data-copy="hero.cta2">Ver os serviços</span></a>
+        </div>
+        <!-- atalhos para os quatro serviços -->
+        <nav class="hero__indice rise" style="--d:.58s" aria-label="Serviços">
+          <!-- COPY PROVISÓRIA -->
+          <a href="#servico-custos"><span class="hero__indice-num" aria-hidden="true">01</span><span data-copy="hero.indice.1">Custos</span></a>
+          <!-- COPY PROVISÓRIA --><a href="#servico-safra"><span class="hero__indice-num" aria-hidden="true">02</span><span data-copy="hero.indice.2">Safra</span></a>
+          <!-- COPY PROVISÓRIA --><a href="#servico-leite"><span class="hero__indice-num" aria-hidden="true">03</span><span data-copy="hero.indice.3">Leite</span></a>
+          <!-- COPY PROVISÓRIA --><a href="#servico-estoque"><span class="hero__indice-num" aria-hidden="true">04</span><span data-copy="hero.indice.4">Estoque</span></a>
+        </nav>
+      </div>
+      <div class="hero__visual">
+        <!-- foto ilustrativa (Higgsfield, 27/10/2026): lavoura em curvas de nível vista do alto -->
+        <figure class="midia midia--hero">
+          <div class="midia__zoom">
+            <img class="hero__foto" src="assets/img/hero-1200.jpg" srcset="assets/img/hero-720.jpg 720w, assets/img/hero-1200.jpg 1200w" sizes="(min-width: 900px) 44vw, 100vw" width="1200" height="1500" fetchpriority="high" decoding="async" alt="Lavoura vista do alto, com faixas verdes e douradas acompanhando as curvas de nível do terreno (imagem ilustrativa)">
+          </div>
+        </figure>
+        <!-- quadro de exemplo (valores ilustrativos): o mesmo tipo de leitura que o serviço 02 entrega -->
+        <div class="ficha ficha--hero rise" style="--d:.7s" role="img" aria-label="Exemplo ilustrativo de lucro por cultura na safra 25/26: soja, R$ 2.040 por hectare; feijão, R$ 1.560; milho, R$ 1.120.">
+          <div class="ficha__topo"><span class="ficha__rotulo">Lucro por cultura</span><span class="ficha__tag">Exemplo</span></div>
+          <ul class="ficha__barras">
+            <li style="--v:1;--i:0"><span>Soja</span><i></i><b>2.040</b></li>
+            <li style="--v:.76;--i:1"><span>Feijão</span><i></i><b>1.560</b></li>
+            <li style="--v:.55;--i:2"><span>Milho</span><i></i><b>1.120</b></li>
+          </ul>
+          <p class="ficha__legenda">R$ por hectare · safra 25/26</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · SOLO: no lugar da antiga faixa de texto, poucas curvas de nível que andam sozinhas, aceleram com a rolagem
+       e invertem o sentido quando ela volta (site.js, "solo") -->
+  <div class="solo-faixa">
+    <div class="solo solo--faixa" data-solo="4" data-semente="5" data-trigo aria-hidden="true"></div>
+  </div>
+
+  <!-- 4 · SERVIÇOS (lista editorial alternada: foto + quadro de exemplo + texto) -->
+  <section class="servicos" id="servicos" aria-labelledby="servicos-titulo">
+    <div class="envoltorio">
+      <header class="servicos__topo">
+        <div>
+          <!-- COPY PROVISÓRIA --><p class="eyebrow" data-copy="servicos.eyebrow">Serviços</p>
+          <!-- COPY PROVISÓRIA --><h2 class="titulo-secao" id="servicos-titulo" data-split data-copy="servicos.titulo">Do caderno de campo ao lucro de cada lavoura.</h2>
+        </div>
+        <!-- COPY PROVISÓRIA --><p class="servicos__intro" data-revelar="sobe" data-copy="servicos.intro">Quatro frentes que conversam entre si: o que você anota vira custo, o custo vira resultado e o resultado vira decisão.</p>
+      </header>
+
+      <ol class="servicos__lista">
+        <!-- 01 · custos -->
+        <li class="servico" id="servico-custos">
+          <div class="servico__midia">
+            <figure class="midia" data-revelar>
+              <div class="midia__zoom">
+                <img class="midia__img" src="assets/img/custos-900.jpg" srcset="assets/img/custos-900.jpg 900w, assets/img/custos-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Mãos de um produtor anotando gastos num caderno sobre a caçamba da caminhonete, com a lavoura ao fundo (imagem ilustrativa)">
+              </div>
+            </figure>
+            <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: R$ 91.850 de custo lançado no talhão 3 na safra 25/26, sendo R$ 18.400 de sementes, R$ 41.250 de fertilizantes, R$ 22.900 de defensivos e R$ 9.300 de diesel, exportados numa planilha para o contador.">
+              <div class="ficha__topo"><span class="ficha__rotulo">Safra 25/26 · Talhão 3</span><span class="ficha__tag">Exemplo</span></div>
+              <p class="ficha__valor">R$ <span data-valor="91850">91.850</span></p>
+              <p class="ficha__legenda">custo lançado no talhão</p>
+              <ul class="ficha__linhas">
+                <li style="--i:0"><span>Sementes</span><b>18.400</b></li>
+                <li style="--i:1"><span>Fertilizantes</span><b>41.250</b></li>
+                <li style="--i:2"><span>Defensivos</span><b>22.900</b></li>
+                <li style="--i:3"><span>Diesel</span><b>9.300</b></li>
+              </ul>
+              <p class="ficha__rodape"><svg aria-hidden="true" focusable="false"><use href="#i-baixar"/></svg>planilha-contador.xlsx</p>
+            </div>
+          </div>
+          <div class="servico__texto" data-revelar="sobe">
+            <!-- COPY PROVISÓRIA --><h3 data-copy="servico.1.titulo">Controle de custos e contabilidade rural</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="servico.1.texto">O produtor anota gastos e receitas do dia a dia, por safra e por talhão. O sistema gera a planilha organizada para enviar ao contador.</p>
+            <ul class="servico__itens">
+              <!-- COPY PROVISÓRIA -->
+              <li data-copy="servico.1.item.1">Lançamentos por safra e por talhão</li>
+              <li data-copy="servico.1.item.2">Receitas e despesas no mesmo lugar</li>
+              <li data-copy="servico.1.item.3">Planilha pronta para o contador</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 02 · resultado da safra -->
+        <li class="servico" id="servico-safra">
+          <div class="servico__midia">
+            <figure class="midia" data-revelar>
+              <div class="midia__zoom">
+                <img class="midia__img" src="assets/img/safra-900.jpg" srcset="assets/img/safra-900.jpg 900w, assets/img/safra-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Lavoura de soja madura ao pôr do sol, com uma colheitadeira ao longe (imagem ilustrativa)">
+              </div>
+            </figure>
+            <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: soja em 120 hectares, com lucro de R$ 2.040 por hectare a 65 sacas por hectare; a receita passa o custo no ponto de equilíbrio de 48 sacas por hectare.">
+              <div class="ficha__topo"><span class="ficha__rotulo">Soja · 120 ha</span><span class="ficha__tag">Exemplo</span></div>
+              <p class="ficha__valor">R$ <span data-valor="2040">2.040</span><small>/ha</small></p>
+              <p class="ficha__legenda">de lucro, colhendo 65 sc/ha</p>
+              <svg class="ficha__grafico" viewBox="-6 6 292 112" aria-hidden="true" focusable="false">
+                <path class="g-grade" d="M0 110H280M0 80H280M0 50H280M0 20H280"/>
+                <path class="g-custo" pathLength="1" d="M0 67.5H280"/>
+                <path class="g-receita" pathLength="1" d="M0 100.8L280 17.7"/>
+                <path class="g-lucro" pathLength="1" d="M217.8 67.5V36.2"/>
+                <circle class="g-anel" cx="112" cy="67.5" r="5"/>
+                <circle class="g-ponto" cx="217.8" cy="36.2" r="3.5"/>
+              </svg>
+              <p class="ficha__chaves"><span class="c-receita">Receita</span><span class="c-custo">Custo</span><span class="c-anel">Equilíbrio 48 sc</span></p>
+            </div>
+          </div>
+          <div class="servico__texto" data-revelar="sobe">
+            <!-- COPY PROVISÓRIA --><h3 data-copy="servico.2.titulo">Resultado da safra e lucro por cultura</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="servico.2.texto">Cruza custo de produção, produtividade e preço de venda para mostrar quanto cada lavoura realmente deixou de lucro e qual o ponto de equilíbrio.</p>
+            <ul class="servico__itens">
+              <!-- COPY PROVISÓRIA -->
+              <li data-copy="servico.2.item.1">Custo de produção por hectare</li>
+              <li data-copy="servico.2.item.2">Lucro real de cada cultura</li>
+              <li data-copy="servico.2.item.3">Ponto de equilíbrio em sacas</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 03 · pecuária leiteira -->
+        <li class="servico" id="servico-leite">
+          <div class="servico__midia">
+            <figure class="midia" data-revelar>
+              <div class="midia__zoom">
+                <img class="midia__img" src="assets/img/leite-900.jpg" srcset="assets/img/leite-900.jpg 900w, assets/img/leite-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Vacas holandesas pastando de manhã cedo, com neblina no vale (imagem ilustrativa)">
+              </div>
+            </figure>
+            <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: margem de R$ 0,82 por litro em setembro, com a produção subindo de 980 para 1.260 litros por dia em doze meses.">
+              <div class="ficha__topo"><span class="ficha__rotulo">Leite · 42 vacas</span><span class="ficha__tag">Exemplo</span></div>
+              <p class="ficha__valor">R$ <span data-valor="0.82" data-casas="2">0,82</span><small>/L</small></p>
+              <p class="ficha__legenda">de margem por litro em setembro</p>
+              <svg class="ficha__grafico" viewBox="-6 6 292 112" aria-hidden="true" focusable="false">
+                <path class="g-grade" d="M0 110H280M0 80H280M0 50H280M0 20H280"/>
+                <path class="g-receita" pathLength="1" d="M0 90L25.5 82.5L50.9 70L76.4 75L101.8 60L127.3 47.5L152.7 52.5L178.2 40L203.6 32.5L229.1 37.5L254.5 25L280 20"/>
+                <circle class="g-anel" cx="280" cy="20" r="5"/>
+              </svg>
+              <p class="ficha__eixo"><span>out/25</span><span>1.260 L/dia</span><span>set/26</span></p>
+            </div>
+          </div>
+          <div class="servico__texto" data-revelar="sobe">
+            <!-- COPY PROVISÓRIA --><h3 data-copy="servico.3.titulo">Gestão da pecuária leiteira</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="servico.3.texto">Acompanha produção diária de leite, rebanho, custo de alimentação e margem por litro, com a evolução mês a mês.</p>
+            <ul class="servico__itens">
+              <!-- COPY PROVISÓRIA -->
+              <li data-copy="servico.3.item.1">Produção diária de leite</li>
+              <li data-copy="servico.3.item.2">Rebanho e custo de alimentação</li>
+              <li data-copy="servico.3.item.3">Margem por litro, mês a mês</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 04 · estoque e compras -->
+        <li class="servico" id="servico-estoque">
+          <div class="servico__midia">
+            <figure class="midia" data-revelar>
+              <div class="midia__zoom">
+                <img class="midia__img" src="assets/img/estoque-900.jpg" srcset="assets/img/estoque-900.jpg 900w, assets/img/estoque-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Galpão com sacas de insumos empilhadas em paletes e silos de grãos ao fundo, no fim da tarde (imagem ilustrativa)">
+              </div>
+            </figure>
+            <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: dois alertas para os próximos sete dias. Estoque de ureia em 64 %, semente de milho em 12 %, abaixo do mínimo, e diesel em 47 %; o boleto do adubo, de R$ 12.300, vence em três dias.">
+              <div class="ficha__topo"><span class="ficha__rotulo">Galpão · insumos</span><span class="ficha__tag">Exemplo</span></div>
+              <p class="ficha__valor"><span data-valor="2">2</span> <small>alertas</small></p>
+              <p class="ficha__legenda">para os próximos 7 dias</p>
+              <ul class="ficha__barras">
+                <li style="--v:.64;--i:0"><span>Ureia</span><i></i><b>64%</b></li>
+                <li class="is-baixo" style="--v:.12;--i:1"><span>Semente milho</span><i></i><b>12%</b></li>
+                <li style="--v:.47;--i:2"><span>Diesel</span><i></i><b>47%</b></li>
+              </ul>
+              <p class="ficha__rodape ficha__rodape--alerta"><svg aria-hidden="true" focusable="false"><use href="#i-alerta"/></svg>Boleto do adubo vence em 3 dias</p>
+            </div>
+          </div>
+          <div class="servico__texto" data-revelar="sobe">
+            <!-- COPY PROVISÓRIA --><h3 data-copy="servico.4.titulo">Estoque e planejamento de compras</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="servico.4.texto">Controle de insumos, grãos armazenados e contas a pagar e receber, com alerta de vencimentos e de estoque baixo.</p>
+            <ul class="servico__itens">
+              <!-- COPY PROVISÓRIA -->
+              <li data-copy="servico.4.item.1">Insumos e grãos armazenados</li>
+              <li data-copy="servico.4.item.2">Contas a pagar e a receber</li>
+              <li data-copy="servico.4.item.3">Alertas de vencimento e de estoque baixo</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+      <!-- COPY PROVISÓRIA --><p class="servicos__nota" data-copy="servicos.nota">Fotos e números dos quadros são ilustrativos.</p>
+    </div>
+    <div class="solo solo--divisa" data-solo="4" data-semente="2" data-velocidade=".6" aria-hidden="true"></div>
+  </section>
+
+  <!-- 5 · COMO FUNCIONA: as raízes de circuito do logo em escala grande, desenhadas pela rolagem -->
+  <section class="como tema-escuro" id="como-funciona" aria-labelledby="como-titulo">
+    <div class="envoltorio">
+      <header class="secao-topo secao-topo--centro">
+        <!-- COPY PROVISÓRIA --><p class="eyebrow" data-copy="como.eyebrow">Como funciona</p>
+        <!-- COPY PROVISÓRIA --><h2 class="titulo-secao" id="como-titulo" data-split data-copy="como.titulo">Do caderno ao resultado.</h2>
+      </header>
+      <div class="raizes" data-raizes>
+        <!-- as raízes do logo em escala grande: haste até a junção (600,110) e as duas diagonais no mesmo ângulo
+             do símbolo (40,1°, ver assets/marca/LEIA-ME.md), mais a raiz central; anéis em y 447, no centro de cada coluna.
+             As faixas de progresso de cada traço ficam no site.js (TRECHOS). -->
+        <svg class="raizes__svg" viewBox="0 0 1200 470" aria-hidden="true" focusable="false">
+          <g class="raizes__trilha">
+            <path d="M600 4V110"/><path d="M600 110L214.53 434.76"/><path d="M600 110V428"/><path d="M600 110L985.47 434.76"/>
+          </g>
+          <g class="raizes__traco">
+            <path pathLength="1" d="M600 4V110"/>
+            <path pathLength="1" d="M600 110L214.53 434.76"/>
+            <path pathLength="1" d="M600 110V428"/>
+            <path pathLength="1" d="M600 110L985.47 434.76"/>
+          </g>
+          <g class="raizes__aneis">
+            <circle class="anel" cx="200" cy="447" r="16"/><circle class="anel" cx="600" cy="447" r="16"/><circle class="anel" cx="1000" cy="447" r="16"/>
+            <circle class="anel-luz" data-i="0" cx="200" cy="447" r="16"/><circle class="anel-luz" data-i="1" cx="600" cy="447" r="16"/><circle class="anel-luz" data-i="2" cx="1000" cy="447" r="16"/>
+          </g>
+        </svg>
+        <span class="raizes__trilho" aria-hidden="true"><i></i></span>
+        <ol class="etapas">
+          <li class="etapa">
+            <span class="etapa__anel" aria-hidden="true"></span>
+            <span class="etapa__num">01</span>
+            <!-- COPY PROVISÓRIA --><h3 data-copy="etapa.1.titulo">Anotar</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="etapa.1.texto">Gastos, receitas, leite do dia e entradas no galpão, lançados na rotina, por safra e por talhão.</p>
+          </li>
+          <li class="etapa">
+            <span class="etapa__anel" aria-hidden="true"></span>
+            <span class="etapa__num">02</span>
+            <!-- COPY PROVISÓRIA --><h3 data-copy="etapa.2.titulo">Organizar</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="etapa.2.texto">O sistema separa tudo por cultura e por período e monta a planilha para o contador.</p>
+          </li>
+          <li class="etapa">
+            <span class="etapa__anel" aria-hidden="true"></span>
+            <span class="etapa__num">03</span>
+            <!-- COPY PROVISÓRIA --><h3 data-copy="etapa.3.titulo">Decidir</h3>
+            <!-- COPY PROVISÓRIA --><p data-copy="etapa.3.texto">Você vê o lucro de cada lavoura, a margem do leite e o que precisa comprar antes de faltar.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · SOBRE / MANIFESTO (sem números) -->
+  <section class="sobre" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="sobre__grade envoltorio">
+      <header class="secao-topo">
+        <!-- COPY PROVISÓRIA --><p class="eyebrow" data-copy="sobre.eyebrow">Sobre a TCA</p>
+        <!-- COPY PROVISÓRIA --><h2 class="titulo-secao" id="sobre-titulo" data-split data-copy="sobre.titulo">Agro de verdade, números de verdade.</h2>
+      </header>
+      <div class="sobre__texto" data-revelar="sobe">
+        <!-- COPY PROVISÓRIA --><p data-copy="sobre.p1">A TcaEnterprise existe para aproximar a tecnologia de quem vive o campo. Acreditamos que a boa decisão começa no chão: no custo de cada talhão, no litro de cada ordenha e no que está guardado no galpão.</p>
+        <!-- COPY PROVISÓRIA --><p data-copy="sobre.p2">Por isso cada ferramenta nasce de uma pergunta prática da fazenda, e não de um catálogo. Organizamos o que o produtor já anota, mostramos o que os números dizem e deixamos a decisão com quem conhece a terra.</p>
+        <!-- COPY PROVISÓRIA --><p class="sobre__fecho" data-copy="sobre.p3">Tecnologia, para nós, só vale quando funciona no campo, todos os dias.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · CTA FINAL -->
+  <section class="cta tema-escuro" id="contato" aria-labelledby="cta-titulo">
+    <div class="envoltorio cta__miolo">
+      <!-- COPY PROVISÓRIA --><h2 class="titulo-secao cta__titulo" id="cta-titulo" data-split data-copy="cta.titulo">Vamos colocar os números da sua fazenda em ordem?</h2>
+      <!-- destino do botão [A CONFIRMAR]: troque o href pelo link do WhatsApp (https://wa.me/55…) e apague data-destino-pendente -->
+      <a class="btn btn--trigo magnetico" href="#contato-canais" data-destino-pendente><span class="btn__face"><!-- COPY PROVISÓRIA --><span class="btn__rotulo" data-copy="cta.botao">Fale com a TCA</span></span></a>
+      <!-- aviso honesto da prévia: o site.js escreve o data-texto aqui quando o botão sem destino é usado -->
+      <!-- COPY PROVISÓRIA --><p class="cta__aviso" role="status" data-aviso data-texto="Prévia: o canal de contato ainda será confirmado. Nada foi enviado." data-copy="cta.aviso"></p>
+      <!-- duas curvas pequenas, que andam sozinhas como a faixa de solo (site.js, "solo") -->
+      <div class="solo solo--cta" data-solo="2" data-semente="3" data-trigo data-velocidade=".7" aria-hidden="true"></div>
+      <dl class="cta__canais" id="contato-canais">
+        <div><dt>WhatsApp</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.whatsapp"><span class="a-confirmar">[A CONFIRMAR]</span></dd></div>
+        <div><dt>E-mail</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.email"><span class="a-confirmar">[A CONFIRMAR]</span></dd></div>
+        <div><dt>Endereço</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.endereco"><span class="a-confirmar">[A CONFIRMAR]</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<!-- 8 · RODAPÉ -->
+<footer class="rodape tema-escuro">
+  <div class="rodape__grade envoltorio">
+    <a class="marca marca--negativo" href="#inicio" aria-label="TcaEnterprise, voltar ao início">
+      <svg class="marca__svg" viewBox="0 0 1373 687" aria-hidden="true" focusable="false"><use href="assets/marca/tca-logo.svg?v=0.4.0#tca-logo"/></svg>
+      <span class="marca__texto" aria-hidden="true">TcaEnterprise</span>
+    </a>
+    <nav class="rodape__nav" aria-label="Rodapé">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <p class="rodape__direitos">© 2026 TcaEnterprise</p>
+  </div>
+</footer>
+
+<!-- site.js vem primeiro (quebra o H1 sem esperar o CDN); o resto liga no DOMContentLoaded, depois das bibliotecas -->
+<script src="assets/js/site.js?v=0.4.0" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
+<!-- Lenis 1.1.14 não existe no cdnjs (404): mesma versão, fixa, pelo jsDelivr -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+</body>
+</html>

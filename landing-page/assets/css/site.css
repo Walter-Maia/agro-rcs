@@ -161,6 +161,9 @@ main:focus, section[tabindex="-1"]:focus, li[tabindex="-1"]:focus, dl[tabindex="
 html.menu-aberto .topo::before { opacity: 0; }
 .topo__barra { position: relative; height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; }
 .topo .marca { grid-column: 2; }
+/* no hero, o broto em 3D faz o papel da logo: a do cabeçalho some e volta quando ele chega ao lugar dela (broto.js) */
+.topo .marca { transition: opacity .5s var(--ease-out), transform .6s var(--ease-out); }
+.topo--sem-marca .marca { opacity: 0; transform: translateY(-6px) scale(.92); pointer-events: none; }
 
 .marca { position: relative; flex: none; display: inline-flex; align-items: center; text-decoration: none; border-radius: 4px; }
 .marca__svg { width: 112px; height: 56px; overflow: visible; } /* viewBox do sprite: 1373 × 687 */
@@ -199,24 +202,37 @@ html.menu-aberto .topo::before { opacity: 0; }
 
 /* ---------- menu em tela cheia (adaptado do "kinetic navigation") ----------
    Estado de repouso = aberto e no lugar: sem GSAP ou com movimento reduzido, ele só aparece e some.
-   Com GSAP, o site.js parte das posições do componente (camadas em xPercent 101, links em yPercent 140 + 10°). */
+   Com GSAP, o site.js parte das posições do componente (camadas em xPercent 101, links em yPercent 140 + 10°).
+   As cenas moram num palco à esquerda do painel (telas largas): nunca passam por cima dos links. */
 .menu { position: fixed; inset: 0; z-index: 45; }
 .menu[hidden] { display: none; }
-.menu__veu { position: absolute; inset: 0; background: rgba(6, 26, 19, .55); cursor: pointer; }
+.menu__veu { position: absolute; inset: 0; background: rgba(6, 26, 19, .93); -webkit-backdrop-filter: blur(12px) saturate(.7); backdrop-filter: blur(12px) saturate(.7); cursor: pointer; }
 .menu__painel { position: absolute; top: 0; right: 0; bottom: 0; width: min(38rem, 100%); overflow: hidden; color: var(--algodao); }
-.menu__camadas, .menu__camada, .menu__formas { position: absolute; inset: 0; }
+.menu__camadas, .menu__camada { position: absolute; inset: 0; }
 .menu__camada:nth-child(1) { background: var(--trigo); }
 .menu__camada:nth-child(2) { background: var(--floresta); }
 .menu__camada:nth-child(3) { background: var(--floresta-funda); }
 
-/* grafismos do hover: um por link, em linha, como o resto do site */
-.menu__forma { position: absolute; right: -8%; bottom: -6%; width: min(92%, 34rem); height: auto; overflow: visible; visibility: hidden; }
-.menu__forma.is-ativa { visibility: visible; }
-.forma-el { fill: none; stroke: rgba(244, 241, 232, .16); stroke-width: 2; stroke-linecap: round; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; opacity: 0; }
-.forma-el--trigo { stroke: var(--trigo); stroke-opacity: .55; }
-/* sem GSAP: o mesmo gesto em CSS (escala .5 → 1, −10° → 0, em cascata) */
-html:is(.sem-gsap, .rm) .forma-el { transform: scale(.5) rotate(-10deg); transition: opacity .3s ease, transform .6s var(--ease-spring) calc(var(--k, 0) * 80ms); }
-html:is(.sem-gsap, .rm) .menu__forma.is-ativa .forma-el { opacity: 1; transform: none; }
+/* palco das cenas: a área livre à esquerda do painel; não recebe clique (o véu fecha o menu) */
+.menu__palco { position: absolute; top: 0; bottom: 0; left: 0; right: min(38rem, 100%); display: none; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, 3vh, 32px); padding: var(--topo-h) var(--gutter) 32px; pointer-events: none; }
+@media (min-width: 900px) { .menu__palco { display: flex; } }
+.menu__cenas { position: relative; width: min(52vh, 34vw, 460px); aspect-ratio: 1; }
+.cena { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility 0s .35s; }
+.cena.is-ativa { opacity: 1; visibility: visible; transition: opacity .35s ease .05s; }
+.cena--faixa { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
+.cena .t, .cena .cometa, .cena .onda { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.cena .t { stroke: rgba(244, 241, 232, .34); stroke-width: 1.6; }
+.cena .fraco { stroke: rgba(244, 241, 232, .2); }
+.cena .trigo { stroke: var(--trigo); stroke-opacity: .85; }
+.cena .folha { fill: rgba(244, 241, 232, .05); }
+.cena .cometa { stroke: var(--trigo); stroke-width: 2.6; stroke-dasharray: 0 1; }
+.cena .onda { stroke: var(--trigo); stroke-width: 1.2; opacity: 0; }
+.cena .ponto { fill: var(--trigo); }
+.cena .ponto--claro { fill: rgba(244, 241, 232, .4); }
+.cena .marcador { fill: var(--floresta-funda); stroke: var(--trigo); stroke-width: 2.2; }
+.menu__legenda { display: flex; align-items: baseline; gap: 14px; min-height: 1.5em; font: 600 .95rem/1.4 var(--fonte-titulo); color: var(--claro-suave); text-align: center; transition: opacity .3s ease; }
+.menu__legenda.is-trocando { opacity: 0; }
+.menu__legenda-num { font: var(--peso-rotulo) .72rem/1 var(--fonte-titulo); letter-spacing: .2em; color: var(--trigo); }
 
 .menu__miolo {
   position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
@@ -231,13 +247,13 @@ html:is(.sem-gsap, .rm) .menu__forma.is-ativa .forma-el { opacity: 1; transform:
   font: 800 clamp(2rem, 1.3rem + 2.4vw, 3.1rem)/1.12 var(--fonte-titulo); letter-spacing: -.03em;
 }
 .menu__num { flex: none; width: 2.2em; font: 600 .78rem/1 var(--fonte-titulo); letter-spacing: .2em; color: var(--trigo); transform: translateY(-.9em); }
-.menu__texto { position: relative; z-index: 1; transition: transform .5s var(--ease-out); }
-/* fundo do hover: uma faixa que sobe por trás do link */
-.menu__link-fundo { position: absolute; inset: 0 calc(clamp(28px, 5vw, 64px) * -1); background: rgba(244, 241, 232, .06); transform: scaleY(0); transform-origin: bottom; transition: transform .45s var(--ease-main); }
-@media (hover: hover) and (pointer: fine) {
-  .menu__link:hover .menu__link-fundo { transform: none; }
-  .menu__link:hover .menu__texto { transform: translateX(10px); }
-}
+.menu__texto { position: relative; z-index: 1; transition: transform .45s var(--ease-out); }
+/* a seção que está na tela ganha um anel Trigo ao lado do nome */
+.menu__lista li.is-atual .menu__texto::after { content: ""; display: inline-block; width: .2em; height: .2em; margin-left: .3em; border: .06em solid var(--trigo); border-radius: 50%; vertical-align: .35em; }
+/* fundo do item em cena: uma faixa que sobe por trás do link (hover ou foco) */
+.menu__link-fundo { position: absolute; inset: 0 calc(clamp(28px, 5vw, 64px) * -1); background: rgba(244, 241, 232, .06); transform: scaleY(0); transform-origin: bottom; transition: transform .4s var(--ease-main); }
+.menu__lista li.is-cena .menu__link-fundo { transform: none; }
+.menu__lista li.is-cena .menu__texto { transform: translateX(10px); }
 .menu :focus-visible { outline-color: var(--trigo); }
 .menu__rodape { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; padding-top: 24px; border-top: 1px solid var(--linha-clara); }
 .menu__nota { font: var(--peso-rotulo) .72rem/1.4 var(--fonte-titulo); letter-spacing: .24em; text-transform: uppercase; color: var(--claro-suave); }
@@ -298,8 +314,8 @@ html.js .hero__titulo:not(.is-split) { opacity: 0; animation: mostra 0s 2.5s for
 /* a linha da frente leva o Trigo, como o horizonte da abertura */
 .solo__linha.is-trigo path { stroke: var(--trigo); stroke-opacity: .75; }
 .solo--divisa { position: relative; height: clamp(130px, 13vw, 190px); margin-top: clamp(24px, 4vw, 56px); }
-.solo--escuro { --solo-cor: var(--algodao); top: 50%; height: 70%; transform: translateY(-50%); }
-.solo--escuro .solo__linha path { stroke-opacity: calc(var(--o, .3) * .5); }
+/* as duas curvas pequenas do CTA: Algodão sobre Floresta, numa faixa estreita */
+.solo--cta { --solo-cor: var(--algodao); position: relative; left: auto; right: auto; width: min(100%, 480px); height: 84px; margin-top: clamp(16px, 2.4vw, 28px); }
 
 /* ---------- fichas: quadros de exemplo (valores ilustrativos) ---------- */
 .ficha {
@@ -368,54 +384,64 @@ html.js .hero__titulo:not(.is-split) { opacity: 0; animation: mostra 0s 2.5s for
 .ficha.is-armado .ficha__linhas li { opacity: 0; transform: translateY(8px); transition: opacity .5s ease calc(.8s + var(--i, 0) * 110ms), transform .6s var(--ease-out) calc(.8s + var(--i, 0) * 110ms); }
 .ficha.is-armado.is-dentro .ficha__linhas li { opacity: 1; transform: none; }
 
-/* ---------- 2 · hero ---------- */
-.hero {
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; min-height: min(100svh, 1000px);
-  padding: calc(var(--topo-h) + clamp(28px, 6vh, 72px)) 0 clamp(40px, 7vh, 88px);
-}
-.hero__grade { position: relative; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 96px); align-items: center; }
-.hero__titulo { margin-bottom: 1.5rem; font-size: clamp(2.6rem, 1.2rem + 4.2vw, 5.4rem); line-height: 1; letter-spacing: -.035em; }
-.hero__sub { max-width: 31em; margin-bottom: 2.25rem; font-size: clamp(1.125rem, 1rem + .45vw, 1.375rem); line-height: 1.45; }
-.hero__acoes { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+/* ---------- 2 · hero: o broto em 3D num palco preso à tela (assets/js/broto.js) ----------
+   A seção tem 2,3 telas de altura; o palco fica preso enquanto a rolagem passa pelos três quadros.
+   O texto de cada quadro ([data-sc]) entra e sai pelo JS; aqui fica só o lugar de cada coisa. */
+.broto { position: relative; height: calc(100svh * 2.3); background: var(--floresta-funda); }
+.broto__palco { position: sticky; top: 0; height: 100svh; overflow: hidden; background: var(--floresta-funda); color: var(--algodao); }
+.broto__palco.is-arrastando { cursor: grabbing; }
+.broto__tela { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.broto__luz { position: absolute; left: 0; top: 0; border-radius: 50%; pointer-events: none; opacity: 0; will-change: transform; background: radial-gradient(closest-side, rgba(201, 162, 39, .16), rgba(201, 162, 39, .05) 48%, transparent); }
+/* sem WebGL (ou sem JS): a logo negativa no lugar do broto */
+.broto__reserva { display: none; position: absolute; right: 8%; top: 50%; width: min(38vw, 460px); height: auto; transform: translateY(-50%); }
+html:not(.js) .broto__reserva, .broto.sem-3d .broto__reserva { display: block; }
+html:not(.js) .broto__tela, .broto.sem-3d .broto__tela { display: none; }
 
-/* atalhos para os serviços: filete em cima, que vira Trigo no hover */
-.hero__indice { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 34rem; margin-top: clamp(36px, 6vh, 64px); }
-.hero__indice a { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 14px 12px 6px 0; border-top: 1px solid var(--linha); text-decoration: none; font: 700 .95rem/1.2 var(--fonte-titulo); color: var(--floresta); }
-.hero__indice a::before { content: ""; position: absolute; left: 0; right: 12px; top: -1px; height: 2px; background: var(--trigo); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out); }
-.hero__indice-num { font: var(--peso-rotulo) .72rem/1 var(--fonte-titulo); letter-spacing: .18em; color: var(--texto-suave); }
-@media (hover: hover) and (pointer: fine) { .hero__indice a:hover::before { transform: scaleX(1); } }
+.broto__capa { position: absolute; inset: 0; display: flex; align-items: center; padding-top: var(--topo-h); pointer-events: none; }
+.broto__texto { max-width: min(40rem, 50%); pointer-events: auto; }
+.broto .eyebrow { color: var(--trigo); }
+.broto .hero__titulo { margin-bottom: 1.4rem; font-size: clamp(2.4rem, 1rem + 3.1vw, 4.4rem); line-height: 1.02; letter-spacing: -.035em; color: var(--algodao); }
+.broto__sub { max-width: 30em; margin-bottom: 2.1rem; font-size: clamp(1.0625rem, 1rem + .35vw, 1.3rem); line-height: 1.45; color: var(--claro-suave); }
+.broto__acoes { display: flex; flex-wrap: wrap; gap: 12px 14px; }
+.btn--claro .btn__face { box-shadow: inset 0 0 0 2px rgba(244, 241, 232, .55); color: var(--algodao); }
+.broto :focus-visible { outline-color: var(--trigo); }
 
-.hero__visual { position: relative; }
-.midia--hero {
-  aspect-ratio: 4 / 5; max-height: min(74svh, 760px); margin-left: auto; border-radius: 6px;
-  animation: revela-clip 1.2s var(--ease-in-out) calc(var(--rise-start) + .15s) backwards;
-}
-.midia--hero .midia__zoom { animation: revela-zoom 1.5s var(--ease-out) calc(var(--rise-start) + .15s) backwards; }
-/* paralaxe: o site.js escreve --p (0 → 1) enquanto a hero sai da tela */
-.hero__foto { transform: translate3d(0, calc(var(--p, 0) * 9%), 0) scale(1.1); will-change: transform; }
-@keyframes revela-clip { from { clip-path: inset(100% 0 0 0); } }
-@keyframes revela-zoom { from { transform: scale(1.35); } }
+/* atalhos para os serviços: filete claro em cima, que vira Trigo no hover */
+.broto__indice { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 32rem; margin-top: clamp(32px, 6vh, 56px); }
+.broto__indice a { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 14px 12px 6px 0; border-top: 1px solid var(--linha-clara); text-decoration: none; font: 700 .95rem/1.2 var(--fonte-titulo); color: var(--algodao); }
+.broto__indice a span:first-child { font: var(--peso-rotulo) .7rem/1 var(--fonte-titulo); letter-spacing: .18em; color: var(--claro-suave); }
+.broto__indice a::before { content: ""; position: absolute; left: 0; right: 12px; top: -1px; height: 2px; background: var(--trigo); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .broto__indice a:hover::before { transform: scaleX(1); } }
 
-.ficha--hero { position: absolute; left: clamp(-64px, -4vw, -24px); bottom: clamp(32px, 8%, 72px); width: min(300px, 78%); transform: translate3d(0, calc(var(--p, 0) * -48px), 0); }
-.ficha--hero .ficha__barras { margin-top: 2px; }
-.ficha--hero .ficha__legenda { margin-top: 10px; font-size: .78rem; }
-.ficha--hero .ficha__barras i::before { animation: barra 1s var(--ease-out) calc(var(--rise-start) + 1s + var(--i, 0) * 120ms) backwards; }
-.ficha--hero .ficha__barras i::after { animation: aparece .3s ease calc(var(--rise-start) + 1.6s + var(--i, 0) * 120ms) backwards; }
-@keyframes barra { from { transform: scaleX(0); } }
+/* convite para rolar: um traço que desce e some, sem parar */
+.broto__rolar { position: absolute; right: var(--gutter); bottom: clamp(18px, 4vh, 36px); display: flex; flex-direction: column; align-items: center; gap: 10px; width: 4em; font: var(--peso-rotulo) .66rem/1 var(--fonte-titulo); letter-spacing: .3em; text-transform: uppercase; color: var(--claro-suave); }
+.broto__rolar i { position: relative; display: block; width: 1px; height: 44px; overflow: hidden; background: rgba(244, 241, 232, .14); }
+.broto__rolar i::after { content: ""; position: absolute; inset: 0; background: var(--trigo); transform: translateY(-100%); animation: rolar 2.2s var(--ease-in-out) infinite; }
+@keyframes rolar { 0% { transform: translateY(-100%); } 55% { transform: none; } 100% { transform: translateY(100%); } }
 
-@media (max-width: 899.98px) {
-  .hero { min-height: 0; padding-bottom: 32px; }
-  .hero__grade { grid-template-columns: minmax(0, 1fr); }
-  .midia--hero { aspect-ratio: 4 / 3; max-height: none; }
-  .ficha--hero { position: relative; left: auto; bottom: auto; width: min(320px, calc(100% - 32px)); margin: -64px 16px 0 auto; }
+/* quadro 1: a frase embaixo, centrada, sob o broto visto de cima */
+.broto__cima { position: absolute; left: var(--gutter); right: var(--gutter); bottom: clamp(40px, 9vh, 96px); text-align: center; pointer-events: none; visibility: hidden; }
+.broto__cima .eyebrow { justify-content: center; margin-bottom: .9rem; }
+.broto__frase { font: 800 clamp(1.7rem, 1rem + 2.4vw, 3.3rem)/1.08 var(--fonte-titulo); letter-spacing: -.025em; color: var(--algodao); text-wrap: balance; }
+
+@media (max-width: 899.98px), (orientation: portrait) {
+  /* em pé: o broto no alto (broto.js, QUADROS_ALTO) e o texto embaixo */
+  .broto__capa { align-items: flex-end; padding-bottom: clamp(72px, 12vh, 112px); }
+  .broto__texto { max-width: 34rem; }
+  .broto .hero__titulo { font-size: clamp(2.1rem, 1.2rem + 4.4vw, 3.6rem); }
+  .broto__reserva { right: auto; left: 50%; top: 26%; width: min(70vw, 360px); transform: translate(-50%, -50%); }
 }
 @media (max-width: 599.98px) {
   .eyebrow { font-size: .72rem; letter-spacing: .24em; }
-  .hero__acoes .btn { flex: 1 1 100%; }
-  .hero__acoes .btn__face { width: 100%; }
-  .hero__indice { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .broto__sub { margin-bottom: 1.5rem; font-size: 1rem; }
+  .broto__acoes .btn { flex: 1 1 0; }
+  .broto__acoes .btn__face { width: 100%; padding: 0 .8em; font-size: .95rem; white-space: nowrap; }
+  .broto__rolar { display: none; }
+  .broto__indice { display: none; }
 }
+/* movimento reduzido: o hero é uma tela só, sem rolagem presa (o broto aparece pronto e parado) */
+html.rm .broto { height: 100svh; }
+html.rm .broto__cima, html.rm .broto__rolar { display: none; }
 
 /* ---------- 3 · faixa de solo (no lugar do antigo marquee 06): poucas curvas ---------- */
 .solo-faixa { position: relative; height: clamp(150px, 15vw, 230px); }
@@ -537,7 +563,6 @@ html.js .hero__titulo:not(.is-split) { opacity: 0; animation: mostra 0s 2.5s for
 }
 html.rm *, html.rm *::before, html.rm *::after { animation-duration: .01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
 html.rm [data-split] .w > span, html.rm .midia, html.rm .midia__zoom, html.rm [data-revelar="sobe"], html.rm .ficha { opacity: 1 !important; transform: none !important; clip-path: none !important; }
-html.rm .hero__foto { transform: scale(1.04) !important; }
 html.rm .raizes__traco path, html.rm .ficha :is(.g-custo, .g-receita, .g-lucro) { stroke-dashoffset: 0 !important; }
 html.rm .anel-luz, html.rm .etapa__anel::after { opacity: 1 !important; transform: none !important; }
 html.rm .raizes__trilho i { transform: none !important; }

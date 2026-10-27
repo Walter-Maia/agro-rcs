@@ -1,0 +1,226 @@
+/* ------------------------------------------------------------
+   ABERTURA — "o broto que acende", versão noturna (~3,4 s)
+   À noite, sobre o mapa do campo visto do drone (curvas de nível), uma semente Trigo acende no
+   horizonte. Embaixo da terra as raízes de circuito ligam: a luz corre por elas e os anéis acendem
+   (a tecnologia está na raiz). A energia sobe pela haste, o hub estoura e as folhas-hélice se armam.
+   C e A se escrevem, o horizonte se recolhe e ENTERPRISE assenta: a logo fica sozinha, parada. Então
+   amanhece: um círculo de luz com aro Trigo abre a partir da semente e entrega a página, já entrando por baixo.
+   (v0.3.1: sem a decolagem do T e sem o pulso no chão; preenchimentos por varredura, não por esmaecimento.)
+   Três atos: mistério (mapa + semente + raízes) → construção (broto-drone) → assinatura (CA +
+   ENTERPRISE) → amanhecer. A logo fica na versão negativa oficial (Algodão + Trigo sobre Floresta).
+   O palco é montado por assets/js/intro.js com os paths OFICIAIS do sprite aprovado
+   (qa/ferramentas/montar-marca-inline.js); o mapa de curvas de nível é calculado e desenhado uma vez pelo
+   intro.js em dois <canvas>; todo o roteiro fica aqui. Sem GSAP: SVG + canvas + CSS + JS vanilla.
+
+   Dois tempos, para a página montar atrás sem travar o traço:
+   .is-playing — t = 0 (duas pinturas depois do <body>). Só transform e opacity em camadas HTML.
+   .is-growing — 0,40 s depois, ou quando o site.js montou a página e a Montserrat chegou
+                 (tolerância de 1,2 s por etapa). Os atrasos abaixo dele contam a partir de 0,40 s.
+
+   ROTEIRO FINAL (tempos absolutos, com o .is-growing no horário)
+   tempo (s)    peça                          técnica                                               easing
+   0,05–0,55    semente (ponto Trigo)         estoura no horizonte, com brilho; some 1,00–1,25       mola
+   0,10–1,20    curvas de nível altas (topos) surgem crescendo da semente (scale .78 → 1)           --ease-out
+   0,24–1,44    curvas baixas (encostas)      idem, 140 ms depois; depois as duas derivam até 1,04   --ease-out / linear
+   0,18–1,18    luz Trigo na semente          opacity e scale .45 → 1 (≤ 0,26 de opacidade)          --ease-out
+   0,30–1,20    horizonte                     risca a partir da semente para os dois lados;          (.3,.1,.25,1)
+                                              some 1,90–2,40, quando a assinatura se forma
+   0,40–1,00    raízes 1, 2, 3                traço da junção para baixo, 60 ms entre elas, com um   --ease-draw
+                                              cometa Trigo na ponta que se apaga ao chegar
+   0,76–1,78    brilho dos anéis              acende forte e assenta em 0,42                         ease-out
+   0,80–1,24    anéis 1, 2, 3                 scale 0 → 1, 60 ms entre eles                         mola
+   0,70–1,25    haste                         traço do chão até o hub, com o cometa subindo         --ease-draw
+   1,20–1,46    hub (corpo do drone)          estoura                                                mola (.34,1.56,.64,1)
+   1,28–1,88    folhas-hélice                 contorno do hub para fora + abertura ±24° → 0 no hub;  --ease-draw /
+                                              preenchimento varre do hub para fora 1,44–1,80;        mola /
+                                              contorno some 1,80–1,95                                --ease-in-out
+   1,40–2,47    C e A                         contorno letra a letra (80 ms, 0,44 s); o Algodão      --ease-draw /
+                                              varre da esquerda para a direita atrás dele            --ease-in-out
+                                              (1,70–2,22); o contorno some 2,14–2,47
+   1,92–2,49    ENTERPRISE                    letras Trigo, entreletra assentando por translateX     --ease-out
+                                              (8 ms por letra, 0,5 s)
+   2,49–2,80    pausa                         a logo negativa oficial, inteira e parada
+   2,80–3,40    amanhecer (saída)             o fundo abre num círculo a partir da semente, com aro  (.62,0,.3,1)
+                                              Trigo na borda; a logo sobe 14 px e some (0,42 s)
+                                              Esc/Enter: o mesmo amanhecer em 0,36 s; Tab: na hora
+   do amanhecer a página (site.css)           pausada sob html.intro-active, entra no finish() com --rise-start:
+                                              cabeçalho em partes (T +0,18, CA +0,32, anéis +0,45, ENTERPRISE
+                                              +0,55; menu e CTA descem 16 px) e a hero (H1 linha a linha, foto),
+                                              revelada pelo círculo que cresce. Se a pessoa pular, a página entra
+                                              no instante do pulo, sem tela vazia.
+
+   Pular: Esc/Enter (0,36 s), Tab (na hora), roda, toque ou clique (com preventDefault: não rola a
+   página escondida). Aba oculta, movimento reduzido ligado no meio: libera na hora. Sem botão visível.
+   Proteções: failsafe só em CSS (6,5 s); sem este CSS (overlay não fixo) a abertura não roda;
+   theme-color acompanha o fundo e volta; timer de segurança de 4,4 s no JS, contado do início da animação.
+   Sem @property (navegador antigo), o círculo não cresce aos poucos: o fundo some de uma vez no meio da saída.
+   Roda 1 vez por sessão; nunca com #âncora, página rolada, aba oculta, movimento reduzido ou ?fx=0.
+   ?intro=1 força (testes e demonstração).
+------------------------------------------------------------ */
+
+/* raio do amanhecer: não herdado (herdado, recalculava o estilo do palco inteiro a cada quadro); o fundo e o aro
+   animam cada um o seu, com o mesmo tempo */
+@property --it-r { syntax: "<length>"; inherits: false; initial-value: 0px; }
+
+html.intro-active::before { content: ""; position: fixed; inset: 0; z-index: 590; background: var(--floresta-funda); animation: itFailsafe .4s 6.5s both; }
+.intro {
+  /* largura da logo; o resto do palco se mede por ela (cabe em 360 px de largura e em 500 px de altura) */
+  --iw: min(calc(100vw - 48px), clamp(300px, 26vw + 330px, 760px), calc((100vh - 120px) * 1.6));
+  /* a semente: junção das raízes (x 257,5 / y 342 de 1373 × 687), com o palco centrado e 1,5vh acima do meio */
+  --it-cx: calc(50% - .3125 * var(--iw));
+  --it-cy: calc(50% - 1.5vh);
+  --it-ix: var(--it-cx);   /* centro do amanhecer: o intro.js troca pelo valor medido no palco */
+  --it-iy: var(--it-cy);
+  /* contorno das letras e das folhas, em unidades do viewBox (1373 de largura): nunca abaixo de ~1 px de tela */
+  --it-traco: 4px;
+  --lg-ink: var(--algodao);
+  --lg-accent: var(--trigo);
+  position: fixed; inset: 0; max-width: 100vw; z-index: 600; display: none; overflow: hidden;
+  align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent;
+  background:
+    radial-gradient(ellipse 78% 74% at 50% 46%, transparent 48%, rgba(3, 20, 14, .55)),
+    radial-gradient(ellipse calc(var(--iw) * 1.15) calc(var(--iw) * .78) at 50% calc(50% - 1.5vh), var(--floresta), var(--floresta-funda));
+}
+html.intro-active .intro, .intro.is-leaving { display: flex; }
+html.intro-active .intro { animation: itFailsafe .4s 6.5s both; }
+@keyframes itFailsafe { to { opacity: 0; visibility: hidden; } } /* sem o script, a página se libera sozinha */
+
+/* a página espera a abertura: hero e cabeçalho ficam no primeiro quadro e entram quando ela sai */
+html.intro-active :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .ficha--hero .ficha__barras i, .solo--faixa, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: paused; }
+/* se o intro.js não chegou a montar o palco, a página entra atrás do fundo em vez de esperar pausada */
+html.intro-active:not(:has(#intro)) :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .ficha--hero .ficha__barras i, .solo--faixa, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: running; }
+
+/* ---------- cenário: mapa, horizonte, luz, semente (camadas HTML) ---------- */
+.intro > i, .it-curvas { position: absolute; pointer-events: none; }
+/* o mapa: dois canvas (encostas e topos) desenhados uma vez pelo intro.js, já com o vão da logo apagado;
+   aqui só entram e derivam (transform e opacity: o bitmap não é repintado) */
+.it-curvas { inset: 0; width: 100%; height: 100%; opacity: 0; transform-origin: var(--it-cx) var(--it-cy); }
+
+.it-horizonte {
+  left: 0; right: 0; top: var(--it-cy); height: 1px; margin-top: -.5px;
+  /* passa por trás da logo: sai da junção para a esquerda e volta depois do A */
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(50% - var(--iw) * .32), transparent calc(50% - var(--iw) * .3), transparent calc(50% + var(--iw) * .52), #000 calc(50% + var(--iw) * .6));
+  mask-image: linear-gradient(90deg, #000 calc(50% - var(--iw) * .32), transparent calc(50% - var(--iw) * .3), transparent calc(50% + var(--iw) * .52), #000 calc(50% + var(--iw) * .6));
+}
+/* o traço é o ::before (risca no 1º tempo); a camada de fora some no 2º, quando a assinatura se forma */
+.it-horizonte::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(244, 241, 232, .36) 16%, rgba(244, 241, 232, .36) 84%, transparent);
+  transform: scaleX(0); transform-origin: var(--it-cx) 50%;
+}
+.it-luz {
+  left: var(--it-cx); top: var(--it-cy); width: calc(var(--iw) * 1.25); aspect-ratio: 1; margin: calc(var(--iw) * -.625) 0 0 calc(var(--iw) * -.625);
+  border-radius: 50%; opacity: 0;
+  background: radial-gradient(closest-side, rgba(201, 162, 39, .26), rgba(201, 162, 39, .09) 42%, rgba(201, 162, 39, 0));
+}
+.it-semente {
+  left: var(--it-cx); top: var(--it-cy); width: calc(var(--iw) * .03); aspect-ratio: 1; margin: calc(var(--iw) * -.015) 0 0 calc(var(--iw) * -.015);
+  border-radius: 50%; background: var(--trigo); transform: scale(0);
+  box-shadow: 0 0 calc(var(--iw) * .035) calc(var(--iw) * .008) rgba(201, 162, 39, .7), 0 0 0 calc(var(--iw) * .02) rgba(201, 162, 39, .14);
+}
+
+/* ---------- palco ---------- */
+.it-palco { position: relative; flex: none; width: var(--iw); margin-top: -3vh; }
+.it-marca { position: relative; width: 100%; aspect-ratio: 1373 / 687; }
+.it-logo { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+/* peças do T (estado inicial; nada aparece antes do .is-growing) */
+.it-raiz, .it-haste { stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+/* cometa: 20 % do traço, em Trigo, correndo na ponta do desenho (mesma duração e easing do traço) */
+.it-cometa { fill: none; stroke: var(--trigo); stroke-width: 26; stroke-linecap: round; stroke-dasharray: .2 2; stroke-dashoffset: .2; opacity: 0; }
+.it-cometa--haste { stroke-width: 34; }
+.it-brilho { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.it-anel { transform: scale(0); transform-box: fill-box; transform-origin: center; }
+.it-hub { transform: scale(0); transform-box: view-box; transform-origin: 257.5px 108px; }
+.it-folha { transform-box: view-box; transform-origin: 257.5px 100px; }
+.it-folha--esq { --r: 24deg; }   /* as duas começam fechadas para cima e se armam até a horizontal */
+.it-folha--dir { --r: -24deg; }
+.it-folha-traco, .it-linha { fill: none; stroke: var(--lg-ink); stroke-width: var(--it-traco); stroke-linejoin: round; stroke-dasharray: 1 2; stroke-dashoffset: 1; }
+.it-folha-fill, .it-fill, .it-l { opacity: 0; }
+
+/* aro do amanhecer: só existe na saída */
+.it-aro { inset: 0; display: none; background: var(--trigo); }
+
+/* traço nunca abaixo de ~1 px de tela */
+@media (max-width: 900px) {
+  .intro { --it-traco: 4.6px; }
+}
+@media (max-width: 600px), (max-height: 500px) {
+  .intro { --it-traco: 5.6px; }
+}
+
+/* ---------- 1º tempo (.is-playing): mapa, horizonte, luz e semente; só compositor ---------- */
+.intro.is-playing .it-semente { animation: ipSemente .5s var(--ease-spring) .05s both, ipSome .25s ease 1s forwards; }
+.intro.is-playing .it-curvas--perto { animation: ipMapa 1.1s var(--ease-out) .1s both, ipDeriva 1.6s linear 1.2s forwards; }
+.intro.is-playing .it-curvas--longe { animation: ipMapa 1.2s var(--ease-out) .24s both, ipDeriva 1.36s linear 1.44s forwards; }
+.intro.is-playing .it-luz { animation: ipLuz 1s var(--ease-out) .18s both; }
+.intro.is-playing .it-horizonte::before { animation: ipHorizonte .9s cubic-bezier(.3, .1, .25, 1) .3s both; }
+@keyframes ipSemente { from { transform: scale(0); } to { transform: none; } }
+@keyframes ipSome { to { opacity: 0; } }
+@keyframes ipMapa { from { opacity: 0; transform: scale(.78); } to { opacity: 1; transform: none; } }
+@keyframes ipDeriva { from { transform: none; } to { transform: scale(1.04); } }
+@keyframes ipLuz { from { opacity: 0; transform: scale(.45); } to { opacity: 1; transform: none; } }
+@keyframes ipHorizonte { from { transform: scaleX(0); } to { transform: none; } }
+
+/* ---------- 2º tempo (.is-growing): atrasos contados a partir de 0,40 s ---------- */
+.intro.is-growing .it-raiz { animation: igDesenha .48s var(--ease-draw) calc(var(--k) * .06s) both; }
+.intro.is-growing .it-cometa { animation: igCometa .48s var(--ease-draw) calc(var(--k) * .06s) both, igSome .18s ease calc(.44s + var(--k) * .06s) forwards; }
+.intro.is-growing .it-brilho { animation: igBrilho 1s ease-out calc(.36s + var(--k) * .06s) both; }
+.intro.is-growing .it-anel { animation: igEstoura .32s var(--ease-spring) calc(.4s + var(--k) * .06s) both; }
+.intro.is-growing .it-haste { animation: igDesenha .55s var(--ease-draw) .3s both; }
+.intro.is-growing .it-cometa--haste { animation: igCometa .55s var(--ease-draw) .3s both, igSome .18s ease .8s forwards; }
+.intro.is-growing .it-hub { animation: igEstoura .26s var(--ease-spring) .8s both; }
+.intro.is-growing .it-folha { animation: igAbre .6s var(--ease-spring) .88s both; }
+.intro.is-growing .it-folha-traco { animation: igDesenha .4s var(--ease-draw) .88s both, igSome .15s ease 1.4s forwards; }
+.intro.is-growing .it-folha-fill { animation: igMostra .25s ease 1.1s both; }
+.intro.is-growing .it-linha { animation: igDesenha .44s var(--ease-draw) calc(1s + var(--k) * .08s) both, igSome .25s ease calc(1.74s + var(--k) * .08s) forwards; }
+.intro.is-growing .it-fill { animation: igMostra .3s ease calc(1.38s + var(--k) * .08s) both; }
+.intro.is-growing .it-l { animation: igAssenta .5s var(--ease-out) calc(1.52s + var(--k) * .008s) both; }
+.intro.is-growing .it-horizonte { animation: igSome .5s ease 1.5s forwards; }   /* a logo assina sozinha: sem risco atravessando o CA */
+/* preenchimento por varredura atrás do contorno (do hub para fora nas folhas; da esquerda para a direita no C e no A):
+   só Algodão chapado ou contorno, sem o cinza de meio caminho de um esmaecimento. As margens de −2 % no fim deixam
+   o recorte fora da letra, sem comer o serrilhado da borda. Sem clip-path, fica o esmaecimento acima. */
+@supports (clip-path: inset(0)) or (-webkit-clip-path: inset(0)) {
+  .intro.is-growing .it-folha--esq .it-folha-fill { animation: igVarreEsq .36s var(--ease-in-out) 1.04s both; }
+  .intro.is-growing .it-folha--dir .it-folha-fill { animation: igVarre .36s var(--ease-in-out) 1.04s both; }
+  .intro.is-growing .it-fill { animation: igVarre .44s var(--ease-in-out) calc(1.3s + var(--k) * .08s) both; }
+}
+@keyframes igDesenha { to { stroke-dashoffset: 0; } }
+@keyframes igCometa { from { stroke-dashoffset: .2; opacity: 1; } to { stroke-dashoffset: -.8; opacity: 1; } }
+@keyframes igBrilho { 0% { opacity: 0; transform: scale(.4); } 30% { opacity: 1; transform: scale(1.08); } 100% { opacity: .42; transform: none; } }
+@keyframes igEstoura { from { transform: scale(0); } to { transform: none; } }
+@keyframes igAbre { from { transform: rotate(var(--r)); } to { transform: none; } }
+@keyframes igMostra { to { opacity: 1; } }
+@keyframes igSome { to { opacity: 0; } }
+@keyframes igVarre {
+  from { opacity: 1; -webkit-clip-path: inset(-2% 102% -2% -2%); clip-path: inset(-2% 102% -2% -2%); }
+  to { opacity: 1; -webkit-clip-path: inset(-2%); clip-path: inset(-2%); }
+}
+@keyframes igVarreEsq {
+  from { opacity: 1; -webkit-clip-path: inset(-2% -2% -2% 102%); clip-path: inset(-2% -2% -2% 102%); }
+  to { opacity: 1; -webkit-clip-path: inset(-2%); clip-path: inset(-2%); }
+}
+@keyframes igAssenta { from { opacity: 0; transform: translateX(calc(var(--o) * 1px)); } to { opacity: 1; transform: none; } }
+
+/* ---------- saída: amanhece a partir da semente; a página já está entrando por baixo ---------- */
+.intro.is-leaving {
+  -webkit-mask-image: radial-gradient(circle at var(--it-ix) var(--it-iy), transparent calc(var(--it-r) - .5px), #000 calc(var(--it-r) + .5px));
+  mask-image: radial-gradient(circle at var(--it-ix) var(--it-iy), transparent calc(var(--it-r) - .5px), #000 calc(var(--it-r) + .5px));
+  animation: itAmanhece .6s cubic-bezier(.62, 0, .3, 1) both;
+}
+.intro.is-leaving .it-aro {
+  display: block; animation: itAmanhece .6s cubic-bezier(.62, 0, .3, 1) both;
+  -webkit-mask-image: radial-gradient(circle at var(--it-ix) var(--it-iy), transparent calc(var(--it-r) - 1px), #000 var(--it-r), #000 calc(var(--it-r) + 2.5px), rgba(0, 0, 0, .32) calc(var(--it-r) + 3.5px), transparent calc(var(--it-r) + 48px));
+  mask-image: radial-gradient(circle at var(--it-ix) var(--it-iy), transparent calc(var(--it-r) - 1px), #000 var(--it-r), #000 calc(var(--it-r) + 2.5px), rgba(0, 0, 0, .32) calc(var(--it-r) + 3.5px), transparent calc(var(--it-r) + 48px));
+}
+.intro.is-leaving .it-palco { animation: itSobe .42s cubic-bezier(.4, 0, .2, 1) both; }
+.intro.is-skipping, .intro.is-skipping .it-aro { animation-duration: .36s; }
+.intro.is-skipping .it-palco { animation-duration: .28s; }
+@keyframes itAmanhece { to { --it-r: var(--it-raio, 150vmax); } }
+@keyframes itSobe { to { opacity: 0; transform: translateY(-14px); } }
+
+/* redundante com o <head> e o site.css, de propósito: com movimento reduzido nada disso aparece */
+@media (prefers-reduced-motion: reduce) {
+  .intro, html.intro-active::before { display: none !important; }
+}
+html.rm .intro, html.rm.intro-active::before { display: none !important; }
