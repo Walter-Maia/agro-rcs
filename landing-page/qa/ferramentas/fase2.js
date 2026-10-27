@@ -36,7 +36,7 @@ const CASOS = {
         h.result.hero = await h.shot('1-hero');
         h.result.medidas = await h.ev(`
           const iw = innerWidth, sw = document.documentElement.scrollWidth;
-          const vaza = [...document.querySelectorAll('body *')].filter(e => { const r = e.getBoundingClientRect(); return r.width && (r.right > iw + 0.5 || r.left < -0.5) && !e.closest('.faixa__trilho') && !e.closest('.midia') && !e.closest('.sprite') && !e.closest('.hero__curvas') && !e.closest('.ph__curvas'); })
+          const vaza = [...document.querySelectorAll('body *')].filter(e => { const r = e.getBoundingClientRect(); return r.width && (r.right > iw + 0.5 || r.left < -0.5) && !e.closest('.faixa__trilho') && !e.closest('.midia') && !e.closest('.sprite') && !e.closest('.solo') && !e.closest('.ficha'); })
             .slice(0, 8).map(e => (e.className && e.className.baseVal !== undefined ? e.tagName : e.tagName + '.' + e.className) + ' ' + Math.round(e.getBoundingClientRect().right));
           const linhas = el => new Set([...el.querySelectorAll('.w')].map(w => w.offsetTop)).size;
           const vis = s => { const e = document.querySelector(s); return !!e && getComputedStyle(e).display !== 'none'; };
@@ -77,7 +77,7 @@ const CASOS = {
     return session('ancoras-1440', { W: 1440, H: 900, out: OUT }, async (h) => {
       await h.go(h.base); await sleep(1500);
       h.result.links = [];
-      for (const id of ['solucoes', 'como-funciona', 'sobre', 'contato', 'inicio']) {
+      for (const id of ['servicos', 'como-funciona', 'sobre', 'contato', 'inicio']) {
         const sel = id === 'inicio' ? '.topo .marca' : `.topo__nav a[href="#${id}"]`;
         const p = await h.ev(`const r=document.querySelector('${sel}').getBoundingClientRect(); return [r.left+r.width/2, r.top+r.height/2]`);
         await h.mouse('mousePressed', p[0], p[1]); await h.mouse('mouseReleased', p[0], p[1]);

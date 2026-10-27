@@ -1,12 +1,21 @@
-# TcaEnterprise: landing page (v0.3.1)
+# TcaEnterprise: landing page (v0.4.0)
 
 Página estática, sem build, com a identidade aprovada na Rodada G e uma abertura animada derivada da geometria da marca. O briefing está em `../PROMPT-CLAUDE-TCA-LANDING-PAGE.md`.
 
-**Estado em 26/10/2026:**
+**Estado em 27/10/2026:**
 - **Fase 0 (vetor da marca): aprovada pelo Walter.** Foi feita pelo agente principal em `assets/marca/` e `qa/vetor/`.
 - **Fase 2 (página): pronta e testada localmente.**
 - **Fase 1 (abertura "o broto que acende"): refeita em 26/10 na versão noturna e testada localmente.** O Walter achou a primeira versão (fundo Algodão, 23/10) fraca demais. Na revisão do mesmo dia (v0.3.1), ele achou feios o pulo do T e o anel que saía dele: os dois saíram e a abertura ficou mais limpa.
-- **No ar:** a **v0.3.1** (abertura noturna, versão limpa) foi publicada no GitHub Pages em 26/10, com o ok do Walter (`Walter-Maia/agro-rcs`, https://walter-maia.github.io/agro-rcs/). Antes dela, de 23/10 a 26/10, esteve no ar a **v0.2.0**, com a abertura clara.
+- **No ar:** a **v0.4.0** (serviços de gestão rural, solo em carrossel, menu em tela cheia), publicada em 27/10 com o ok do Walter. Antes dela, a **v0.3.1** (abertura noturna, versão limpa) foi publicada no GitHub Pages em 26/10, com o ok do Walter (`Walter-Maia/agro-rcs`, https://walter-maia.github.io/agro-rcs/). Antes dela, de 23/10 a 26/10, esteve no ar a **v0.2.0**, com a abertura clara.
+
+**v0.4.0 (27/10/2026, publicada no GitHub Pages no mesmo dia, com o ok do Walter):** o Walter passou os serviços reais da empresa e pediu um site mais vivo, com mais elementos em linha como a curva de solo da hero.
+- **Serviços:** a página fala só dos quatro serviços que a TCA faz hoje (decisão do Walter: saem drone, irrigação e sensores): controle de custos e contabilidade rural; resultado da safra e lucro por cultura; gestão da pecuária leiteira; estoque e planejamento de compras. Os títulos e textos dos quatro vieram do cliente. Hero, faixa, "Como funciona" (Anotar → Organizar → Decidir), Sobre e CTA foram reescritos para esse posicionamento.
+- **Solo em carrossel:** curvas de nível periódicas (geradas no `site.js`) que andam em x com a rolagem e uma deriva lenta, cada uma na sua velocidade, e dão a volta sem emenda. Estão no lugar da antiga faixa de texto (logo abaixo da hero: 4 curvas, uma Trigo), na divisa entre Serviços e Como funciona e ao fundo do CTA. A dinâmica é a do marquee que saiu: andam sozinhas (até 42 px/s), aceleram até 7× com a rolagem e invertem o sentido quando ela volta. Depois, o Walter pediu mais força: agora as curvas derivam de 34 a 90 px/s, são arrastadas junto com a rolagem (0,45 a 1,3 px por px rolado), ganham impulso de até 10× e o relevo "levanta" até 1,5× (scaleY) e assenta. O botão de pausa saiu, também a pedido dele. Atenção: sem o botão, o movimento contínuo não atende o WCAG 2.2.2 (quem liga o "reduzir movimento" no sistema recebe as linhas paradas). Os rótulos "01/04" dos serviços também saíram.
+- **Cabeçalho e menu (27/10):** logo no meio e um só botão "Menu" à direita, adaptado do componente "kinetic navigation" que o Walter mandou (React + GSAP), reescrito em JS puro com o GSAP da página e o CustomEase do cdnjs. O painel entra pela direita em três camadas (Trigo, Floresta, Floresta funda), os links (Início, Serviços, Como funciona, Sobre, Contato) sobem com giro e levam às seções, e cada link acende no fundo um grafismo em linha da marca (anéis, curvas de nível, raízes, folha, pontos). A barra muda de cor conforme a seção que está logo abaixo dela: sobre as seções escuras, a logo vira o negativo e o fundo fica Floresta, numa transição feita com `@property`. Sem GSAP ou com movimento reduzido, o menu só aparece e some. Os casos de menu do `fase2.js` ficaram obsoletos.
+- **Fichas:** quadros de exemplo, em linha, sobre cada foto (planilha, gráfico receita × custo com o ponto de equilíbrio, produção de leite, barras de estoque). Os traços se desenham e os números contam ao entrar. Todos levam a etiqueta "Exemplo" e um `aria-label` com os valores, e a página avisa que fotos e números são ilustrativos.
+- **Hero:** foto aérea de lavoura em curvas de nível, com paralaxe na rolagem (`--p`), ficha de lucro por cultura e atalhos para os quatro serviços.
+- **Fotos:** cinco, geradas no Higgsfield (`gpt_image_2_5`, high, 2k) com o ok do Walter, em `assets/img/` como JPEG (esta máquina não tem conversor para WebP), cada uma em duas larguras com `srcset`.
+- **QA:** `fase2.js` e `copy.js` foram ajustados para as novas seções, mas não rodaram: o Node não está mais nesta máquina. A conferência foi feita no Chrome (desktop, 390 px em iframe, `?intro=1`, `?fx=0`): sem erros no console, sem vazamento horizontal, e as chaves de copy batem com a página. Os casos do marquee no `fase2.js` (faixa, pausa, leitores) ficaram obsoletos e precisam ser reescritos para a faixa de solo (sonda `TCA.solo()`).
 
 ## Como abrir localmente
 
@@ -31,7 +40,7 @@ assets/js/intro.js       liga, encerra e limpa a abertura (o palco é gerado; ve
 assets/js/site.js        Lenis, ScrollTrigger, títulos, fotos, marquee, magnético, raízes, menu
 assets/fonts/            Montserrat (400–800) e Source Sans 3 (400–600), woff2 latin, OFL 1.1
 assets/marca/            Fase 0 (agente principal): sprite tca-logo.svg e favicons; não editar daqui
-assets/img/              vazio; as fotos ainda não existem (ver Pendências)
+assets/img/              fotos ilustrativas (Higgsfield, 27/10), JPEG em duas larguras
 qa/ferramentas/          servidor, cliente CDP (Edge headless), testes e o gerador da marca inline
 qa/fase1/                abertura: folhas de quadros, capturas, resultados.json
 qa/fase2/                página: resultados.json, contraste.json, copy.json, capturas/, folha-larguras-hero.jpg
@@ -171,13 +180,13 @@ Se o vetor mudar, rode `node qa/ferramentas/montar-marca-inline.js`. Ele regrava
 
 | # | Seção | Fundo | Movimento |
 |---|---|---|---|
-| 1 | Cabeçalho fixo | Algodão translúcido ao rolar (blur 14 px; fallback sólido) | Logo em partes; menu e CTA descem 16 px (atrasados por `--rise-start`). |
-| 2 | Hero | Algodão + curvas de nível finas ao pé (continuam o horizonte da abertura) | **02** no H1, **04** na foto. |
-| 3 | Faixa de atuação | Floresta | **06** marquee, com separador em anel Trigo. |
-| 4 | Soluções (lista editorial alternada, 4 itens) | Algodão | **04** em cada foto + **11** zoom interno (só com ponteiro fino). |
-| 5 | Como funciona: "Do campo ao dado" | Floresta | Raízes do logo desenhadas pela rolagem (assinatura) + **02** no título. |
-| 6 | Sobre | Algodão | **02** no título; o texto não anima. |
-| 7 | CTA final | Floresta | **07** magnético + press com mola. |
+| 1 | Cabeçalho fixo: logo no meio, menu à direita | Algodão translúcido ao rolar; Floresta sobre as seções escuras | Logo em partes; o botão desce 16 px; a cor segue a seção; menu em tela cheia em camadas. |
+| 2 | Hero | Algodão | **02** no H1, **04** na foto, paralaxe na foto e na ficha, barras da ficha. |
+| 3 | Faixa de solo (no lugar do marquee, a pedido do Walter em 27/10) | Algodão | 4 curvas de nível em carrossel, com a dinâmica do antigo **06**, e botão Pausar/Retomar. |
+| 4 | Serviços (lista editorial alternada, 4 itens, foto + ficha + texto) | Algodão + solo na divisa | **04** em cada foto + **11** zoom interno (só com ponteiro fino); fichas desenhadas e números contados. |
+| 5 | Como funciona: "Do caderno ao resultado" | Floresta | Raízes do logo desenhadas pela rolagem (assinatura) + **02** no título. |
+| 6 | Sobre | Algodão | **02** no título; o texto sobe ao entrar. |
+| 7 | CTA final | Floresta + solo claro ao fundo | **07** magnético + press com mola. |
 | 8 | Rodapé | Floresta funda | Estático. |
 
 ## Efeitos usados
@@ -212,7 +221,6 @@ São 5 efeitos visíveis mais a base, dentro da regra "3–5 bem-feitos". Em tod
 | 08 galeria horizontal | Não há portfólio. |
 | 09 preloader com contador | Seria um contador falso; a abertura já cumpre o papel. |
 | 10 cortina | É uma página só. |
-| 12 menu em tela cheia | O menu do celular é um overlay simples (Esc fecha, o resto fica `inert`, o foco volta ao botão). |
 | 13 estética terminal | Tom errado. |
 | Blob, glass, 3D, shader | Fora do tom. |
 
@@ -230,7 +238,7 @@ São 5 efeitos visíveis mais a base, dentro da regra "3–5 bem-feitos". Em tod
 
 ## Copy provisória
 
-- Todos os textos estão no bloco `COPY PROVISÓRIA` do topo do `index.html` (41 chaves). Cada elemento tem `data-copy="chave"` e o comentário `<!-- COPY PROVISÓRIA -->`.
+- Todos os textos estão no bloco `COPY PROVISÓRIA` do topo do `index.html` (54 chaves). Cada elemento tem `data-copy="chave"` e o comentário `<!-- COPY PROVISÓRIA -->`.
 - **Para trocar um texto, edite os dois lugares e rode `node qa/ferramentas/copy.js`.** O script confere a correspondência, a marca e a acentuação.
 - O botão do CTA final ainda não tem destino:
   - Ao ser clicado, ele **não envia nada** e mostra "Prévia: o canal de contato ainda será confirmado. Nada foi enviado."
@@ -239,16 +247,9 @@ São 5 efeitos visíveis mais a base, dentro da regra "3–5 bem-feitos". Em tod
 ## Pendências com o cliente
 
 1. **Copy:** todos os textos são provisórios.
-2. **Áreas de atuação [A CONFIRMAR]:** monitoramento por drone, irrigação inteligente, sensores de solo, telemetria e gestão de safra.
+2. **Serviços:** confirmados pelo Walter em 27/10 (os quatro da v0.4.0). Os números das fichas são exemplos inventados e devem continuar marcados assim, ou ser trocados por dados reais com autorização.
 3. **Contatos [A CONFIRMAR]:** WhatsApp, e-mail, endereço e o destino do botão do CTA final.
-4. **Fotos:** a página usa espaços reservados na proporção final. Faltam estas cinco:
-   - lavoura com drone em voo, para a hero (1:1 no desktop, 4:3 no celular);
-   - drone em voo;
-   - pivô de irrigação;
-   - sensor no solo;
-   - equipe no campo (as quatro das soluções em 3:2).
-
-   O Higgsfield pode gerá-las (`gpt_image_2_5`, high, 2k, sem texto e sem logotipos) **só com autorização dos créditos pelo Walter**. Se forem geradas, serão marcadas como **ilustrativas**, em WebP com `srcset`, e nenhuma pessoa recebe nome, cargo ou depoimento. Quando entrarem: `width`/`height`, `loading="lazy"` abaixo da dobra e `fetchpriority="high"` na hero.
+4. **Fotos:** as cinco atuais são ilustrativas (Higgsfield, 27/10). Fotos reais da operação, quando houver, entram nos mesmos lugares e proporções (hero 4:5 no desktop e 4:3 no celular; serviços 3:2). Converter para WebP quando houver ferramenta.
 5. **Seções que não entraram por falta de dados reais:** números, depoimentos e logos de clientes ou parceiros.
 6. **Na publicação** (não autorizada ainda):
    - tirar o `noindex`;

@@ -86,9 +86,9 @@ html.intro-active .intro { animation: itFailsafe .4s 6.5s both; }
 @keyframes itFailsafe { to { opacity: 0; visibility: hidden; } } /* sem o script, a página se libera sozinha */
 
 /* a página espera a abertura: hero e cabeçalho ficam no primeiro quadro e entram quando ela sai */
-html.intro-active :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: paused; }
+html.intro-active :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .ficha--hero .ficha__barras i, .solo--faixa, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: paused; }
 /* se o intro.js não chegou a montar o palco, a página entra atrás do fundo em vez de esperar pausada */
-html.intro-active:not(:has(#intro)) :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: running; }
+html.intro-active:not(:has(#intro)) :is(.rise, .rise-down, .hero__titulo .w > span, .midia--hero, .midia--hero .midia__zoom, .ficha--hero .ficha__barras i, .solo--faixa, .topo .marca__svg > g, .topo .lg-anel) { animation-play-state: running; }
 
 /* ---------- cenário: mapa, horizonte, luz, semente (camadas HTML) ---------- */
 .intro > i, .it-curvas { position: absolute; pointer-events: none; }
