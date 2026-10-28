@@ -1,5 +1,5 @@
 /*
- * Cliente CDP mínimo: um Edge headless por sessão, perfil próprio e descartável.
+ * Cliente CDP mínimo: um Chrome (ou Edge) headless por sessão, perfil próprio e descartável.
  * Adaptado de "landing page siteflux/qa/auditoria-qa-2026-09-22/ferramentas/confirm/lib.js" (mesma ideia de
  * session(nome, opts, fn)), trocando o WebSocket manual pelo WebSocket nativo do Node ≥ 22 e registrando
  * erros de console, exceções e respostas ≥ 400 de cada sessão.
@@ -10,7 +10,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const EDGE = process.env.BROWSER || 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
+/* 28/10: o Chrome headless vem antes do Edge quando está instalado. O Edge headless põe a aba em "hidden" 10 a 14 s
+   depois de abrir (rAF a zero, roda do mouse sem resposta e, minutos depois, o JS parado), até numa página em
+   branco e mesmo com os flags de oclusão abaixo; o Chrome segue a 240 quadros/s. BROWSER escolhe outro. */
+const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const EDGE = process.env.BROWSER || (fs.existsSync(CHROME) ? CHROME : 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe');
 const BASE = process.env.BASE || 'http://127.0.0.1:4410/';
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -68,7 +72,9 @@ async function session(nome, opts, fn) {
   fs.mkdirSync(SHOTS, { recursive: true });
   const PORT = 9600 + Math.floor(Math.random() * 300);
   const perfil = path.join(process.env.TEMP || '.', 'tca-qa-' + PORT);
+  /* sem oclusão nem segundo plano: a janela headless é invisível, e nada dela pode ser tratado como aba de fundo */
   const proc = spawn(EDGE, ['--headless=new', '--mute-audio', '--no-first-run', '--no-default-browser-check', '--hide-scrollbars',
+    '--disable-features=CalculateNativeWinOcclusion', '--disable-backgrounding-occluded-windows', '--disable-renderer-backgrounding', '--disable-background-timer-throttling',
     `--remote-debugging-port=${PORT}`, `--user-data-dir=${perfil}`, `--window-size=${o.W},${o.H}`, 'about:blank'], { stdio: 'ignore' });
   /* no JSON, a pasta de saída vai relativa ao projeto (sem caminho da máquina) */
   const result = { nome, opts: Object.assign({}, o, { out: path.relative(path.join(__dirname, '..', '..'), OUT).replace(/\\/g, '/') }), inicio: new Date().toISOString() };
@@ -137,7 +143,7 @@ async function session(nome, opts, fn) {
     try { proc.kill(); } catch (e) { /* já saiu */ }
     for (let i = 0; i < 12; i++) { await sleep(250); try { fs.rmSync(perfil, { recursive: true, force: true }); } catch (e) { /* ainda travado */ } if (!fs.existsSync(perfil)) break; }
     if (fs.existsSync(perfil) && process.platform === 'win32') {
-      try { execFileSync('powershell', ['-NoProfile', '-Command', `Get-CimInstance Win32_Process -Filter "Name='msedge.exe'" | Where-Object { $_.CommandLine -like '*tca-qa-${PORT}*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }`], { stdio: 'ignore' }); } catch (e) { /* */ }
+      try { execFileSync('powershell', ['-NoProfile', '-Command', `Get-CimInstance Win32_Process -Filter "Name='${path.basename(EDGE)}'" | Where-Object { $_.CommandLine -like '*tca-qa-${PORT}*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }`], { stdio: 'ignore' }); } catch (e) { /* */ }
       await sleep(500);
       try { fs.rmSync(perfil, { recursive: true, force: true }); } catch (e) { console.error('perfil ficou no TEMP:', perfil); }
     }

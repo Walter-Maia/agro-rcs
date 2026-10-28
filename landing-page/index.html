@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--
-  TcaEnterprise — landing page (v0.5.0: hero com o broto em 3D, menu refeito; v0.4.0: serviços de gestão rural, solo em carrossel)
+  TcaEnterprise — landing page (v0.6.4: travessias da linha suaves, contatos confirmados;
+  v0.6.3: cenas do menu prontas e vivas, desenho em linha nos serviços, linhas do fim no CTA;
+  v0.6.0: hero sobre o campo ao anoitecer, cortina, fotos em WebP, movimento mais calmo;
+  v0.5.0: hero com o broto em 3D, menu refeito; v0.4.0: serviços de gestão rural, solo em carrossel)
 
   COPY PROVISÓRIA — todos os textos abaixo esperam a revisão do cliente. Cada um está marcado no
   corpo com <!- - COPY PROVISÓRIA - -> e com data-copy="chave"; troque o texto nos dois lugares
@@ -63,10 +66,8 @@
   sobre.p3 ........... Tecnologia, para nós, só vale quando funciona no campo, todos os dias.
   cta.titulo ......... Vamos colocar os números da sua fazenda em ordem?
   cta.botao .......... Fale com a TCA
-  cta.aviso .......... Prévia: o canal de contato ainda será confirmado. Nada foi enviado.
-  contato.whatsapp ... [A CONFIRMAR]
-  contato.email ...... [A CONFIRMAR]
-  contato.endereco ... [A CONFIRMAR]
+  contato.whatsapp ... (34) 98409-3888
+  contato.email ...... Enterprise.tca@gmail.com
 -->
 <!-- COPY PROVISÓRIA (título, descrição e og:*) -->
 <title data-copy="meta.titulo">TcaEnterprise | Gestão rural: custos, safra, leite e estoque</title>
@@ -74,21 +75,23 @@
 <meta name="description" content="Controle de custos, resultado da safra, pecuária leiteira e estoque organizados por talhão e por cultura, para o produtor saber o lucro real de cada lavoura." data-copy="meta.descricao">
 <!-- prévia local: tirar o noindex só na publicação definitiva -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#F4F1E8">
+<meta name="theme-color" content="#0A2A20">
 <meta name="color-scheme" content="only light">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="TcaEnterprise">
 <meta property="og:title" content="TcaEnterprise | Gestão rural: custos, safra, leite e estoque">
 <meta property="og:description" content="Custos, safra, leite e estoque organizados para o produtor saber o lucro real de cada lavoura.">
-<link rel="icon" href="assets/marca/favicon.svg?v=0.5.0" type="image/svg+xml">
-<link rel="icon" href="assets/marca/favicon-32.png?v=0.5.0" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="assets/marca/apple-touch-icon.png?v=0.5.0">
+<link rel="icon" href="assets/marca/favicon.svg?v=0.6.4" type="image/svg+xml">
+<link rel="icon" href="assets/marca/favicon-32.png?v=0.6.4" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/marca/apple-touch-icon.png?v=0.6.4">
 <link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- o subtítulo do hero já está na primeira tela: a Source Sans também vem cedo (sem troca de fonte visível) -->
+<link rel="preload" href="assets/fonts/source-sans-3-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=0.5.0">
-<link rel="stylesheet" href="assets/css/intro.css?v=0.5.0">
+<link rel="stylesheet" href="assets/css/site.css?v=0.6.4">
+<link rel="stylesheet" href="assets/css/intro.css?v=0.6.4">
 <!-- antes da 1ª pintura: html.js (há JS), html.rm (movimento reduzido ou ?fx=0, acompanhado ao vivo) e a decisão da abertura:
      html.intro-active só uma vez por sessão e nunca com #âncora, página rolada, aba oculta ou movimento reduzido; ?intro=1 força -->
 <script>(function(){var d=document.documentElement;d.classList.add("js");try{var u=location.search,q=/[?&]fx=0(&|$)/.test(u),f=/[?&]intro=1(&|$)/.test(u),m=matchMedia("(prefers-reduced-motion: reduce)"),s=function(){d.classList.toggle("rm",q||m.matches)};s();m.addEventListener("change",s);
@@ -100,16 +103,19 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 
 <!-- ABERTURA: o palco é montado por assets/js/intro.js, que roda aqui, antes do resto da página; o estilo fica em assets/css/intro.css.
      Se o arquivo não carregar, a página se libera na hora (onerror); se carregar e falhar, o failsafe em CSS libera em 6,5 s. -->
-<script src="assets/js/intro.js?v=0.5.0" onerror="document.documentElement.classList.remove('intro-active')"></script>
+<script src="assets/js/intro.js?v=0.6.4" onerror="document.documentElement.classList.remove('intro-active')"></script>
 
 <!-- ícones de interface -->
 <svg class="sprite" aria-hidden="true" focusable="false">
   <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 4v11m-4.5-4.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M4 12h15m-5.5-5.5L19 12l-5.5 5.5"/></symbol>
   <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 3.5 21.5 20h-19z"/><path d="M12 10v4.2m0 2.6v.2"/></symbol>
 </svg>
 
 <!-- 1 · CABEÇALHO -->
 <header class="topo" id="topo">
+  <!-- quanto da página já foi lido: um fio Trigo no alto da barra (site.js, marcarTopo) -->
+  <span class="topo__progresso" aria-hidden="true"></span>
   <div class="topo__barra envoltorio">
     <!-- logo: cópia inline dos paths do sprite aprovado (para entrar em partes); gerada por qa/ferramentas/montar-marca-inline.js -->
     <a class="marca" href="#inicio" aria-label="TcaEnterprise, voltar ao início">
@@ -130,61 +136,72 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
   </div>
 </header>
 
-<!-- menu em tela cheia (adaptado do "kinetic navigation"): três camadas entram pela direita (Trigo, Floresta,
-     Floresta funda) e os links sobem com um giro. À esquerda do painel, num palco próprio (só em telas largas),
-     cada link conta uma pequena cena em linha (site.js, CENAS); começa pela seção que está na tela.
+<!-- menu em tela cheia: o painel entra pela direita em três camadas (Trigo, Floresta, Floresta funda) e os
+     links sobem por máscara. À esquerda do painel, num palco próprio (só em telas largas), cada link tem uma cena
+     em linha da marca que já chega desenhada e fica viva enquanto está em cena (site.js, CENAS); a troca é um
+     cruzamento com um leve zoom. Começa pela seção que está na tela.
      Sem GSAP ou com movimento reduzido, o menu só aparece e some, e as cenas ficam prontas e paradas. -->
 <div class="menu" id="menu" hidden>
   <div class="menu__veu" data-menu-fechar></div>
   <div class="menu__palco" aria-hidden="true">
     <div class="menu__cenas">
-      <!-- 01 Início: a órbita se desenha, os três anéis da marca acendem em cascata, o anel do meio pulsa e um ponto orbita -->
+      <!-- 01 Início: a marca. Os três anéis numa órbita; um ponto Trigo orbita, um halo pontilhado gira devagar ao
+           contrário, o anel do meio emite ondas e os anéis respiram -->
       <svg class="cena" data-cena="1" viewBox="0 0 400 400" focusable="false">
-        <path class="t" data-p="orbita" d="M200 50a150 150 0 1 1 0 300a150 150 0 1 1 0-300" pathLength="1"/>
+        <g data-p="giro"><circle class="t fraco pontilhado" cx="200" cy="200" r="176"/></g>
+        <path class="t" d="M200 50a150 150 0 1 1 0 300a150 150 0 1 1 0-300"/>
         <g data-p="satelite"><circle class="ponto" cx="200" cy="50" r="5"/></g>
         <circle class="onda" data-p="onda" cx="200" cy="268" r="40"/>
-        <g data-p="anel" data-c="120 228"><path class="t" d="M120 188a40 40 0 1 1 0 80a40 40 0 1 1 0-80" pathLength="1"/></g>
-        <g data-p="anel" data-c="200 268"><path class="t trigo" d="M200 228a40 40 0 1 1 0 80a40 40 0 1 1 0-80" pathLength="1"/></g>
-        <g data-p="anel" data-c="280 228"><path class="t" d="M280 188a40 40 0 1 1 0 80a40 40 0 1 1 0-80" pathLength="1"/></g>
+        <g data-p="anel" data-c="120 228"><path class="t" d="M120 188a40 40 0 1 1 0 80a40 40 0 1 1 0-80"/></g>
+        <g data-p="anel" data-c="200 268"><path class="t trigo" d="M200 228a40 40 0 1 1 0 80a40 40 0 1 1 0-80"/></g>
+        <g data-p="anel" data-c="280 228"><path class="t" d="M280 188a40 40 0 1 1 0 80a40 40 0 1 1 0-80"/></g>
       </svg>
-      <!-- 02 Serviços: duas curvas de nível que andam sozinhas; um marcador Trigo boia na curva Trigo -->
+      <!-- 02 Serviços: três curvas de nível que andam sozinhas, cada uma no seu passo; uma boia Trigo flutua na
+           curva Trigo e pulsa -->
       <svg class="cena cena--faixa" data-cena="2" viewBox="0 0 400 400" focusable="false">
-        <g data-p="trilho"><path class="t" data-onda="0" pathLength="1"/></g>
-        <g data-p="trilho"><path class="t trigo" data-onda="1" pathLength="1"/></g>
-        <circle class="marcador" data-p="marcador" cx="200" cy="236" r="7"/>
+        <g data-p="trilho"><path class="t" data-onda="0"/></g>
+        <g data-p="trilho"><path class="t trigo" data-onda="1"/></g>
+        <g data-p="trilho"><path class="t fraco" data-onda="2"/></g>
+        <g data-p="boia">
+          <circle class="onda" data-p="halo" cx="200" cy="236" r="7"/>
+          <circle class="marcador" cx="200" cy="236" r="7"/>
+        </g>
       </svg>
-      <!-- 03 Como funciona: a haste desce, as raízes se abrem, cada anel acende quando a raiz chega; depois, pulsos correm pelas raízes -->
+      <!-- 03 Como funciona: haste, raízes e anéis prontos; pulsos de luz descem pelas raízes e cada anel acende
+           quando o seu chega -->
       <svg class="cena" data-cena="3" viewBox="0 0 400 400" focusable="false">
-        <path class="t" data-p="haste" d="M200 40V150" pathLength="1"/>
-        <path class="t" data-p="raiz" d="M200 150L110 262" pathLength="1"/>
-        <path class="t" data-p="raiz" d="M200 150V270" pathLength="1"/>
-        <path class="t" data-p="raiz" d="M200 150L290 262" pathLength="1"/>
+        <path class="t" d="M200 40V150"/>
+        <path class="t" d="M200 150L110 262"/>
+        <path class="t" d="M200 150V270"/>
+        <path class="t" d="M200 150L290 262"/>
         <path class="cometa" data-p="cometa" d="M200 40V150L110 262" pathLength="1"/>
         <path class="cometa" data-p="cometa" d="M200 40V270" pathLength="1"/>
         <path class="cometa" data-p="cometa" d="M200 40V150L290 262" pathLength="1"/>
-        <g data-p="anel" data-c="94 282"><path class="t trigo" d="M94 256a26 26 0 1 1 0 52a26 26 0 1 1 0-52" pathLength="1"/></g>
-        <g data-p="anel" data-c="200 296"><path class="t trigo" d="M200 270a26 26 0 1 1 0 52a26 26 0 1 1 0-52" pathLength="1"/></g>
-        <g data-p="anel" data-c="306 282"><path class="t trigo" d="M306 256a26 26 0 1 1 0 52a26 26 0 1 1 0-52" pathLength="1"/></g>
+        <g data-p="anel" data-c="94 282"><path class="t trigo enche" d="M94 256a26 26 0 1 1 0 52a26 26 0 1 1 0-52"/></g>
+        <g data-p="anel" data-c="200 296"><path class="t trigo enche" d="M200 270a26 26 0 1 1 0 52a26 26 0 1 1 0-52"/></g>
+        <g data-p="anel" data-c="306 282"><path class="t trigo enche" d="M306 256a26 26 0 1 1 0 52a26 26 0 1 1 0-52"/></g>
       </svg>
-      <!-- 04 Sobre: o broto. Chão, raízes para baixo, caule de baixo para cima; com o caule firme, o nó e as folhas se abrem dele -->
+      <!-- 04 Sobre: o broto pronto. As folhas balançam fora de fase, o nó respira e grãos de luz sobem dele -->
       <svg class="cena" data-cena="4" viewBox="0 0 400 400" focusable="false">
-        <path class="t fraco" data-p="chao" d="M200 340H110" pathLength="1"/>
-        <path class="t fraco" data-p="chao" d="M200 340H290" pathLength="1"/>
-        <path class="t fraco" data-p="raizinha" d="M200 340l-20 26" pathLength="1"/>
-        <path class="t fraco" data-p="raizinha" d="M200 340v32" pathLength="1"/>
-        <path class="t fraco" data-p="raizinha" d="M200 340l20 26" pathLength="1"/>
-        <path class="t trigo" data-p="caule" d="M200 340V212" pathLength="1"/>
-        <g data-p="folha" data-lado="-1"><path class="t folha" d="M200 208C152 150 76 120 36 128c10 60 78 98 164 80z" pathLength="1"/></g>
-        <g data-p="folha" data-lado="1"><path class="t folha" d="M200 208c48-58 124-88 164-80-10 60-78 98-164 80z" pathLength="1"/></g>
+        <path class="t fraco" d="M110 340H290"/>
+        <path class="t fraco" d="M200 340l-20 26M200 340v32M200 340l20 26"/>
+        <path class="t trigo" d="M200 340V212"/>
+        <g data-p="folha"><path class="t folha" d="M200 208C152 150 76 120 36 128c10 60 78 98 164 80z"/></g>
+        <g data-p="folha"><path class="t folha" d="M200 208c48-58 124-88 164-80-10 60-78 98-164 80z"/></g>
+        <circle class="polen" data-p="polen" cx="186" cy="196" r="2.6"/>
+        <circle class="polen" data-p="polen" cx="212" cy="190" r="2.2"/>
+        <circle class="polen" data-p="polen" cx="198" cy="182" r="2.8"/>
         <circle class="ponto" data-p="no" cx="200" cy="209" r="6"/>
       </svg>
-      <!-- 05 Contato: os pontos do mapa aparecem, as linhas se ligam ao pino, o pino cai e emite ondas; traços correm até ele -->
+      <!-- 05 Contato: o mapa ligado ao pino. Traços correm pelas linhas até ele, como mensagens chegando; o pino
+           emite ondas e os pontos piscam -->
       <svg class="cena" data-cena="5" viewBox="0 0 400 400" focusable="false">
-        <path class="t fraco" data-p="liga" d="M70 90L200 210" pathLength="1"/>
-        <path class="t fraco" data-p="liga" d="M215 64L200 210" pathLength="1"/>
-        <path class="t fraco" data-p="liga" d="M340 110L200 210" pathLength="1"/>
-        <path class="t fraco" data-p="liga" d="M84 300L200 210" pathLength="1"/>
-        <path class="t fraco" data-p="liga" d="M326 322L200 210" pathLength="1"/>
+        <path class="t fraco" d="M70 90L200 210M215 64L200 210M340 110L200 210M84 300L200 210M326 322L200 210"/>
+        <path class="mensagem" data-p="liga" d="M70 90L200 210" pathLength="1"/>
+        <path class="mensagem" data-p="liga" d="M215 64L200 210" pathLength="1"/>
+        <path class="mensagem" data-p="liga" d="M340 110L200 210" pathLength="1"/>
+        <path class="mensagem" data-p="liga" d="M84 300L200 210" pathLength="1"/>
+        <path class="mensagem" data-p="liga" d="M326 322L200 210" pathLength="1"/>
         <g data-p="ponto" data-c="70 90"><circle class="ponto ponto--claro" cx="70" cy="90" r="8"/></g>
         <g data-p="ponto" data-c="215 64"><circle class="ponto ponto--claro" cx="215" cy="64" r="6"/></g>
         <g data-p="ponto" data-c="340 110"><circle class="ponto ponto--claro" cx="340" cy="110" r="9"/></g>
@@ -192,24 +209,24 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
         <g data-p="ponto" data-c="326 322"><circle class="ponto ponto--claro" cx="326" cy="322" r="8"/></g>
         <circle class="onda" data-p="onda" cx="200" cy="210" r="14"/>
         <circle class="onda" data-p="onda" cx="200" cy="210" r="14"/>
-        <g data-p="pino"><circle class="ponto" cx="200" cy="210" r="14"/></g>
+        <circle class="ponto" cx="200" cy="210" r="14"/>
       </svg>
     </div>
-    <p class="menu__legenda"><span class="menu__legenda-num" data-legenda-num>01</span><span data-legenda>A marca: um broto com raiz de circuito.</span></p>
+    <p class="menu__legenda"><span class="menu__legenda-num" data-legenda-num>01</span><span class="menu__legenda-mascara"><span class="menu__legenda-texto" data-legenda>A marca: um broto com raiz de circuito.</span></span></p>
   </div>
   <nav class="menu__painel" aria-label="Menu principal">
     <div class="menu__camadas" aria-hidden="true"><i class="menu__camada"></i><i class="menu__camada"></i><i class="menu__camada"></i></div>
     <div class="menu__miolo">
       <ul class="menu__lista">
-        <li data-cena="1" data-legenda="A marca: um broto com raiz de circuito."><a class="menu__link" href="#inicio"><span class="menu__num" aria-hidden="true">01</span><span class="menu__texto">Início</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
-        <li data-cena="2" data-legenda="Custos, safra, leite e estoque."><a class="menu__link" href="#servicos"><span class="menu__num" aria-hidden="true">02</span><span class="menu__texto">Serviços</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
-        <li data-cena="3" data-legenda="Anotar, organizar, decidir."><a class="menu__link" href="#como-funciona"><span class="menu__num" aria-hidden="true">03</span><span class="menu__texto">Como funciona</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
-        <li data-cena="4" data-legenda="Agro de verdade, números de verdade."><a class="menu__link" href="#sobre"><span class="menu__num" aria-hidden="true">04</span><span class="menu__texto">Sobre</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
-        <li data-cena="5" data-legenda="Vamos colocar os números em ordem?"><a class="menu__link" href="#contato"><span class="menu__num" aria-hidden="true">05</span><span class="menu__texto">Contato</span><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-cena="1" data-legenda="A marca: um broto com raiz de circuito."><a class="menu__link" href="#inicio"><span class="menu__num" aria-hidden="true">01</span><span class="menu__texto">Início</span><svg class="menu__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-cena="2" data-legenda="Custos, safra, leite e estoque."><a class="menu__link" href="#servicos"><span class="menu__num" aria-hidden="true">02</span><span class="menu__texto">Serviços</span><svg class="menu__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-cena="3" data-legenda="Anotar, organizar, decidir."><a class="menu__link" href="#como-funciona"><span class="menu__num" aria-hidden="true">03</span><span class="menu__texto">Como funciona</span><svg class="menu__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-cena="4" data-legenda="Agro de verdade, números de verdade."><a class="menu__link" href="#sobre"><span class="menu__num" aria-hidden="true">04</span><span class="menu__texto">Sobre</span><svg class="menu__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
+        <li data-cena="5" data-legenda="Vamos colocar os números em ordem?"><a class="menu__link" href="#contato"><span class="menu__num" aria-hidden="true">05</span><span class="menu__texto">Contato</span><svg class="menu__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg><i class="menu__link-fundo" aria-hidden="true"></i></a></li>
       </ul>
       <div class="menu__rodape">
         <p class="menu__nota" data-menu-fade>Gestão rural para quem produz</p>
-        <a class="btn btn--trigo menu__cta" href="#contato" data-menu-fade><span class="btn__face">Fale com a TCA</span></a>
+        <a class="btn btn--trigo menu__cta" href="#contato" data-menu-fade><span class="btn__face">Fale com a TCA<svg class="btn__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg></span></a>
       </div>
     </div>
   </nav>
@@ -217,13 +234,35 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 
 <main id="conteudo" tabindex="-1">
 
-  <!-- 2 · HERO: o broto da marca em 3D (assets/js/broto.js) num palco preso à tela; a rolagem é a linha do tempo:
-       capa → de cima → o fundo clareia e o broto encolhe até o lugar da logo do cabeçalho. Sem WebGL, a logo negativa. -->
+  <!-- 2 · HERO: o broto da marca em 3D (assets/js/broto.js) sobre o campo ao anoitecer, num palco preso à tela; a
+       rolagem é a linha do tempo: capa → de cima → o broto encolhe até o T da logo do cabeçalho enquanto a faixa de
+       solo e os serviços sobem por cima do palco. Sem WebGL, a logo negativa. Fotos: Higgsfield (28/10), puxadas
+       para a paleta por qa/ferramentas/webp.js. -->
   <section class="broto tema-escuro" id="inicio" aria-labelledby="hero-titulo" data-broto>
     <div class="broto__palco">
+      <div class="broto__fundo" aria-hidden="true">
+        <picture class="broto__foto broto__foto--campo">
+          <source media="(orientation: portrait)" type="image/webp" srcset="assets/img/hero-retrato-720.webp 720w, assets/img/hero-retrato-1080.webp 1080w, assets/img/hero-retrato-1520.webp 1520w" sizes="100vw">
+          <img src="assets/img/hero-campo-1600.webp" srcset="assets/img/hero-campo-960.webp 960w, assets/img/hero-campo-1600.webp 1600w, assets/img/hero-campo-2400.webp 2400w" sizes="100vw" width="2400" height="1357" alt="" fetchpriority="high">
+        </picture>
+        <picture class="broto__foto broto__foto--cima">
+          <!-- só aparece no quadro 1: o broto.js troca data-srcset por srcset depois do load (ou na 1ª rolagem) -->
+          <img data-srcset="assets/img/hero-cima-960.webp 960w, assets/img/hero-cima-1600.webp 1600w, assets/img/hero-cima-2400.webp 2400w" sizes="100vw" width="2400" height="1357" alt="" decoding="async">
+        </picture>
+        <!-- o sol: uma caixa com o mesmo enquadramento da foto (object-fit: cover refeito em CSS), para ficar preso
+             ao céu dela. O halo é livre; o disco e os raios ficam recortados pela silhueta das colinas (clip-path
+             medido na própria foto), então, quando a rolagem o faz descer, ele se põe atrás delas (broto.js) -->
+        <div class="broto__ceu">
+          <div class="sol sol--halo"><div class="sol__chega"><i class="sol__halo"></i></div></div>
+          <div class="broto__recorte">
+            <div class="sol sol--corpo"><div class="sol__chega"><i class="sol__raios"></i><i class="sol__disco"></i></div></div>
+          </div>
+        </div>
+        <div class="broto__veu"></div>
+      </div>
       <div class="broto__luz" aria-hidden="true"></div>
       <canvas class="broto__tela" aria-hidden="true"></canvas>
-      <img class="broto__reserva" src="assets/marca/tca-logo-negativo.svg?v=0.5.0" alt="" width="1373" height="687">
+      <img class="broto__reserva" src="assets/marca/tca-logo-negativo.svg?v=0.6.4" alt="" width="1373" height="687" loading="lazy">
 
       <!-- quadro 0 · capa -->
       <div class="broto__capa envoltorio">
@@ -238,7 +277,7 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
             <!-- COPY PROVISÓRIA --><p class="broto__sub rise" style="--d:.35s" data-copy="hero.sub">Custos, safra, leite e estoque organizados por talhão e por cultura, para você saber quanto cada lavoura realmente deixou de lucro.</p>
           </div>
           <div class="broto__acoes rise" style="--d:.45s" data-sc="0" data-d=".3">
-            <!-- COPY PROVISÓRIA --><a class="btn btn--trigo" href="#contato"><span class="btn__face" data-copy="hero.cta1">Fale com a TCA</span></a>
+            <!-- COPY PROVISÓRIA --><a class="btn btn--trigo" href="#contato"><span class="btn__face" data-copy="hero.cta1">Fale com a TCA<svg class="btn__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg></span></a>
             <!-- COPY PROVISÓRIA --><a class="btn btn--claro" href="#servicos"><span class="btn__face" data-copy="hero.cta2">Ver os serviços</span></a>
           </div>
           <!-- atalhos para os quatro serviços -->
@@ -269,6 +308,9 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 
   <!-- 4 · SERVIÇOS (lista editorial alternada: foto + quadro de exemplo + texto) -->
   <section class="servicos" id="servicos" aria-labelledby="servicos-titulo">
+    <!-- desenho em linha no fundo (v0.6.3): um traço que a rolagem desenha pelos corredores entre foto e texto,
+         acendendo um anel em cada serviço, e morros de curvas de nível nos vãos (site.js, "trilha") -->
+    <div class="servicos__desenho" data-trilha aria-hidden="true"></div>
     <div class="envoltorio">
       <header class="servicos__topo">
         <div>
@@ -284,7 +326,8 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
           <div class="servico__midia">
             <figure class="midia" data-revelar>
               <div class="midia__zoom">
-                <img class="midia__img" src="assets/img/custos-900.jpg" srcset="assets/img/custos-900.jpg 900w, assets/img/custos-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Mãos de um produtor anotando gastos num caderno sobre a caçamba da caminhonete, com a lavoura ao fundo (imagem ilustrativa)">
+                <picture><source type="image/webp" srcset="assets/img/custos-720.webp 720w, assets/img/custos-900.webp 900w, assets/img/custos-1200.webp 1200w, assets/img/custos-1600.webp 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw"><img class="midia__img" src="assets/img/custos-900.jpg" srcset="assets/img/custos-900.jpg 900w, assets/img/custos-1600.jpg 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Mãos de um produtor anotando gastos num caderno sobre a caçamba da caminhonete, com a lavoura ao fundo (imagem ilustrativa)"></picture>
+                <video class="midia__video" data-src="assets/video/custos-960.mp4" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
               </div>
             </figure>
             <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: R$ 91.850 de custo lançado no talhão 3 na safra 25/26, sendo R$ 18.400 de sementes, R$ 41.250 de fertilizantes, R$ 22.900 de defensivos e R$ 9.300 de diesel, exportados numa planilha para o contador.">
@@ -317,7 +360,8 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
           <div class="servico__midia">
             <figure class="midia" data-revelar>
               <div class="midia__zoom">
-                <img class="midia__img" src="assets/img/safra-900.jpg" srcset="assets/img/safra-900.jpg 900w, assets/img/safra-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Lavoura de soja madura ao pôr do sol, com uma colheitadeira ao longe (imagem ilustrativa)">
+                <picture><source type="image/webp" srcset="assets/img/safra-720.webp 720w, assets/img/safra-900.webp 900w, assets/img/safra-1200.webp 1200w, assets/img/safra-1600.webp 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw"><img class="midia__img" src="assets/img/safra-900.jpg" srcset="assets/img/safra-900.jpg 900w, assets/img/safra-1600.jpg 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Lavoura de soja madura ao pôr do sol, com uma colheitadeira ao longe (imagem ilustrativa)"></picture>
+                <video class="midia__video" data-src="assets/video/safra-960.mp4" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
               </div>
             </figure>
             <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: soja em 120 hectares, com lucro de R$ 2.040 por hectare a 65 sacas por hectare; a receita passa o custo no ponto de equilíbrio de 48 sacas por hectare.">
@@ -352,7 +396,8 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
           <div class="servico__midia">
             <figure class="midia" data-revelar>
               <div class="midia__zoom">
-                <img class="midia__img" src="assets/img/leite-900.jpg" srcset="assets/img/leite-900.jpg 900w, assets/img/leite-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Vacas holandesas pastando de manhã cedo, com neblina no vale (imagem ilustrativa)">
+                <picture><source type="image/webp" srcset="assets/img/leite-720.webp 720w, assets/img/leite-900.webp 900w, assets/img/leite-1200.webp 1200w, assets/img/leite-1600.webp 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw"><img class="midia__img" src="assets/img/leite-900.jpg" srcset="assets/img/leite-900.jpg 900w, assets/img/leite-1600.jpg 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Vacas holandesas pastando de manhã cedo, com neblina no vale (imagem ilustrativa)"></picture>
+                <video class="midia__video" data-src="assets/video/leite-960.mp4" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
               </div>
             </figure>
             <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: margem de R$ 0,82 por litro em setembro, com a produção subindo de 980 para 1.260 litros por dia em doze meses.">
@@ -384,7 +429,8 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
           <div class="servico__midia">
             <figure class="midia" data-revelar>
               <div class="midia__zoom">
-                <img class="midia__img" src="assets/img/estoque-900.jpg" srcset="assets/img/estoque-900.jpg 900w, assets/img/estoque-1600.jpg 1600w" sizes="(min-width: 820px) 56vw, 100vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Galpão com sacas de insumos empilhadas em paletes e silos de grãos ao fundo, no fim da tarde (imagem ilustrativa)">
+                <picture><source type="image/webp" srcset="assets/img/estoque-720.webp 720w, assets/img/estoque-900.webp 900w, assets/img/estoque-1200.webp 1200w, assets/img/estoque-1600.webp 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw"><img class="midia__img" src="assets/img/estoque-900.jpg" srcset="assets/img/estoque-900.jpg 900w, assets/img/estoque-1600.jpg 1600w" sizes="(min-width: 1920px) 35vw, (min-width: 1300px) 670px, (min-width: 820px) 52vw, 90vw" width="1600" height="1062" loading="lazy" decoding="async" alt="Galpão com sacas de insumos empilhadas em paletes e silos de grãos ao fundo, no fim da tarde (imagem ilustrativa)"></picture>
+                <video class="midia__video" data-src="assets/video/estoque-960.mp4" muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
               </div>
             </figure>
             <div class="ficha ficha--servico" data-revelar role="img" aria-label="Exemplo ilustrativo: dois alertas para os próximos sete dias. Estoque de ureia em 64 %, semente de milho em 12 %, abaixo do mínimo, e diesel em 47 %; o boleto do adubo, de R$ 12.300, vence em três dias.">
@@ -486,18 +532,17 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
   <section class="cta tema-escuro" id="contato" aria-labelledby="cta-titulo">
     <div class="envoltorio cta__miolo">
       <!-- COPY PROVISÓRIA --><h2 class="titulo-secao cta__titulo" id="cta-titulo" data-split data-copy="cta.titulo">Vamos colocar os números da sua fazenda em ordem?</h2>
-      <!-- destino do botão [A CONFIRMAR]: troque o href pelo link do WhatsApp (https://wa.me/55…) e apague data-destino-pendente -->
-      <a class="btn btn--trigo magnetico" href="#contato-canais" data-destino-pendente><span class="btn__face"><!-- COPY PROVISÓRIA --><span class="btn__rotulo" data-copy="cta.botao">Fale com a TCA</span></span></a>
-      <!-- aviso honesto da prévia: o site.js escreve o data-texto aqui quando o botão sem destino é usado -->
-      <!-- COPY PROVISÓRIA --><p class="cta__aviso" role="status" data-aviso data-texto="Prévia: o canal de contato ainda será confirmado. Nada foi enviado." data-copy="cta.aviso"></p>
-      <!-- duas curvas pequenas, que andam sozinhas como a faixa de solo (site.js, "solo") -->
-      <div class="solo solo--cta" data-solo="2" data-semente="3" data-trigo data-velocidade=".7" aria-hidden="true"></div>
+      <!-- o botão abre a conversa no WhatsApp da TCA (confirmado pelo Walter em 28/10) -->
+      <a class="btn btn--trigo magnetico" href="https://wa.me/5534984093888" target="_blank" rel="noopener"><span class="btn__face"><!-- COPY PROVISÓRIA --><span class="btn__rotulo" data-copy="cta.botao">Fale com a TCA</span><svg class="btn__seta" aria-hidden="true" focusable="false"><use href="#i-seta"/></svg></span></a>
       <dl class="cta__canais" id="contato-canais">
-        <div><dt>WhatsApp</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.whatsapp"><span class="a-confirmar">[A CONFIRMAR]</span></dd></div>
-        <div><dt>E-mail</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.email"><span class="a-confirmar">[A CONFIRMAR]</span></dd></div>
-        <div><dt>Endereço</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.endereco"><span class="a-confirmar">[A CONFIRMAR]</span></dd></div>
+        <div><dt>WhatsApp</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.whatsapp"><a href="https://wa.me/5534984093888" target="_blank" rel="noopener">(34) 98409-3888</a></dd></div>
+        <div><dt>E-mail</dt><!-- COPY PROVISÓRIA --><dd data-copy="contato.email"><a href="mailto:Enterprise.tca@gmail.com">Enterprise.tca@gmail.com</a></dd></div>
       </dl>
     </div>
+    <!-- as linhas do fim (v0.6.3), de borda a borda: 8 curvas de nível que andam sozinhas, abrem e levantam o relevo
+         conforme a página chega ao fim, respondem à força da rolagem e, com mouse, seguem o ponteiro em
+         profundidade (site.js, "solo", data-abre) -->
+    <div class="solo solo--fim" data-solo="8" data-semente="7" data-trigo data-abre data-velocidade="1.15" data-inchaco="1.6" aria-hidden="true"></div>
   </section>
 
 </main>
@@ -506,7 +551,7 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 <footer class="rodape tema-escuro">
   <div class="rodape__grade envoltorio">
     <a class="marca marca--negativo" href="#inicio" aria-label="TcaEnterprise, voltar ao início">
-      <svg class="marca__svg" viewBox="0 0 1373 687" aria-hidden="true" focusable="false"><use href="assets/marca/tca-logo.svg?v=0.5.0#tca-logo"/></svg>
+      <svg class="marca__svg" viewBox="0 0 1373 687" aria-hidden="true" focusable="false"><use href="assets/marca/tca-logo.svg?v=0.6.4#tca-logo"/></svg>
       <span class="marca__texto" aria-hidden="true">TcaEnterprise</span>
     </a>
     <nav class="rodape__nav" aria-label="Rodapé">
@@ -520,12 +565,12 @@ if(q||m.matches||document.hidden)return;if(!f&&(location.hash||window.pageYOffse
 </footer>
 
 <!-- site.js vem primeiro (quebra o H1 sem esperar o CDN); o resto liga no DOMContentLoaded, depois das bibliotecas -->
-<script src="assets/js/site.js?v=0.5.0" defer></script>
+<script src="assets/js/site.js?v=0.6.4" defer></script>
 <!-- o hero: o broto em 3D (WebGL), depois do site.js para usar as sondas TCA -->
-<script src="assets/js/broto.js?v=0.5.0" defer></script>
+<script src="assets/js/broto.js?v=0.6.4" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js" defer></script>
+<!-- o CustomEase saiu (v0.6.0): a curva "main" do menu é uma cúbica de Bézier resolvida no site.js, um pedido a menos -->
 <!-- Lenis 1.1.14 não existe no cdnjs (404): mesma versão, fixa, pelo jsDelivr -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
 </body>

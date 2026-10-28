@@ -1,12 +1,146 @@
-# TcaEnterprise: landing page (v0.5.0)
+# TcaEnterprise: landing page (v0.6.4)
 
 Página estática, sem build, com a identidade aprovada na Rodada G e uma abertura animada derivada da geometria da marca. O briefing está em `../PROMPT-CLAUDE-TCA-LANDING-PAGE.md`.
 
-**Estado em 27/10/2026:**
+**Estado em 28/10/2026:**
 - **Fase 0 (vetor da marca): aprovada pelo Walter.** Foi feita pelo agente principal em `assets/marca/` e `qa/vetor/`.
 - **Fase 2 (página): pronta e testada localmente.**
 - **Fase 1 (abertura "o broto que acende"): refeita em 26/10 na versão noturna e testada localmente.** O Walter achou a primeira versão (fundo Algodão, 23/10) fraca demais. Na revisão do mesmo dia (v0.3.1), ele achou feios o pulo do T e o anel que saía dele: os dois saíram e a abertura ficou mais limpa.
-- **No ar:** a **v0.5.0** (hero com o broto em 3D, menu refeito), publicada em 27/10. Antes dela, no mesmo dia, a **v0.4.0** (serviços de gestão rural, solo em carrossel, menu em tela cheia), e antes a **v0.3.1** (abertura noturna, versão limpa) foi publicada no GitHub Pages em 26/10, com o ok do Walter (`Walter-Maia/agro-rcs`, https://walter-maia.github.io/agro-rcs/). Antes dela, de 23/10 a 26/10, esteve no ar a **v0.2.0**, com a abertura clara.
+- **No ar:** a **v0.6.4** (travessias da linha suaves, contatos confirmados, e com ela as v0.6.0 a v0.6.3), publicada em 28/10 a pedido do Walter ("sobe no git"). Antes, a **v0.5.0** (hero com o broto em 3D, menu refeito), publicada em 27/10. Antes dela, no mesmo dia, a **v0.4.0** (serviços de gestão rural, solo em carrossel, menu em tela cheia), e antes a **v0.3.1** (abertura noturna, versão limpa) foi publicada no GitHub Pages em 26/10, com o ok do Walter (`Walter-Maia/agro-rcs`, https://walter-maia.github.io/agro-rcs/). Antes dela, de 23/10 a 26/10, esteve no ar a **v0.2.0**, com a abertura clara.
+
+**v0.6.4 (28/10/2026, publicada no GitHub Pages):** o Walter achou rápidas demais as partes em que a linha dos serviços vai para a diagonal e pediu que fossem mais limpas e suaves; tirou o endereço do contato, passou o WhatsApp e o e-mail e pediu testes de bugs (web e celular), otimização e responsividade.
+- **Linha dos serviços, a velocidade:** a ponta seguia a linha de 62 % da tela pela altura, então nas travessias (345 px de lado em ~60 px de altura) andava até 11 px de traço por pixel rolado e atravessava num estalo. O comprimento desenhado por altura agora passa por duas médias móveis de ±140 px (núcleo triangular): a ponta começa a travessia um pouco antes, cruza a no máximo ~1,9× a rolagem (2,1× em 2560) e alcança a linha logo depois. Os anéis acendem quando a ponta passa por eles, como antes.
+- **Linha dos serviços, o desenho:** a travessia era uma cúbica espremida no vão entre a ficha de um serviço e a foto do seguinte, com as duas dobras quase em ângulo reto (raio de ~2 px no fim). Agora pode começar mais cedo e chegar mais tarde dentro dos corredores, e o `site.js` escolhe, entre ~2.600 combinações de começo, chegada e alças, a de menor curvatura máxima que passa a 14 px de tudo: em 1440, travessias de 65 → 124 px de altura e dobras de raio 16; a última chega deitada no anel do fim (raio 2 → 17). Em 1024 o vão é baixo e o raio fica em 8. A escolha roda só na carga e quando a seção muda de tamanho (nenhuma montagem durante a rolagem) e leva alguns ms: a montagem inteira mediu 7 ms em 1440, com a máquina carregada.
+- **Contato:** WhatsApp (34) 98409-3888 (`wa.me/5534984093888`) e e-mail Enterprise.tca@gmail.com, os dois como links; o endereço saiu e os canais ficaram em duas colunas (uma abaixo de 600 px). O botão "Fale com a TCA" abre o WhatsApp numa aba nova; o aviso de prévia e o código do botão sem destino saíram.
+- **Bug achado nos testes (de antes desta versão):** com movimento reduzido, abrir o menu não levava o foco do teclado ao primeiro link. A regra global de transição de .01ms pegava também o `visibility` (a propriedade padrão é "all"), e no quadro da abertura o link ainda estava "hidden". O menu ficou sem transições no `html.rm`.
+- **Testes** (Chrome headless; `qa/ferramentas/regressao.js`, novo):
+  - 320, 360, 390, 768, 1024, 1280, 1440, 1920 e 2560 px, e 390 e 1440 com movimento reduzido: sem estouro lateral, sem erro de console, exceção ou 404, vídeos sem erro, imagens carregadas (menos a logo de reserva do hero, que só aparece sem WebGL), menu abrindo com o foco no 1º link e fechando com Esc, contatos e botão com os links certos, alvos de toque de 112 × 39 e 187 × 39 px.
+  - `copy.js`: as 54 chaves conferem e nenhuma palavra sem acento.
+  - Lighthouse 12: desktop 100/100/100 (FCP 0,5 s, LCP 0,8 s, TBT 10 ms, CLS 0); celular 87/96/100 (FCP 2,1 s, LCP 3,6 s, TBT 120 ms, CLS 0). O 96 é o contraste do botão do hero lido no fim do fade de entrada (4,45:1 com o botão a 92 % de opacidade, logo depois da abertura); em repouso ele tem 5,03:1. Na rodada anterior, o mesmo teste passou.
+  - `desempenho.js` em 1440: quadros iguais aos da auditoria (p99 4,3 ms, nenhum acima de 17 ms fora da carga e da rolagem), sem montagens da linha durante a rolagem. O fio principal mediu de 25 a 40 % a mais em todas as janelas, inclusive nas que não mudaram (hero parado): a máquina estava com 48 % de CPU ocupada por outros processos.
+
+**v0.6.3 (28/10/2026, publicada junto com a v0.6.4):** o Walter achou as animações do menu datadas, lentas para aparecer e pouco limpas (pediu os desenhos prontos e animados), pediu o desenho em linha no fundo dos serviços (que tinham muito espaço vazio) e mais linhas, mais dinâmicas, no fim do CTA.
+- **Menu, cenas prontas e vivas:** o Walter testou uma vitrine de fotos no lugar das cenas e achou feia; as cenas em vetor voltaram, mas já chegam desenhadas (o traçado na hora, de até 3 s por cena, saiu) e ficam vivas enquanto estão em cena (roteiro em `site.js`, `CENAS`):
+  - Início: os anéis numa órbita, um ponto Trigo orbitando, um halo pontilhado girando ao contrário, ondas saindo do anel do meio e os anéis respirando;
+  - Serviços: três curvas de nível andando, cada uma no seu passo, com uma boia Trigo que flutua e pulsa;
+  - Como funciona: pulsos de luz descendo pela haste e pelas raízes, e cada anel acendendo quando o seu chega;
+  - Sobre: o broto com as folhas balançando fora de fase, o nó respirando e grãos de luz subindo;
+  - Contato: traços Trigo correndo pelas linhas até o pino, ondas no pino e os pontos do mapa piscando.
+  - A troca é um cruzamento com zoom de 0,94 para 1 (CSS); a cena que sai segue viva até sumir e, se voltar antes, continua de onde estava. Com o menu fechado, nenhuma animação de cena roda. A legenda troca rolando numa máscara.
+- **Menu, abertura:** véu em 0,35 s, camadas em cascata, links por máscara sem o giro, a cena subindo e assentando; fechar em 0,5 s. O véu ficou opaco, com uma luz baixa atrás das cenas (o texto do hero aparecia por trás como um fantasma). O foco do teclado é a própria faixa dourada; o contorno, recortado pela máscara da linha, virava duas barras soltas. No Edge headless, o clique custa ~3 ms de JS e os quadros seguintes, 2 a 5 ms.
+- **Serviços, desenho em linha no fundo** (`site.js`, "trilha"):
+  - um traço só desce pelo corredor entre foto e texto de cada serviço, cruza de lado no vão até o próximo e termina num anel sobre a nota do fim;
+  - a ponta (um ponto Trigo com halo) vai a 62 % da altura da tela, então o traço se desenha com a rolagem e acende um anel da marca na altura de cada título;
+  - atrás, quatro "morros" de curvas de nível (6 anéis irregulares, um Trigo) ocupam o vão do lado do texto, se desenham ao entrar e andam com a rolagem (paralaxe só por `transform`);
+  - tudo é medido no layout real e refeito quando a seção muda de tamanho; abaixo de 820 px, só os morros, quase todos fora da tela, nos vãos;
+  - o vão entre os serviços caiu de 96–176 px para 88–148 px.
+- **CTA, as linhas do fim:** as duas curvas pequenas do meio saíram e, no fim da seção, de borda a borda e encostadas no rodapé, entraram 8 curvas (uma Trigo). Elas nascem achatadas e afundadas e abrem conforme a página chega ao fim (as da frente sobem mais), levantam 1,6× mais com a força da rolagem e, com mouse, seguem o ponteiro em profundidade.
+- **Movimento reduzido:** o traço inteiro com os anéis acesos, os morros prontos, as linhas paradas e abertas, e o menu sem animação.
+- **Auditoria de desempenho** (28/10, pedida pelo Walter junto com as cenas; `qa/ferramentas/desempenho.js` e Lighthouse 12):
+  - **O broto era desenhado duas vezes por quadro, desde a v0.5.0.** Sem a abertura (toda visita depois da primeira na sessão, link com âncora ou página já rolada), `nascer()` pedia o primeiro quadro antes da linha `var raf = 0`, que apagava esse pedido; o `medir()` pedia outro, e as duas cadeias de rAF seguiam juntas para sempre, cada uma zerando a trava da outra. O estado do laço agora é declarado antes da entrada: 1 desenho por quadro (no topo, 965 → 724 pedidos de rAF/s a 240 Hz).
+  - **O sol e o convite para rolar animavam escondidos.** Os três laços em CSS do hero seguiam sob a cortina e sob o menu, com um recálculo de estilo por quadro. Agora param com `.broto.is-fora` (o mesmo IntersectionObserver do broto, e o evento do menu). Parado no meio da página, o fio principal caiu de 129 para 23 ms/s; no fim, de 162 para 115; trocando as cenas do menu, de 193 para 164.
+  - **O laço do broto não lê mais o layout.** Ele pedia `getBoundingClientRect()` da seção e da cortina a cada quadro, depois de o GSAP já ter escrito estilos (um recálculo forçado por quadro: 852 vezes, 685 ms, num perfil do celular com CPU 4×). As duas posições na página são medidas no `medir()` (ResizeObserver no palco e na seção), e o quadro só desconta a rolagem; o progresso confere com o antigo em 5 posições e depois de redimensionar.
+  - **Fotos dos serviços em 720 e 1200 px**, além de 900 e 1600, e `sizes` do tamanho real da foto (era `56vw` / `100vw`): 90vw no celular (a tela menos as margens), 52vw até 1300 px, 670 px de 1300 a 1920 (o envoltório para de crescer) e 35vw acima. Um desktop 1× pede a de 720. Um celular 2× pede a de 720 (37–52 KB, eram 52–83); um 3×, a de 1200 (78–135 KB, eram 124–231). Feitas do JPEG de 1600 com o `webp.js` no Chrome, qualidade 0,72 (o mesmo peso das atuais).
+  - **A logo de reserva do hero** (só aparece sem WebGL) passou a `loading="lazy"`: um pedido a menos na carga.
+  - **Não mexido, de propósito:** no celular, na primeira visita, o LCP é o título do hero, que só aparece quando a abertura termina (3,1–3,7 s no Lighthouse; 88 % disso é espera de desenho, não de rede); é uma decisão de desenho, não um defeito. O link dos shaders trava o fio principal ~43 ms na carga (`KHR_parallel_shader_compile` tiraria isso, mas mexe na inicialização do hero). As linhas do fim do CTA seguem custando quadro a quadro enquanto estão na tela, como pedido.
+  - **O que estava errado na medição:** o Edge headless desta máquina põe a aba em "hidden" 10 a 14 s depois de abrir (até numa página em branco, e mesmo sem o cálculo de oclusão): o rAF vai a zero, a roda do mouse deixa de responder e, minutos depois, o JS para. Toda medição mais longa saía errada ou travava (foi o que prendeu a auditoria anterior por 46 min, e o "LCP de 8,3 s" que ela viu no desktop). O `cdp.js` passou a usar o Chrome quando ele está instalado, com o Edge como reserva.
+
+**v0.6.2 (28/10/2026, publicada junto com a v0.6.4):** o Walter aprovou o hero e pediu um sol com animação e efeito de rolagem, hover nas fotos (o produtor escrevendo, a lavoura se mexendo), hover dourado no menu, o menu mais leve e mais detalhes.
+- **Sol no hero:**
+  - **Posição:** `.broto__ceu` refaz em CSS o `object-fit: cover` da foto (largura = a maior entre a da tela e a altura × proporção; mesmo `object-position`, com `cqw/cqh`). Assim o sol fica preso ao céu da imagem em qualquer tela.
+  - **Recorte:** o disco e os raios ficam num `clip-path` com a silhueta das colinas, medida na própria foto (maior queda de luminância coluna a coluna). O halo fica livre.
+  - **Animação:** chega com a foto, o halo respira (7 s) e os raios giram muito devagar (180 s), em `screen`.
+  - **Rolagem:** o sol desce e se põe atrás das colinas antes de a câmera chegar ao alto. Ele acompanha o mouse um pouco mais que a foto.
+  - **Contraluz do broto:** é o sol (`u_sol` no shader) e apaga junto com ele.
+  - **Foto em pé:** o sol fica à esquerda do céu, para não cair sob o botão Menu, e a foto passou para `object-position: 50% 12%` (mais céu num tablet em pé).
+- **Fotos que ganham vida:**
+  - Quatro cinemagraphs gerados no Higgsfield (MiniMax H3 Max, com o mesmo quadro no início e no fim, 12,5 créditos cada), a partir das próprias fotos: o produtor escrevendo, a soja ao vento com poeira na luz, as vacas e a neblina, a poeira no galpão.
+  - Comprimidos com ffmpeg em H.264 de 960 px, sem o último quadro (igual ao primeiro): 330 a 510 KB cada, em `assets/video/`.
+  - **Com mouse:** pré-carregam quando o serviço chega perto da tela e tocam no hover da linha. Só aparecem, por cruzamento sobre a foto, quando já estão tocando.
+  - **No toque:** tocam enquanto a foto está a 60 % à vista, e só o que aparece carrega.
+  - Nada carrega com economia de dados nem com movimento reduzido.
+- **Hover dos serviços:**
+  - um passe-partout Trigo que se desenha para dentro;
+  - a foto e o vídeo a 1,045;
+  - a ficha sobe 8 px (`translate`, separado da entrada) com a sombra mais aberta;
+  - os anéis da lista acendem em cascata.
+- **Menu:**
+  - **Hover dourado:** uma faixa Trigo entra pela esquerda, de borda a borda do painel. Texto, número, anel e seta ficam Floresta funda (6:1). Ao sair, a faixa recolhe para a direita. O `li` passou de `overflow: hidden` para `clip-path: inset(0 -240px)`, que recorta só em cima e embaixo.
+  - **Mais rápido:** o véu entra em 0,3 s, as camadas em 0,6 s (cascata de 0,05 s), os links começam aos 0,08 s e a saída leva 0,45 s.
+  - **Montado e escondido:** o menu fica montado e escondido (`.is-fechado`, `visibility`), em vez de `hidden`/`display: none`. Abrir não recalcula layout; no Edge headless, o pior quadro ao abrir caiu de 20,8 ms para 4,3 ms.
+- **Detalhes:** seta nos botões Trigo, que anda no hover, e um fio Trigo de progresso da leitura no alto do cabeçalho.
+
+**v0.6.1 (28/10/2026, publicada junto com a v0.6.4):** o Walter achou o broto 3D feio e o menu ainda "lagado".
+- **Broto "porcelana e ouro"** (`broto.js`): a geometria e o material foram refeitos. Agora é uma pequena escultura de pé sobre o mapa de curvas de nível (o chão desceu para a altura dos anéis):
+  - caule de porcelana Algodão que afina para cima;
+  - botão em gota;
+  - folhas em concha, numa grade de 48 × 12 com normais próprias, com fio de ouro na borda, nervura de ouro que afina e veias gravadas (antisserrilhadas com `fwidth`, pela extensão `OES_standard_derivatives`);
+  - raízes curvas (Bézier) que afinam e viram ouro antes dos anéis, que agora são um fio fino;
+  - uma semente de ouro na junção, a primeira peça a nascer, como na abertura.
+- **Material:** o esmalte da porcelana e o ouro refletem um ambiente igual ao da foto (chão verde, faixa dourada no horizonte, céu escuro), com Fresnel e tom ACES. A contraluz Trigo vaza pelas folhas.
+- **Pulso de luz:** a cada 7 s, depois que o broto nasceu, um pulso sobe dos anéis pelas raízes, acende a semente, sobe o caule e corre pelos fios de ouro das folhas.
+- **Malha:** ~18,7 mil triângulos (eram 9,7 mil), ainda num desenho só por passe.
+- **Menu sem lag:** o main thread não era o problema (Edge headless: mediana de 4,2 ms por quadro ao abrir e fechar, com ou sem as mudanças). As causas atacadas foram:
+  1. **O ease "main" (.65, .01, .05, .99):** quase parado no primeiro terço e depois um salto. O clique parecia não responder. Entrada e saída usam agora a curva de saída do site (.16, 1, .3, 1): o painel anda já no primeiro quadro. A entrada foi para 0,8 s, com cascata de 0,07 s e links a partir de 0,14 s; a saída, para 0,5 s.
+  2. **O `backdrop-filter: blur(12px)` do véu:** por cima do canvas do hero, a GPU refazia o desfoque da tela inteira a cada quadro. O véu agora é Floresta funda a 95,5 %, sem desfoque.
+  3. **Trabalho por trás do véu:** com o menu aberto, o broto e as curvas de solo param (evento `tca:menu`).
+  4. **Disputa pelo primeiro quadro:** o `inert` da página sai do primeiro quadro (vai para o seguinte) e a primeira cena começa 0,3 s depois, quando as camadas já passaram.
+  5. **Isolamento:** `contain: layout paint` no painel e no palco das cenas.
+  6. **Botão "Menu":** perdeu o `--ease-main` (o token saiu do CSS).
+- **Não medido:** o ganho na GPU. O Chrome desta máquina estava em segundo plano (o rAF fica limitado a 1 quadro/s) e o headless compõe sem GPU. O menu foi conferido no Chrome: abre e fecha, a cena toca, o foco volta ao botão, o broto e as curvas param e voltam, sem erros no console.
+
+**v0.6.0 (28/10/2026, publicada junto com a v0.6.4):** o Walter pediu um hero mais bonito nas cores do site, animações limpas e harmônicas, o site otimizado e responsivo em qualquer resolução.
+- **Hero sobre o campo ao anoitecer:**
+  - O broto 3D agora fica sobre uma foto gerada no Higgsfield (`gpt_image_2_5`, high, 2k): colinas em curvas de nível com o horizonte dourado.
+  - Na paisagem, o lado esquerdo é escuro para o texto. No celular entra uma versão vertical (`<picture>`, `orientation: portrait`).
+  - No quadro "Visto de cima", a foto passa para o campo visto de cima.
+  - As três fotos foram puxadas para a paleta (laranja → Trigo, verde → Floresta) com `hue-rotate(5deg) saturate(.88)` na conversão. Um véu escurece o lado do texto, o alto e o pé da tela.
+- **Broto mais rico** (`broto.js`):
+  - Lua fria pela frente e contraluz Trigo por trás (o horizonte), que vaza pelas folhas.
+  - Nervura e base mais escura nas folhas.
+  - Brilho que respira no chão, como a luz das raízes.
+  - As curvas de nível do chão viraram filetes Trigo translúcidos, mais fracos para fora.
+  - Os anéis pulsam de leve.
+- **Lugar do broto pelo layout:** o centro e o tamanho em cada quadro saem do espaço que o texto deixa livre: ao lado (deitado) ou acima (em pé), acima da frase do quadro 1 e na posição real do T da logo do cabeçalho. Não há mais números por resolução (`QUADROS_ALTO` saiu).
+- **Entrega sem tela vazia:**
+  - Antes, o fundo clareava para o Algodão e sobrava uma tela creme inteira, vazia.
+  - Agora o broto encolhe até o T da logo sobre o fundo escuro, com o cabeçalho sem fundo enquanto o palco está por baixo (`.topo--palco`).
+  - Na última meia tela, a faixa de solo e os serviços sobem por cima do palco como uma folha (a "cortina": cantos arredondados e sombra para cima). A foto sobe e escurece por baixo dela.
+  - O hero passou de 2,3 para 2,6 telas.
+- **Movimento:**
+  - Uma escala só de durações no `:root` (`--dur-rapida` .35 s, `--dur-media` .7 s, `--dur-entrada` 1 s, `--dur-lenta` 1,3 s) nas entradas, nos reveals, nas fotos, nas fichas e no cabeçalho.
+  - O texto do hero sai só com opacidade e translação; o `blur()`, que repintava a cada quadro, saiu.
+  - Sem quique nem elástico: o ímã do CTA volta com `power3.out`, o pino do menu cai sem `bounce` e as folhas abrem com `back.out(1.3)`.
+  - A faixa de solo ficou mais calma: 20 a 54 px/s, 0,25 a 0,7 px por px rolado, impulso de até 3,5× (era 10×) e relevo até 1,3×. O sentido vira devagar, sem tranco.
+- **Otimização:**
+  - Fotos dos serviços em WebP com o JPEG de reserva (`<picture>`): 1,7 MB → 1,1 MB. O hero pesa 17 a 90 KB por tamanho.
+  - A foto de cima só carrega depois do `load` ou na primeira rolagem.
+  - A Source Sans entra com preload.
+  - O CustomEase saiu (a curva "main" do menu é uma Bézier resolvida no `site.js`): um pedido a menos ao CDN.
+  - No laço do broto:
+    - a luz é um disco fixo movido só por `transform` (antes mudava largura e altura a cada quadro);
+    - o DOM só é escrito quando o valor muda;
+    - o canvas tem um teto de ~5 milhões de pixels;
+    - o laço para quando a cortina cobre o palco;
+    - a rolagem só pede quadro com o hero à vista.
+  - O cabeçalho é recalculado no máximo uma vez por quadro.
+  - O botão secundário perdeu o `backdrop-filter`.
+- **Responsivo em qualquer resolução:**
+  - A coluna do conteúdo vai de 1280 a 1600 px (`--envoltorio`) e o texto base de 16 a 18 px em telas grandes.
+  - O H1 do hero cresce com a largura, mas nunca passa de 8,4 % da altura.
+  - Há um corte para celular deitado (`max-height: 560px`).
+  - Abaixo de 360 px, os botões do hero ficam empilhados.
+  - Os dois botões do hero têm a mesma altura: a regra de 60 px do CTA final vazava para o hero.
+  - O fundo do documento e o `theme-color` são Floresta funda.
+- **Conferido** (Chrome a 120 Hz e Edge headless):
+  - 320 × 640, 360 × 640, 390 × 844, 844 × 390, 768 × 1024, 1366 × 657, 1912 × 867 e 2560 × 1440: sem vazamento horizontal e sem erros no console.
+  - Rolando pelo hero, a mediana de quadro é 8,3 ms e o p95 fica em 8,5 ms, sem tarefas longas.
+  - Abertura (`?intro=1`), modo estático (`?fx=0`) e menu: ok.
+  - `copy.js`: as 56 chaves batem.
+  - O `fase2.js` não foi rodado: regravaria as evidências versionadas em `qa/fase2/`, e vários casos dele já estavam obsoletos desde a v0.4.0.
+- **Ferramentas novas:**
+  - `qa/ferramentas/webp.js` converte para WebP em várias larguras, com o codificador do próprio Edge, e aceita um filtro de cor.
+  - `qa/ferramentas/hero.js` fotografa os três quadros e a cortina num tamanho de tela.
 
 **v0.5.0 (27/10/2026, publicada no GitHub Pages no mesmo dia, a pedido do Walter):**
 - **Backup:** antes da troca do hero, a página inteira (v0.4.0 com os grafismos do menu da primeira versão) foi copiada para `backup/`, que funciona sozinha (`backup/LEIA-ME.md`).
@@ -46,8 +180,8 @@ assets/js/intro.js       liga, encerra e limpa a abertura (o palco é gerado; ve
 assets/js/site.js        Lenis, ScrollTrigger, títulos, fotos, marquee, magnético, raízes, menu
 assets/fonts/            Montserrat (400–800) e Source Sans 3 (400–600), woff2 latin, OFL 1.1
 assets/marca/            Fase 0 (agente principal): sprite tca-logo.svg e favicons; não editar daqui
-assets/img/              fotos ilustrativas (Higgsfield, 27/10), JPEG em duas larguras
-qa/ferramentas/          servidor, cliente CDP (Edge headless), testes e o gerador da marca inline
+assets/img/              fotos ilustrativas (Higgsfield, 27–28/10): serviços em WebP + JPEG de reserva, hero só em WebP
+qa/ferramentas/          servidor, cliente CDP (Chrome headless, ou Edge), testes, gerador da marca inline, webp.js, hero.js, desempenho.js e regressao.js
 qa/fase1/                abertura: folhas de quadros, capturas, resultados.json
 qa/fase2/                página: resultados.json, contraste.json, copy.json, capturas/, folha-larguras-hero.jpg
 qa/vetor/                prova do vetor (agente principal)
@@ -187,7 +321,7 @@ Se o vetor mudar, rode `node qa/ferramentas/montar-marca-inline.js`. Ele regrava
 | # | Seção | Fundo | Movimento |
 |---|---|---|---|
 | 1 | Cabeçalho fixo: logo no meio, menu à direita | Algodão translúcido ao rolar; Floresta sobre as seções escuras | Logo em partes; o botão desce 16 px; a cor segue a seção; menu em tela cheia em camadas. |
-| 2 | Hero | Algodão | **02** no H1, **04** na foto, paralaxe na foto e na ficha, barras da ficha. |
+| 2 | Hero (v0.6.0) | Floresta funda + foto do campo | Broto 3D em palco preso (capa → de cima → entrega no T da logo), **02** no H1, foto que se aproxima e acompanha o mouse, cortina dos serviços por cima. |
 | 3 | Faixa de solo (no lugar do marquee, a pedido do Walter em 27/10) | Algodão | 4 curvas de nível em carrossel, com a dinâmica do antigo **06**, e botão Pausar/Retomar. |
 | 4 | Serviços (lista editorial alternada, 4 itens, foto + ficha + texto) | Algodão + solo na divisa | **04** em cada foto + **11** zoom interno (só com ponteiro fino); fichas desenhadas e números contados. |
 | 5 | Como funciona: "Do caderno ao resultado" | Floresta | Raízes do logo desenhadas pela rolagem (assinatura) + **02** no título. |
@@ -246,16 +380,14 @@ São 5 efeitos visíveis mais a base, dentro da regra "3–5 bem-feitos". Em tod
 
 - Todos os textos estão no bloco `COPY PROVISÓRIA` do topo do `index.html` (54 chaves). Cada elemento tem `data-copy="chave"` e o comentário `<!-- COPY PROVISÓRIA -->`.
 - **Para trocar um texto, edite os dois lugares e rode `node qa/ferramentas/copy.js`.** O script confere a correspondência, a marca e a acentuação.
-- O botão do CTA final ainda não tem destino:
-  - Ao ser clicado, ele **não envia nada** e mostra "Prévia: o canal de contato ainda será confirmado. Nada foi enviado."
-  - Quando o canal for definido, troque o `href` pelo link real e apague o `data-destino-pendente`.
+- **Contatos (confirmados pelo Walter em 28/10):** o WhatsApp e o e-mail estão no bloco do topo e nos links de `#contato-canais`; o botão do CTA final aponta para o mesmo WhatsApp. Para trocar o número, mude os três (o texto e os dois `href`).
 
 ## Pendências com o cliente
 
 1. **Copy:** todos os textos são provisórios.
 2. **Serviços:** confirmados pelo Walter em 27/10 (os quatro da v0.4.0). Os números das fichas são exemplos inventados e devem continuar marcados assim, ou ser trocados por dados reais com autorização.
-3. **Contatos [A CONFIRMAR]:** WhatsApp, e-mail, endereço e o destino do botão do CTA final.
-4. **Fotos:** as cinco atuais são ilustrativas (Higgsfield, 27/10). Fotos reais da operação, quando houver, entram nos mesmos lugares e proporções (hero 4:5 no desktop e 4:3 no celular; serviços 3:2). Converter para WebP quando houver ferramenta.
+3. **Contatos:** confirmados em 28/10 (WhatsApp (34) 98409-3888 e Enterprise.tca@gmail.com; o botão do CTA abre o WhatsApp). O endereço saiu a pedido do Walter.
+4. **Fotos:** as cinco atuais são ilustrativas (Higgsfield, 27/10). Fotos reais da operação, quando houver, entram nos mesmos lugares e proporções (hero 4:5 no desktop e 4:3 no celular; serviços 3:2). Fotos novas: converter com `node qa/ferramentas/webp.js` (WebP feito na v0.6.0).
 5. **Seções que não entraram por falta de dados reais:** números, depoimentos e logos de clientes ou parceiros.
 6. **Na publicação** (não autorizada ainda):
    - tirar o `noindex`;
@@ -267,14 +399,16 @@ São 5 efeitos visíveis mais a base, dentro da regra "3–5 bem-feitos". Em tod
 Com o servidor rodando (Node ≥ 22; nesta máquina, `%LOCALAPPDATA%\nvm\v24.6.0\node.exe`):
 
 ```
-node qa/ferramentas/fase2.js [caso]                 # página: larguras, menu, âncoras, raízes, marquee, magnético, reduzido, sem JS, teclado, CPU 4×
+node qa/ferramentas/regressao.js [filtro] [pasta]    # página inteira em 11 tamanhos: estouro, imagens, erros, contatos, linha dos serviços, menu
+node qa/ferramentas/fase2.js [caso]                 # página: larguras, menu, âncoras, raízes, marquee, magnético, reduzido, sem JS, teclado, CPU 4× (menu de celular, âncoras, marquee e reduzido procuram peças que saíram na v0.4.0)
 node qa/ferramentas/fase1.js [caso]                 # abertura: natural, âncora, pular, jsBloqueado, cpu4, semAbertura, tamanhos, poseFinal
 node qa/ferramentas/capturar-quadros.js abertura-1440 0,0.85,1.7,2.55,3.4 1440x900   # folha de quadros (0/25/50/75/100 %)
 node qa/ferramentas/filmar-abertura.js 1440x900 [fps] [fim]                         # MP4 da abertura, relógio controlado
 node qa/ferramentas/contraste.js  ·  node qa/ferramentas/copy.js  ·  node qa/ferramentas/espiar.js 390x844
+node qa/ferramentas/desempenho.js 1440x900 [cpu] [cabo|4g] [pasta]                   # carga, hero parado, rolagem, meio/fim parados, menu
 ```
 
-Por padrão, as sessões de teste nascem com a abertura já "vista" (só a Fase 1 pede `intro: true`). Cada sessão abre um Edge headless com perfil próprio no TEMP e o fecha com `Browser.close`, pelo próprio CDP. Até 26/10 o `cdp.js` só matava o lançador: o navegador de verdade ficava órfão, e sobraram 164 processos e 3,9 GB de perfis, o que encheu o disco C:.
+Por padrão, as sessões de teste nascem com a abertura já "vista" (só a Fase 1 pede `intro: true`). Cada sessão abre um Chrome headless (ou, sem Chrome, o Edge; `BROWSER` escolhe outro) com perfil próprio no TEMP e o fecha com `Browser.close`, pelo próprio CDP. Desde 28/10 o Chrome vem antes: o Edge headless põe a aba em "hidden" depois de 10 a 14 s, e as medições mais longas que isso saíam erradas. Até 26/10 o `cdp.js` só matava o lançador: o navegador de verdade ficava órfão, e sobraram 164 processos e 3,9 GB de perfis, o que encheu o disco C:.
 
 **Resultado da v0.3.1** (26/10, Edge headless, `qa/fase1/resultados.json`):
 - **Fim natural:** a saída começa 2,9 s depois do início, e a abertura sai do DOM em 3,6 s. Em 1440 e em 390, a mediana de quadro é 16,7 ms e o p95 fica em 17–18 ms; quadros lentos só na carga da página.
